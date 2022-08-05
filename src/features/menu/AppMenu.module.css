@@ -1,0 +1,27 @@
+.menu {
+    position: fixed;
+    right: 20px;
+    top: 15px;
+}
+
+.menuBtn {
+    position: fixed;
+    box-shadow: 0 0 36px 9px black;
+    right: 45px;
+}
+
+.menuBox {
+    position: fixed;
+    display: flex;
+    right: 0;
+    top: 60px;
+    flex-direction: column;
+    background: white;
+    margin: 20px;
+    padding: 10px 20px;
+}
+
+.menuBoxBtn {
+    width: 100px;
+    margin: 10px 0;
+}
