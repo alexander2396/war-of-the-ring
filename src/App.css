@@ -17,7 +17,7 @@
 }
 
 .regionArmy {
-  position: fixed;
+  position: absolute;
   color: white;
   font-size: 20px;
   font-weight: bold;
