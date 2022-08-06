@@ -14,34 +14,28 @@ export function RollModal(props: any) {
     const [Dices,setDices]=useState([] as Dice[]);
 
     function rollDices(count: number) {
-        let diceRollArray = [];
+        let diceRollArray: any = [];
         for (var i = 0; i < count; i++) {
-            let number = Math.round(Math.random() * 6);
+            let number = Math.round(Math.random() * 61);
 
-            console.log(number)
-            switch (number) {
-                case 0:
-                case 1:
-                    diceRollArray.push({ imageUrl: ADFParmymusterIcon } as Dice);
-                    break;
-                case 2: 
-                case 3: 
-                    diceRollArray.push({ imageUrl: ADFPcharacter } as Dice);
-                    break;
-                case 4: 
-                    diceRollArray.push({ imageUrl: ADFPevent } as Dice);
-                    break;
-                case 5: 
-                    diceRollArray.push({ imageUrl: ADFPmuster } as Dice);
-                    break;
-                case 6: 
-                    diceRollArray.push({ imageUrl: ADFPwill } as Dice);
-                    break;
-            }
+            if (number >= 0 && number <= 10)
+                diceRollArray.push({ imageUrl: ADFParmymusterIcon });
+
+            if (number > 10 && number <= 30)
+                diceRollArray.push({ imageUrl: ADFPcharacter });
+
+            if (number > 30 && number <= 40)
+                diceRollArray.push({ imageUrl: ADFPevent });
+
+            if (number > 40 && number <= 50)
+                diceRollArray.push({ imageUrl: ADFPmuster });
+
+            if (number > 50 && number <= 61)
+                diceRollArray.push({ imageUrl: ADFPwill });
         }
 
+
         setDices(diceRollArray);
-        console.log(diceRollArray)
     }
 
     return (
@@ -51,28 +45,11 @@ export function RollModal(props: any) {
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex flex-row">
-
-                {Dices.map((dice, i) => {
-                    return (<div className="m-1">
-                        <img width={"40px"} src={dice.imageUrl} />
-                    </div>) 
-                })}
-
-                    {/* <div className="m-1">
-                        <img width={"40px"} src={require("./../../images/dices/ADFParmymuster.png")} />
-                    </div>
-                    <div className="m-1">
-                        <img width={"40px"} src={require("./../../images/dices/ADFPcharacter.png")} />
-                    </div>
-                    <div className="m-1">
-                        <img width={"40px"} src={require("./../../images/dices/ADFPevent.png")} />
-                    </div>
-                    <div className="m-1">
-                        <img width={"40px"} src={require("./../../images/dices/ADFPmuster.png")} />
-                    </div>
-                    <div className="m-1">
-                        <img width={"40px"} src={require("./../../images/dices/ADFPwill.png")} />
-                    </div> */}
+                    {Dices.map((dice, i) => {
+                        return (<div className="m-1">
+                            <img width={"40px"} src={dice.imageUrl} />
+                        </div>) 
+                    })}
                 </div>
             </Modal.Body>
             <Modal.Footer>

@@ -1,8 +1,30 @@
 .App {
   text-align: center;
 
-  background: url(./images/board.jpg);
-  height: 1300px;
+  /* background: url(./images/board.jpg); */
+  /* height: 1300px; */
   background-repeat: no-repeat;
   background-size: cover;
+  user-select: none;
+}
+
+.board {
+  width: 1903px;
+}
+
+.region {
+  cursor: pointer;
+}
+
+.regionArmy {
+  position: fixed;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+  transform: translate(-50%,-50%);
+}
+
+.unitCount {
+  margin-top: -5px;
 }
