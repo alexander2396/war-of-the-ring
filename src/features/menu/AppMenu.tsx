@@ -1,36 +1,52 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { RollModal } from '../roll-modal/RollModal';
+import { useAppDispatch } from '../../app/hooks';
+import { DiceService } from '../../core/diceService';
+import { GameModal } from '../game-modal/GameModal';
+import { setFreePeopleDices, setSauronForcesDices } from '../gameSlice';
 import styles from './AppMenu.module.css';
 
 export function AppMenu() {
 
-  const [ShowMenu,setShowMenu]=useState(false);
-  const [modalShow, setModalShow] = useState(false);
+    const [ShowMenu,setShowMenu]=useState(false);
+    const [modalShow, setModalShow] = useState(false);
 
-  return (
-    <div className={styles.menu}>
-      <Button className={styles.menuBtn} variant="light" size="lg"
-        onClick={() => setShowMenu(!ShowMenu)}>
-          Menu
-      </Button>
+    const dispatch = useAppDispatch();
 
-      {ShowMenu && 
-        <div className={styles.menuBox}>
+    function newGame(): void {
+        var freePeopleDices = DiceService.rollFreePeopleDices(4);
+        dispatch(setFreePeopleDices(freePeopleDices));
 
-          <div>
-            <Button className={styles.menuBoxBtn} variant="primary" onClick={() => setModalShow(true)}>Roll</Button>
-          </div>
-          
-          <div>
-            <Button className={styles.menuBoxBtn} variant="primary">Cards</Button>
-          </div>
+        var sauronForcesDices = DiceService.rollSauronForcesDices(6);
+        dispatch(setSauronForcesDices(sauronForcesDices));
 
+        new Audio('sounds/dice.wav').play();
+
+        setModalShow(true);
+    }
+
+    return (
+        <div className={styles.menu}>
+            <Button className={styles.menuBtn} variant="light" size="lg"
+                onClick={() => setShowMenu(!ShowMenu)}>
+                Menu
+            </Button>
+
+        {ShowMenu && 
+                <div className={styles.menuBox}>
+
+                <div>
+                    <Button className={styles.menuBoxBtn} variant="primary" onClick={() => newGame()}>New Game</Button>
+                </div>
+
+                <div>
+                    <Button className={styles.menuBoxBtn} variant="primary" onClick={() => setModalShow(true)}>Current Game</Button>
+                </div>
+
+            </div>
+        }
+        {modalShow && <GameModal show='true' onHide={() => setModalShow(false)} />}
+        
         </div>
-      }
-
-      <RollModal show={modalShow} onHide={() => setModalShow(false)} />
-      
-    </div>
-  );
+    );
 }

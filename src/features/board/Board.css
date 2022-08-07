@@ -1,0 +1,36 @@
+.board {
+    width: 1903px;
+}
+
+.region {
+    cursor: pointer;
+}
+
+.regionArmy {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+}
+
+.unitCount {
+    margin-top: -5px;
+}
+
+.boardMap {
+    width: 100%;
+}
+
+.unitsMenu {
+    position: absolute;
+    width: 200px;
+    top: 100px;
+    right: 275px;
+}
+
+.selectedUnit {
+    cursor: pointer;
+}

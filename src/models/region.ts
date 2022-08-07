@@ -5,4 +5,5 @@ export class Region {
     units: Unit[];
     xposition: string;
     yposition: string;
+    rectangleCoordinates: string;
 }

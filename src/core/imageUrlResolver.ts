@@ -1,10 +1,6 @@
 import { Faction } from "../models/faction";
 import { Unit } from "../models/unit";
 import { UnitType } from "../models/unitType";
-import ElevenRegular from '../images/units/ElvenRegular.png';
-import ElvenElite from '../images/units/ElvenElite.png';
-import ElvenLeader from '../images/units/ElvenLeader.png';
-import SauronRegular from '../images/units/SauronRegular.png';
 
 export class ImageUrlResolver {
     static getUnitUrl(unit: Unit): string {
@@ -12,15 +8,15 @@ export class ImageUrlResolver {
         switch (unit.faction) {
             case Faction.Elves:
                 if (unit.type === UnitType.Regular) 
-                    return ElevenRegular;            
+                    return 'images/units/ElvenRegular.png';            
                 if (unit.type === UnitType.Elite) 
-                    return ElvenElite;
+                    return 'images/units/ElvenElite.png';
                 if (unit.type === UnitType.Leader) 
-                    return ElvenLeader;
+                    return 'images/units/ElvenLeader.png';
                 break;
             case Faction.Sauron:
                 if (unit.type === UnitType.Regular) 
-                    return SauronRegular;
+                    return 'images/units/SauronRegular.png';
                 break;
         }
 
