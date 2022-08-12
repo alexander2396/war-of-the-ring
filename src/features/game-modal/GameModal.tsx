@@ -1,10 +1,23 @@
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Modal } from "react-bootstrap";
-import { selectFreePeopleDices, selectSauronForcesDices } from "../gameSlice";
+import { selectFreePeopleDices, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesUsedDices, useFreePeopleDice, useSauronForcesDice } from "../gameSlice";
+import { Dice } from "../../models/dice";
 
 export function GameModal(props: any) {
     const freePeopleDices = useAppSelector(selectFreePeopleDices);
+    const freePeopleUsedDices = useAppSelector(selectFreePeopleUsedDices);
     const sauronForcesDices = useAppSelector(selectSauronForcesDices);
+    const sauronForcesUsedDices = useAppSelector(selectSauronForcesUsedDices);
+    
+    const dispatch = useAppDispatch();
+
+    function _useFreePeopleDice(dice: Dice) {
+        dispatch(useFreePeopleDice(dice));
+    }
+
+    function _useSauronForcesDice(dice: Dice) {
+        dispatch(useSauronForcesDice(dice));
+    }
 
     return (
         <Modal {...props}>
@@ -14,22 +27,48 @@ export function GameModal(props: any) {
             <Modal.Body>
                 <div>
                     <h4>Free People</h4>
-                    <div className="d-flex flex-row">
-                        {freePeopleDices.map((dice, i) => {
-                            return (<div className="m-1">
-                                <img width={"40px"} src={dice.imageUrl} />
-                            </div>) 
-                        })}
+                    <div>
+                        <div>Available dices:</div>
+                        <div  className="d-flex flex-row">
+                            {freePeopleDices.map((dice) => {
+                                return (<div className="m-1 c-pointer" onClick={() => _useFreePeopleDice(dice)}>
+                                    <img width={"40px"} src={dice.imageUrl} />
+                                </div>) 
+                            })}
+                        </div>           
+                    </div>
+                    <div>
+                        <div>Used dices:</div>
+                        <div  className="d-flex flex-row">
+                            {freePeopleUsedDices.map((dice) => {
+                                return (<div className="m-1 c-pointer">
+                                    <img width={"40px"} src={dice.imageUrl} />
+                                </div>) 
+                            })}
+                        </div>           
                     </div>
                 </div>
                 <div>
                     <h4>Sauron Forces</h4>
-                    <div className="d-flex flex-row">
-                        {sauronForcesDices.map((dice, i) => {
-                            return (<div className="m-1">
-                                <img width={"40px"} src={dice.imageUrl} />
-                            </div>) 
-                        })}
+                    <div>
+                        <div>Available dices:</div>
+                        <div  className="d-flex flex-row">
+                            {sauronForcesDices.map((dice) => {
+                                return (<div className="m-1 c-pointer" onClick={() => _useSauronForcesDice(dice)}>
+                                    <img width={"40px"} src={dice.imageUrl} />
+                                </div>) 
+                            })}
+                        </div>           
+                    </div>
+                    <div>
+                        <div>Used dices:</div>
+                        <div  className="d-flex flex-row">
+                            {sauronForcesUsedDices.map((dice) => {
+                                return (<div className="m-1 c-pointer">
+                                    <img width={"40px"} src={dice.imageUrl} />
+                                </div>) 
+                            })}
+                        </div>           
                     </div>
                 </div>              
             </Modal.Body>

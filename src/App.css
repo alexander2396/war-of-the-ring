@@ -7,3 +7,7 @@
   background-size: cover;
   user-select: none;
 }
+
+.c-pointer {
+  cursor: pointer;
+}

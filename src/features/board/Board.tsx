@@ -42,20 +42,14 @@ export function Board(props: any) {
         if (region.units.some(x => x.type === UnitType.Regular)) {
             const imageUrl = region.units.find(x => x.type === UnitType.Regular).imageUrl;
             const count = region.units.filter(x => x.type === UnitType.Regular).length;
-            regularBlock = <div className='unit d-flex flex-column'>
-                <div><img style={{height: '65px'}} src={imageUrl} /></div>
-                <div className="unitCount">{count}</div>
-            </div>
+            regularBlock = renderUnit(imageUrl, count);
         }
     
         let eliteBlock;
         if (region.units.some(x => x.type === UnitType.Elite)) {
             const imageUrl = region.units.find(x => x.type === UnitType.Elite).imageUrl;
             const count = region.units.filter(x => x.type === UnitType.Elite).length;
-            eliteBlock = <div className='unit d-flex flex-column'>
-                <div><img style={{height: '65px'}} src={imageUrl} /></div>
-                <div className="unitCount">{count}</div>
-            </div>
+            eliteBlock = renderUnit(imageUrl, count);
         }
     
         
@@ -63,10 +57,7 @@ export function Board(props: any) {
         if (region.units.some(x => x.type === UnitType.Leader)) {
             const imageUrl = region.units.find(x => x.type === UnitType.Leader).imageUrl;
             const count = region.units.filter(x => x.type === UnitType.Leader).length;
-            leaderBlock = <div className='unit d-flex flex-column'>
-                <div><img style={{height: '65px'}} src={imageUrl} /></div>
-                <div className="unitCount">{count}</div>
-            </div>
+            leaderBlock = renderUnit(imageUrl, count);
         }
     
         return (
@@ -78,13 +69,25 @@ export function Board(props: any) {
         );
     }
 
+    function renderUnit(imageUrl: string, count: number) {
+        return <div className='unit d-flex flex-column'>
+            <div><img style={{height: '65px'}} src={imageUrl} /></div>
+            <div className="unitCount">{count}</div>
+        </div>;
+    }
+
     function regionClicked(region: Region): void {
         if (!SelectedRegion) {
+            if (!region.units || region.units.length === 0) return;
+
+            region.units.map(x => x.selected = true);
             showUnitsMenu(true);
             setSelectedRegion(region);
         } else {
+            if (region.key === SelectedRegion.key) return;
+
             let unitsArray = [];
-            unitsArray = unitsArray.concat(SelectedRegion.units);
+            unitsArray = unitsArray.concat(SelectedRegion.units.filter(x => x.selected));
             unitsArray = unitsArray.concat(region.units);
             dispatch(setRegionUnits({
                 regionKey: region.key,
@@ -92,13 +95,18 @@ export function Board(props: any) {
             }));
             dispatch(setRegionUnits({
                 regionKey: SelectedRegion.key,
-                units: []
+                units: SelectedRegion.units.filter(x => !x.selected)
             }));
 
             showUnitsMenu(false);
             setSelectedRegion(null);
-        }
-        
+        }    
+    }
+
+    function selectUnit(unit: Unit) {
+        let region = { ...SelectedRegion };
+        region.units.find(x => x.key === unit.key).selected = !unit.selected;
+        setSelectedRegion(region);
     }
 
     return (
@@ -116,9 +124,13 @@ export function Board(props: any) {
                 <Card.Body>
                     <Card.Title>Selected Army</Card.Title>
                     <Card.Text>
-                    {SelectedRegion.units.map((unit, i) => {    
-                        return (<img className="selectedUnit" style={{height: '50px'}} src={unit.imageUrl} />) 
-                    })}
+                    <div className="selectableUnitsBlock">
+                        {SelectedRegion.units.map((unit) => {    
+                            return (<div className={ "selectableUnit" + (unit.selected ? " selected" : "") } onClick={() => { selectUnit(unit) }}>
+                                <img className="selectedUnit" style={{height: '50px'}} src={unit.imageUrl} />
+                            </div>) 
+                        })}
+                    </div>
                     </Card.Text>
                     <Button variant="primary" onClick={() => {showUnitsMenu(false); setSelectedRegion(null);}}>Cancel</Button>
                 </Card.Body>

@@ -10,14 +10,18 @@ export interface GameState {
     gameStarted: boolean;
     regions: Region[];
     freePeopleDices: Dice[];
+    freePeopleUsedDices: Dice[];
     sauronForcesDices: Dice[];
+    sauronForcesUsedDices: Dice[];
 }
 
 const initialState: GameState = {
     gameStarted: false,
     regions: new InitialData().Regions,
     freePeopleDices: [],
-    sauronForcesDices: []
+    freePeopleUsedDices: [],
+    sauronForcesDices: [],
+    sauronForcesUsedDices: []
 };
 
 export const gameSlice = createSlice({
@@ -29,13 +33,25 @@ export const gameSlice = createSlice({
         },
         setFreePeopleDices: (state, action: PayloadAction<Dice[]>) => {
             state.freePeopleDices = action.payload;
+            state.freePeopleUsedDices = [];
         },
         setSauronForcesDices: (state, action: PayloadAction<Dice[]>) => {
             state.sauronForcesDices = action.payload;
+            state.sauronForcesUsedDices = [];
         },
         setRegionUnits: (state, action: PayloadAction<SetUnitsAction>) => {
             state.regions.find(x => x.key === action.payload.regionKey).units = action.payload.units;
         },
+        useFreePeopleDice: (state, action: PayloadAction<Dice>) => {
+            let dice = state.freePeopleDices.find(x => x.key === action.payload.key);
+            state.freePeopleDices = state.freePeopleDices.filter(x => x.key !== dice.key);
+            state.freePeopleUsedDices.push(dice);
+        },
+        useSauronForcesDice: (state, action: PayloadAction<Dice>) => {
+            let dice = state.sauronForcesDices.find(x => x.key === action.payload.key);
+            state.sauronForcesDices = state.sauronForcesDices.filter(x => x.key !== dice.key);
+            state.sauronForcesUsedDices.push(dice);
+        }
     }
 });
 
@@ -43,12 +59,16 @@ export const {
     setFreePeopleDices,
     setSauronForcesDices,
     startGame,
-    setRegionUnits
+    setRegionUnits,
+    useFreePeopleDice,
+    useSauronForcesDice
  } = gameSlice.actions;
 
 export const selectRegions = (state: RootState) => state.game.regions;
 export const selectFreePeopleDices = (state: RootState) => state.game.freePeopleDices;
+export const selectFreePeopleUsedDices = (state: RootState) => state.game.freePeopleUsedDices;
 export const selectSauronForcesDices = (state: RootState) => state.game.sauronForcesDices;
+export const selectSauronForcesUsedDices = (state: RootState) => state.game.sauronForcesUsedDices;
 export const selectGameStarted = (state: RootState) => state.game.gameStarted;
 
 export default gameSlice.reducer;

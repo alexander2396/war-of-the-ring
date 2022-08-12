@@ -25,7 +25,7 @@
 }
 
 .unitsMenu {
-    position: absolute;
+    position: fixed;
     width: 200px;
     top: 100px;
     right: 275px;
@@ -33,4 +33,20 @@
 
 .selectedUnit {
     cursor: pointer;
+}
+
+.selectableUnit {
+    display: inline-block;
+    margin: 2px;
+    width: 45px;
+    height: 54px;
+}
+
+.selected {
+    border: 2px solid blue;
+    border-radius: 5px;
+}
+
+.selectableUnitsBlock {
+    padding: 2px;
 }

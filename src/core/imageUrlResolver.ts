@@ -17,6 +17,10 @@ export class ImageUrlResolver {
             case Faction.Sauron:
                 if (unit.type === UnitType.Regular) 
                     return 'images/units/SauronRegular.png';
+                if (unit.type === UnitType.Elite) 
+                    return 'images/units/SauronElite.png';
+                if (unit.type === UnitType.Leader) 
+                    return 'images/units/Nazgul.png';
                 break;
         }
 
