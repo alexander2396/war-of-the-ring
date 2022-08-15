@@ -3,11 +3,8 @@ import { AppMenu } from './components/menu/AppMenu';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Board } from './pages/board/Board';
 
-function App() {
-  
-  
 
-
+export const App = () => {
 
   return (
     <div className="App">
