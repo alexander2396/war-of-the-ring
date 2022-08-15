@@ -18,7 +18,7 @@ export function Board(props: any) {
         regions.forEach((region) => {
             regionBlocks.push(
             <div>
-                <div className='regionArmy d-flex flex-row' style={{ left: region.xposition, top: region.yposition }}
+                <div className='regionArmy d-flex flex-row' style={{ left: region.xposition + 'px', top: region.yposition + 'px' }}
                     onClick={() => regionClicked(region)}>{renderRegionUnits(region)}</div>
             </div>
             )
@@ -31,7 +31,9 @@ export function Board(props: any) {
         const blocks: any = [];
 
         regions.forEach((region) => {
-            blocks.push(<area className='region' shape="poly" onClick={() => regionClicked(region)} coords={region.rectangleCoordinates} />)
+            //blocks.push(<area className='region' shape="poly" onClick={() => regionClicked(region)} coords={region.rectangleCoordinates} />);
+            const coords = [region.xposition, region.yposition, 25].join(',');
+            blocks.push(<area className='region' shape="circle" onClick={() => regionClicked(region)} coords={coords} />);
         });
 
         return blocks;

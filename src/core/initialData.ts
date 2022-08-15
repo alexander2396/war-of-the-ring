@@ -8,8 +8,8 @@ export class InitialData {
     Regions: Region[] = [
         {
             key: 'rivendell',
-            xposition: '985px',
-            yposition: '190px',
+            xposition: '985',
+            yposition: '190',
             units: [
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
@@ -19,8 +19,8 @@ export class InitialData {
         },
         {
             key: 'lorien',
-            xposition: '1062px',
-            yposition: '476px',
+            xposition: '1062',
+            yposition: '476',
             units: [
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Regular),
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
@@ -31,8 +31,8 @@ export class InitialData {
         },
         {
             key: 'grey-havens',
-            xposition: '405px',
-            yposition: '325px',
+            xposition: '405',
+            yposition: '325',
             units: [
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Regular),
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
@@ -42,8 +42,8 @@ export class InitialData {
         },
         {
             key: 'woodland-realm',
-            xposition: '1310px',
-            yposition: '230px',
+            xposition: '1310',
+            yposition: '230',
             units: [
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Regular),
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
@@ -53,8 +53,8 @@ export class InitialData {
         },
         {
             key: 'mount-gundabad',
-            xposition: '912px',
-            yposition: '59px',
+            xposition: '912',
+            yposition: '59',
             units: [
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular)
@@ -63,8 +63,8 @@ export class InitialData {
         },
         {
             key: 'moria',
-            xposition: '1016px',
-            yposition: '367px',
+            xposition: '1016',
+            yposition: '367',
             units: [
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular)
@@ -73,8 +73,8 @@ export class InitialData {
         },
         {
             key: 'dol-guldur',
-            xposition: '1254px',
-            yposition: '480px',
+            xposition: '1254',
+            yposition: '480',
             units: [
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
@@ -88,8 +88,8 @@ export class InitialData {
         },
         {
             key: 'morannon',
-            xposition: '1500px',
-            yposition: '807px',
+            xposition: '1500',
+            yposition: '807',
             units: [
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
@@ -102,8 +102,8 @@ export class InitialData {
         },
         {
             key: 'minas-morgul',
-            xposition: '1485px',
-            yposition: '925px',
+            xposition: '1485',
+            yposition: '925',
             units: [
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
@@ -116,8 +116,8 @@ export class InitialData {
         },
         {
             key: 'barad-dur',
-            xposition: '1648px',
-            yposition: '800px',
+            xposition: '1648',
+            yposition: '800',
             units: [
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
@@ -130,8 +130,8 @@ export class InitialData {
         },
         {
             key: 'gorgoroth',
-            xposition: '1618px',
-            yposition: '952px',
+            xposition: '1618',
+            yposition: '952',
             units: [
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
@@ -141,8 +141,8 @@ export class InitialData {
         },
         {
             key: 'nurn',
-            xposition: '1552px',
-            yposition: '1062px',
+            xposition: '1552',
+            yposition: '1062',
             units: [
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),

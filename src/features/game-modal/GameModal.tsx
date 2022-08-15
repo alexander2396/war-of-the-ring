@@ -20,55 +20,59 @@ export function GameModal(props: any) {
     }
 
     return (
-        <Modal {...props}>
+        <Modal {...props} size="lg">
             <Modal.Header closeButton>
                 <Modal.Title>Game</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div>
                     <h4>Free People</h4>
-                    <div>
-                        <div>Available dices:</div>
-                        <div  className="d-flex flex-row">
-                            {freePeopleDices.map((dice) => {
-                                return (<div className="m-1 c-pointer" onClick={() => _useFreePeopleDice(dice)}>
-                                    <img width={"40px"} src={dice.imageUrl} />
-                                </div>) 
-                            })}
-                        </div>           
-                    </div>
-                    <div>
-                        <div>Used dices:</div>
-                        <div  className="d-flex flex-row">
-                            {freePeopleUsedDices.map((dice) => {
-                                return (<div className="m-1 c-pointer">
-                                    <img width={"40px"} src={dice.imageUrl} />
-                                </div>) 
-                            })}
-                        </div>           
+                    <div className="d-flex flex-row">
+                        <div className="w-50">
+                            <div>Available dices:</div>
+                            <div  className="d-flex flex-row">
+                                {freePeopleDices.map((dice) => {
+                                    return (<div className="m-1 c-pointer" onClick={() => _useFreePeopleDice(dice)}>
+                                        <img width={"40px"} src={dice.imageUrl} />
+                                    </div>) 
+                                })}
+                            </div>           
+                        </div>
+                        <div className="w-50">
+                            <div>Used dices:</div>
+                            <div  className="d-flex flex-row">
+                                {freePeopleUsedDices.map((dice) => {
+                                    return (<div className="m-1 c-pointer">
+                                        <img width={"40px"} src={dice.imageUrl} />
+                                    </div>) 
+                                })}
+                            </div>           
+                        </div>
                     </div>
                 </div>
                 <div>
                     <h4>Sauron Forces</h4>
-                    <div>
-                        <div>Available dices:</div>
-                        <div  className="d-flex flex-row">
-                            {sauronForcesDices.map((dice) => {
-                                return (<div className="m-1 c-pointer" onClick={() => _useSauronForcesDice(dice)}>
-                                    <img width={"40px"} src={dice.imageUrl} />
-                                </div>) 
-                            })}
-                        </div>           
-                    </div>
-                    <div>
-                        <div>Used dices:</div>
-                        <div  className="d-flex flex-row">
-                            {sauronForcesUsedDices.map((dice) => {
-                                return (<div className="m-1 c-pointer">
-                                    <img width={"40px"} src={dice.imageUrl} />
-                                </div>) 
-                            })}
-                        </div>           
+                    <div className="d-flex flex-row">
+                        <div className="w-50">
+                            <div>Available dices:</div>
+                            <div  className="d-flex flex-row">
+                                {sauronForcesDices.map((dice) => {
+                                    return (<div className="m-1 c-pointer" onClick={() => _useSauronForcesDice(dice)}>
+                                        <img width={"40px"} src={dice.imageUrl} />
+                                    </div>) 
+                                })}
+                            </div>           
+                        </div>
+                        <div className="w-50">
+                            <div>Used dices:</div>
+                            <div  className="d-flex flex-row">
+                                {sauronForcesUsedDices.map((dice) => {
+                                    return (<div className="m-1 c-pointer">
+                                        <img width={"40px"} src={dice.imageUrl} />
+                                    </div>) 
+                                })}
+                            </div>           
+                        </div>
                     </div>
                 </div>              
             </Modal.Body>

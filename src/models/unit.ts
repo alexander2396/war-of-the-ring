@@ -21,6 +21,4 @@ export class Unit {
         
         this.imageUrl = ImageUrlResolver.getUnitUrl(this);
     }
-
-    private
 }
