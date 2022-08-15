@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { Modal } from "react-bootstrap";
-import { selectFreePeopleDices, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesUsedDices, useFreePeopleDice, useSauronForcesDice } from "../gameSlice";
+import { selectFreePeopleDices, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesUsedDices, useFreePeopleDice, useSauronForcesDice } from "../../redux/game/gameSlice";
 import { Dice } from "../../models/dice";
 
 export function GameModal(props: any) {
