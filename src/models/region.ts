@@ -1,3 +1,6 @@
+import { Faction } from "./faction";
+import { SettlementType } from "./settlementType";
+import { Side } from "./side";
 import { Unit } from "./unit";
 
 export class Region {
@@ -5,5 +8,7 @@ export class Region {
     units: Unit[];
     xposition: string;
     yposition: string;
-    rectangleCoordinates: string;
+    settlementType: SettlementType;
+    side: Side;
+    faction: Faction;
 }

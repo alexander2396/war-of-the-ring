@@ -2,6 +2,7 @@ import { Card } from "../models/card";
 import { CardType } from "../models/cardType";
 import { Faction } from "../models/faction";
 import { Region } from "../models/region";
+import { SettlementType } from "../models/settlementType";
 import { Side } from "../models/side";
 import { Unit } from "../models/unit";
 import { UnitType } from "../models/unitType";
@@ -17,7 +18,9 @@ export class InitialData {
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader)
             ],
-            rectangleCoordinates: '954,123,1019,140,1044,201,920,250'
+            side: Side.FreePeople,
+            faction: Faction.Elves,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'lorien',
@@ -29,7 +32,9 @@ export class InitialData {
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader)
             ],
-            rectangleCoordinates: '988,457,1060,409,1121,475,1112,514,1006,502'
+            side: Side.FreePeople,
+            faction: Faction.Elves,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'grey-havens',
@@ -40,7 +45,9 @@ export class InitialData {
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader)
             ],
-            rectangleCoordinates: ''
+            side: Side.FreePeople,
+            faction: Faction.Elves,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'woodland-realm',
@@ -51,7 +58,9 @@ export class InitialData {
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Elite),
                 new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader)
             ],
-            rectangleCoordinates: ''
+            side: Side.FreePeople,
+            faction: Faction.Elves,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'mount-gundabad',
@@ -61,7 +70,9 @@ export class InitialData {
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular)
             ],
-            rectangleCoordinates: ''
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'moria',
@@ -71,7 +82,9 @@ export class InitialData {
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular)
             ],
-            rectangleCoordinates: ''
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'dol-guldur',
@@ -86,7 +99,9 @@ export class InitialData {
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Elite),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Leader),
             ],
-            rectangleCoordinates: ''
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'morannon',
@@ -100,7 +115,9 @@ export class InitialData {
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Leader),
             ],
-            rectangleCoordinates: ''
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'minas-morgul',
@@ -114,7 +131,9 @@ export class InitialData {
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Leader),
             ],
-            rectangleCoordinates: ''
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'barad-dur',
@@ -128,7 +147,9 @@ export class InitialData {
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Elite),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Leader),
             ],
-            rectangleCoordinates: ''
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'gorgoroth',
@@ -139,7 +160,9 @@ export class InitialData {
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
             ],
-            rectangleCoordinates: ''
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.Castle
         },
         {
             key: 'nurn',
@@ -149,7 +172,9 @@ export class InitialData {
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
                 new Unit(Side.SauronForces, Faction.Sauron, UnitType.Regular),
             ],
-            rectangleCoordinates: ''
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.Castle
         }
     ];
 }

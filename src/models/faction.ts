@@ -1,4 +1,10 @@
 export enum Faction {
     Elves,
-    Sauron
+    Dwarfs,
+    Northmen,
+    Gondor,
+    Rohan,
+    Sauron,
+    Isengard,
+    Easterlings
 }
