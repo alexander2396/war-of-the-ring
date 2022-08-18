@@ -1,13 +1,10 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { Button, Modal } from "react-bootstrap";
-import { drawCard, selectFreePeopleDices, selectFreePeopleHand, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesHand, selectSauronForcesUsedDices, useFreePeopleDice, useSauronForcesDice } from "../gameSlice";
-import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks";
-import { Modal } from "react-bootstrap";
-import { selectFreePeopleDices, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesUsedDices, useFreePeopleDice, useSauronForcesDice } from "../../redux/game/gameSlice";
 import { Dice } from "../../models/dice";
 import styles from './GameModal.module.css';
 import { Side } from "../../models/side";
 import { CardType } from "../../models/cardType";
+import { Modal, Button } from "react-bootstrap";
+import { selectFreePeopleDices, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesUsedDices, selectFreePeopleHand, selectSauronForcesHand, useFreePeopleDice, useSauronForcesDice, drawCard } from "../../redux/game/gameSlice";
+import { useAppSelector, useAppDispatch } from "../../tools/hooks/hooks";
 
 export function GameModal(props: any) {
     const freePeopleDices = useAppSelector(selectFreePeopleDices);
