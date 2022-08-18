@@ -1,3 +1,5 @@
+import { Card } from "../models/card";
+import { CardType } from "../models/cardType";
 import { Faction } from "../models/faction";
 import { Region } from "../models/region";
 import { Side } from "../models/side";
@@ -149,5 +151,5 @@ export class InitialData {
             ],
             rectangleCoordinates: ''
         }
-    ]
+    ];
 }

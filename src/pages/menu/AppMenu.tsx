@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useAppDispatch } from '../../tools/hooks/hooks';
 import { DiceService } from '../../core/diceService';
+import { CardType } from '../../models/cardType';
+import { Side } from '../../models/side';
+import { GameModal } from '../game-modal/GameModal';
+import { drawCard, newGame, setFreePeopleDices, setSauronForcesDices } from '../gameSlice';
 import { GameModal } from '../../components/game-modal/GameModal';
 import { setFreePeopleDices, setSauronForcesDices } from '../../redux/game/gameSlice';
 import styles from './AppMenu.module.css';
@@ -13,7 +17,9 @@ export function AppMenu() {
 
     const dispatch = useAppDispatch();
 
-    function newGame(): void {
+    function startNewGame(): void {
+        dispatch(newGame())
+
         var freePeopleDices = DiceService.rollFreePeopleDices(4);
         dispatch(setFreePeopleDices(freePeopleDices));
 
@@ -21,6 +27,11 @@ export function AppMenu() {
         dispatch(setSauronForcesDices(sauronForcesDices));
 
         new Audio('sounds/dice.wav').play();
+
+        dispatch(drawCard({ side: Side.FreePeople, cardType: CardType.Strategy }));
+        dispatch(drawCard({ side: Side.FreePeople, cardType: CardType.Character }));
+        dispatch(drawCard({ side: Side.SauronForces, cardType: CardType.Strategy }));
+        dispatch(drawCard({ side: Side.SauronForces, cardType: CardType.Character }));
 
         setModalShow(true);
     }
@@ -36,7 +47,7 @@ export function AppMenu() {
                 <div className={styles.menuBox}>
 
                 <div>
-                    <Button className={styles.menuBoxBtn} variant="primary" onClick={() => newGame()}>New Game</Button>
+                    <Button className={styles.menuBoxBtn} variant="primary" onClick={() => startNewGame()}>New Game</Button>
                 </div>
 
                 <div>

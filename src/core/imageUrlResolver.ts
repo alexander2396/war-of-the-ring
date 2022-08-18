@@ -27,4 +27,6 @@ export class ImageUrlResolver {
         }
 
     }
+
+    static getCardUrl = (fileName: string) => 'images/cards/' + fileName;
 }
