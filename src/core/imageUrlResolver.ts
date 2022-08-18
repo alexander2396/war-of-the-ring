@@ -22,9 +22,10 @@ export class ImageUrlResolver {
                 if (unit.type === UnitType.Leader) 
                     return 'images/units/Nazgul.png';
                 break;
+            default:
+                return ''
         }
 
-        return '';
     }
 
     static getCardUrl = (fileName: string) => 'images/cards/' + fileName;

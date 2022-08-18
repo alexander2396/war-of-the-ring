@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch } from '../../tools/hooks/hooks';
 import { DiceService } from '../../core/diceService';
 import { CardType } from '../../models/cardType';
 import { Side } from '../../models/side';
-import { GameModal } from '../game-modal/GameModal';
-import { drawCard, newGame, setFreePeopleDices, setSauronForcesDices } from '../gameSlice';
+import { GameModal } from '../../components/game-modal/GameModal';
+import { drawCard, newGame, setFreePeopleDices, setSauronForcesDices } from '../../redux/game/gameSlice';
 import styles from './AppMenu.module.css';
 
 export function AppMenu() {
