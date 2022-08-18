@@ -40,8 +40,6 @@ export interface GameState {
     }
 }
 
-const initialDataProvider = new InitialData();
-
 const initialState: GameState = {
     gameStarted: false,
     regions: new InitialData().Regions,
@@ -129,6 +127,8 @@ export const gameSlice = createSlice({
                     deck = state.cards.sauronForces.characterDeck;
             }
 
+            if (deck.length === 0) return; 
+
             const card = deck.shift();
 
             if (action.payload.side === Side.FreePeople) {
@@ -151,12 +151,15 @@ export const {
  } = gameSlice.actions;
 
 export const selectRegions = (state: RootState) => state.game.regions;
+
 export const selectFreePeopleDices = (state: RootState) => state.game.dices.freePeople.available;
 export const selectFreePeopleUsedDices = (state: RootState) => state.game.dices.freePeople.used;
 export const selectSauronForcesDices = (state: RootState) => state.game.dices.sauronForces.available;
 export const selectSauronForcesUsedDices = (state: RootState) => state.game.dices.sauronForces.used;
+
 export const selectGameStarted = (state: RootState) => state.game.gameStarted;
-export const selectFreePeopleHand = (state: RootState) => state.game.cards.freePeople.hand;
-export const selectSauronForcesHand = (state: RootState) => state.game.cards.sauronForces.hand;
+
+export const selectFreePeopleCards = (state: RootState) => state.game.cards.freePeople;
+export const selectSauronForcesCards = (state: RootState) => state.game.cards.sauronForces;
 
 export default gameSlice.reducer;
