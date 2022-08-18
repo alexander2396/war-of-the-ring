@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SetUnitsAction } from "../actions/setUnitsAction";
-import { RootState } from "../app/store";
-import { InitialData } from "../core/initialData";
-import { Card } from "../models/card";
-import { Dice } from "../models/dice";
-import { Region } from "../models/region";
+import { SetUnitsAction } from "../../actions/setUnitsAction";
+import { RootState } from "../store";
+import { InitialData } from "../../core/initialData";
+import { Card } from "../../models/card";
+import { Dice } from "../../models/dice";
+import { Region } from "../../models/region";
 
 export interface GameState {
     gameStarted: boolean;
