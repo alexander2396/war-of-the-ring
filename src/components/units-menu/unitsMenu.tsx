@@ -62,7 +62,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
         <>
             <Card className="unitsMenu">
                 <Card.Body className="SelectedArmyCard">
-                    <Card.Title>Selected Army</Card.Title>
+                    <Card.Title className="text-center">Selected Army</Card.Title>
                     <div className="selectableUnitsBlock">
                         {selectedRegion.units.map((unit, i) => {    
                             return (
@@ -84,49 +84,58 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
             
             {showAddNewUnitsModal && <Card className="AddNewUnitsMenu">
                 <Card.Body className="AddNewUnitsCard">
-                    <Card.Title>Add new Units</Card.Title>
-                    <div className="selectableUnitsBlock">
-                        <span>Side select</span>
-                    <Form.Select size="sm" onChange={(e) => setSelectedSideOfUnit(Side[e.currentTarget.value])}>
-                        <option>FreePeople</option>
-                        <option>SauronForces</option>
-                    </Form.Select>
-                    <br />
-                    <span>Faction select</span>
-                    <Form.Select size="sm" onChange={(e) => setSelectedFactionOfUnit(Faction[e.currentTarget.value])}>
-                        {
-                            selectedSideOfUnit !== Side.SauronForces 
-                            &&
-                            <>
-                                <option>Elves</option>
-                                <option>Dwarfs</option>
-                                <option>Northmen</option>
-                                <option>Gondor</option>
-                                <option>Rohan</option>
-                            </>
-                        }
-                        {
-                            selectedSideOfUnit === Side.SauronForces 
-                            &&
-                            <>
-                                <option>Sauron</option>
-                                <option>Isengard</option>
-                                <option>Easterlings</option>
-                            </>
-                        }
-                    </Form.Select>
-                    <br />
-                        <span>Unit type select</span>
-                    <Form.Select size="sm" onChange={(e) => setSelectedUnitType(UnitType[e.currentTarget.value])}>
-                        <option>Regular</option>
-                        <option>Elite</option>
-                        <option>Leader</option>
-                    </Form.Select>
-                    </div>
+                    <Card.Title className="text-center">Add new Unit</Card.Title>
+
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Side</Form.Label>
+                            <Form.Select size="sm" onChange={(e) => setSelectedSideOfUnit(Side[e.currentTarget.value])}>
+                                <option>FreePeople</option>
+                                <option>SauronForces</option>
+                            </Form.Select>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Faction</Form.Label>
+                            <Form.Select size="sm" onChange={(e) => setSelectedFactionOfUnit(Faction[e.currentTarget.value])}>
+                                {
+                                    selectedSideOfUnit !== Side.SauronForces 
+                                    &&
+                                    <>
+                                        <option>Elves</option>
+                                        <option>Dwarfs</option>
+                                        <option>Northmen</option>
+                                        <option>Gondor</option>
+                                        <option>Rohan</option>
+                                    </>
+                                }
+                                {
+                                    selectedSideOfUnit === Side.SauronForces 
+                                    &&
+                                    <>
+                                        <option>Sauron</option>
+                                        <option>Isengard</option>
+                                        <option>Easterlings</option>
+                                    </>
+                                }
+                            </Form.Select>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Unit type</Form.Label>
+                            <Form.Select size="sm" onChange={(e) => setSelectedUnitType(UnitType[e.currentTarget.value])}>
+                                <option>Regular</option>
+                                <option>Elite</option>
+                                <option>Leader</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Form>
+
                     <div className="buttonGroup">
                         <Button variant="secondary" onClick={() => addNewUnit()}>Add</Button>
                         <Button variant="primary" onClick={() => {setShowAddNewUnitsModal(false)}}>Cancel</Button>
                     </div>
+
                 </Card.Body>
             </Card>}
         </>
