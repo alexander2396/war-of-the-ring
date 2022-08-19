@@ -22,7 +22,9 @@ export const RenderRegionUnits = ({region}: PropTypes) => {
     
         
         if (region.units.some(x => x.type === UnitType.Leader)) {
-            const imageUrl = region.units.find(x => x.type === UnitType.Leader).imageUrl;
+            let imageUrl = region.units.find(x => x.hero !== null)?.imageUrl;
+            if (!imageUrl)
+                imageUrl = region.units.find(x => x.type === UnitType.Leader).imageUrl;
             const count = region.units.filter(x => x.type === UnitType.Leader).length;
             units.push({imageUrl, count});
         }
@@ -32,7 +34,7 @@ export const RenderRegionUnits = ({region}: PropTypes) => {
                 {
                     units.map((unit, i) => {
                         return (
-                            <div className='unit d-flex flex-column' key={i}>
+                            <div className='unit d-flex flex-column text-center' key={i}>
                                 <div><img style={{height: '65px'}} src={unit.imageUrl} alt = ""/></div>
                                 <div className="unitCount">{unit.count}</div>
                             </div>)

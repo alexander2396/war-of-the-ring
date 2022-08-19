@@ -1,6 +1,5 @@
-import { Card } from "../models/card";
-import { CardType } from "../models/cardType";
 import { Faction } from "../models/faction";
+import { Hero } from "../models/hero";
 import { Region } from "../models/region";
 import { SettlementType } from "../models/settlementType";
 import { Side } from "../models/side";
@@ -175,6 +174,59 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle
+        },
+        {
+            key: 'ered-luin',
+            xposition: '440',
+            yposition: '215',
+            units: [
+                new Unit(Side.FreePeople, Faction.Dwarfs, UnitType.Regular)
+            ],
+            side: Side.FreePeople,
+            faction: Faction.Dwarfs,
+            settlementType: SettlementType.SmallTown
+        },
+        {
+            key: 'iron-hills',
+            xposition: '1526',
+            yposition: '150',
+            units: [
+                new Unit(Side.FreePeople, Faction.Dwarfs, UnitType.Regular)
+            ],
+            side: Side.FreePeople,
+            faction: Faction.Dwarfs,
+            settlementType: SettlementType.SmallTown
+        },
+        {
+            key: 'erebor',
+            xposition: '1414',
+            yposition: '128',
+            units: [
+                new Unit(Side.FreePeople, Faction.Dwarfs, UnitType.Regular),
+                new Unit(Side.FreePeople, Faction.Dwarfs, UnitType.Elite),
+                new Unit(Side.FreePeople, Faction.Dwarfs, UnitType.Elite),
+                new Unit(Side.FreePeople, Faction.Dwarfs, UnitType.Leader)
+            ],
+            side: Side.FreePeople,
+            faction: Faction.Dwarfs,
+            settlementType: SettlementType.Castle
+        },
+        {
+            key: 'fellowship',
+            xposition: '1715',
+            yposition: '200',
+            units: [
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Gandalf),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Aragorn),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Legolas),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Gimli),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Boromir),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Merry),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Pippin)
+            ],
+            side: null,
+            faction: null,
+            settlementType: null
         }
     ];
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Card, Button, Form } from "react-bootstrap"
 import { Faction } from "../../models/faction"
+import { Hero } from "../../models/hero"
 import { Region } from "../../models/region"
 import { Side } from "../../models/side"
 import { Unit } from "../../models/unit"
@@ -15,16 +16,19 @@ type UnitsMenuProps = {
 }
 
 export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: UnitsMenuProps) => {   
-
+    
     const [showAddNewUnitsModal, setShowAddNewUnitsModal] = useState(false);
-    const [selectedSideOfUnit, setSelectedSideOfUnit] = useState(Side.FreePeople)
-    const [selectFactionOfUnit, setSelectedFactionOfUnit] = useState(Faction.Elves)
-    const [selectedUnitType, setSelectedUnitType] = useState(UnitType.Regular)
+    const [selectedSideOfUnit, setSelectedSideOfUnit] = useState(selectedRegion.side);
+    const [selectedFactionOfUnit, setSelectedFactionOfUnit] = useState(selectedRegion.faction);
+    const [selectedUnitType, setSelectedUnitType] = useState(UnitType.Regular);
+    const [selectedHero, setSelectedHero] = useState(null as Hero);
     
     const dispatch = useAppDispatch();
 
     const addNewUnit = () => {
-        const newUnit = new Unit(selectedSideOfUnit, selectFactionOfUnit, selectedUnitType)
+        const newUnit = selectedHero !== null
+            ? new Unit(selectedSideOfUnit, selectedFactionOfUnit, UnitType.Leader, selectedHero)
+            : new Unit(selectedSideOfUnit, selectedFactionOfUnit, selectedUnitType)
         const units = [...selectedRegion.units, newUnit]
 
         dispatch(setRegionUnits({
@@ -89,33 +93,33 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Side</Form.Label>
-                            <Form.Select size="sm" onChange={(e) => setSelectedSideOfUnit(Side[e.currentTarget.value])}>
-                                <option>FreePeople</option>
-                                <option>SauronForces</option>
+                            <Form.Select size="sm" value={selectedSideOfUnit} onChange={(e) => setSelectedSideOfUnit(Number(e.currentTarget.value))}>
+                                <option value={Side.FreePeople}>Free People</option>
+                                <option value={Side.SauronForces}>Sauron Forces</option>
                             </Form.Select>
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Faction</Form.Label>
-                            <Form.Select size="sm" onChange={(e) => setSelectedFactionOfUnit(Faction[e.currentTarget.value])}>
+                            <Form.Select size="sm" value={selectedFactionOfUnit} onChange={(e) => setSelectedFactionOfUnit(Number(e.currentTarget.value))}>
                                 {
                                     selectedSideOfUnit !== Side.SauronForces 
                                     &&
                                     <>
-                                        <option>Elves</option>
-                                        <option>Dwarfs</option>
-                                        <option>Northmen</option>
-                                        <option>Gondor</option>
-                                        <option>Rohan</option>
+                                        <option value={Faction.Elves}>Elves</option>
+                                        <option value={Faction.Dwarfs}>Dwarfs</option>
+                                        <option value={Faction.Northmen}>Northmen</option>
+                                        <option value={Faction.Gondor}>Gondor</option>
+                                        <option value={Faction.Rohan}>Rohan</option>
                                     </>
                                 }
                                 {
                                     selectedSideOfUnit === Side.SauronForces 
                                     &&
                                     <>
-                                        <option>Sauron</option>
-                                        <option>Isengard</option>
-                                        <option>Easterlings</option>
+                                        <option value={Faction.Sauron}>Sauron</option>
+                                        <option value={Faction.Isengard}>Isengard</option>
+                                        <option value={Faction.Easterlings}>Easterlings</option>
                                     </>
                                 }
                             </Form.Select>
@@ -123,12 +127,45 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
 
                         <Form.Group className="mb-3">
                             <Form.Label>Unit type</Form.Label>
-                            <Form.Select size="sm" onChange={(e) => setSelectedUnitType(UnitType[e.currentTarget.value])}>
-                                <option>Regular</option>
-                                <option>Elite</option>
-                                <option>Leader</option>
+                            <Form.Select size="sm" onChange={(e) => setSelectedUnitType(Number(e.currentTarget.value))}>
+                                <option value={UnitType.Regular}>Regular</option>
+                                <option value={UnitType.Elite}>Elite</option>
+                                <option value={UnitType.Leader}>Leader</option>
                             </Form.Select>
                         </Form.Group>
+
+                        {   
+                            selectedUnitType == UnitType.Leader
+                            &&
+                            <Form.Group className="mb-3">
+                                <Form.Label>Hero</Form.Label>
+                                <Form.Select size="sm" onChange={(e) => setSelectedHero(Number(e.currentTarget.value))}>
+                                    <option value={null}>none</option>
+                                    {
+                                        selectedSideOfUnit !== Side.SauronForces 
+                                        &&
+                                        <>
+                                            <option value={Hero.Gandalf}>Gandalf</option>
+                                            <option value={Hero.Aragorn}>Aragorn</option>
+                                            <option value={Hero.Legolas}>Legolas</option>
+                                            <option value={Hero.Gimli}>Gimli</option>
+                                            <option value={Hero.Boromir}>Boromir</option>
+                                            <option value={Hero.Merry}>Merry</option>
+                                            <option value={Hero.Pippin}>Pippin</option>
+                                        </>
+                                    }
+                                    {
+                                        selectedSideOfUnit === Side.SauronForces 
+                                        &&
+                                        <>
+                                            <option value={Hero.Saruman}>Saruman</option>
+                                            <option value={Hero.WitchKing}>WitchKing</option>
+                                            <option value={Hero.Mouth}>Mouth</option>
+                                        </>
+                                    }                      
+                                </Form.Select>
+                            </Form.Group>
+                        }
                     </Form>
 
                     <div className="buttonGroup">
