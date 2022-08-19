@@ -35,6 +35,20 @@ export function Board(props: any) {
             units: units
         }
         setSelectedRegion(tempRegion)
+
+    }
+    
+    const deleteUnits = () => {
+        const units = SelectedRegion.units.filter(unit => !unit.selected)
+        dispatch(setRegionUnits({
+            regionKey: SelectedRegion.key,
+            units: units
+        }));
+        const tempRegion = {
+            ...SelectedRegion,
+            units: units
+        }
+        setSelectedRegion(tempRegion)
     }
 
     return (
@@ -63,6 +77,9 @@ export function Board(props: any) {
                         </div>
                         <div className="buttonGroup">
                             <Button variant="secondary" onClick={() => { setShowAddNewUnitsModal(true) }}>Add</Button>
+
+                            <Button variant="danger" onClick={deleteUnits}>Delete</Button>
+
                             <Button variant="primary" onClick={() => {showUnitsMenu(false); setSelectedRegion(null); setShowAddNewUnitsModal(false);}}>Cancel</Button>
                         </div>
                     </Card.Body>
