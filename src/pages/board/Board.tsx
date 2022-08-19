@@ -4,17 +4,34 @@ import { useAppSelector, useAppDispatch } from "../../tools/hooks/hooks";
 import { RenderRegionAreas } from "../../components/render-region-areas/renderRegionAreas";
 import { RenderRegions } from "../../components/render-regions/renderRegions";
 import { Region } from "../../models/region";
-import { selectRegions } from "../../redux/game/gameSlice";
+import { selectRegions, setRegionUnits } from "../../redux/game/gameSlice";
 import './Board.css';
 import { selectUnit } from "../../tools/helpers/selectUnit";
+import { Side } from "../../models/side";
+import { Faction } from "../../models/faction";
+import { UnitType } from "../../models/unitType";
+import { Unit } from "../../models/unit";
 
 export function Board(props: any) {
     const [ShowUnitsMenu, showUnitsMenu]=useState(false);
     const [SelectedRegion, setSelectedRegion]=useState(null as Region);
     const [showAddNewUnitsModal, setShowAddNewUnitsModal] = useState(false);
+    const [selectedSideOfUnit, setSelectedSideOfUnit] = useState(Side.FreePeople)
+    const [selectFactionOfUnit, setSelectedFactionOfUnit] = useState(Faction.Elves)
+    const [selectedUnitType, setSelectedUnitType] = useState(UnitType.Regular)
 
     const regions = useAppSelector(selectRegions);
     const dispatch = useAppDispatch();
+
+    const addNewUnit = () => {
+        const newUnit = new Unit(selectedSideOfUnit, selectFactionOfUnit, selectedUnitType)
+        const units = regions.filter(region => region.key === SelectedRegion.key)[0].units;
+
+        dispatch(setRegionUnits({
+                regionKey: SelectedRegion.key,
+                units: [...units, newUnit]
+            }));
+    }
 
     return (
         <div className='board'>
@@ -51,20 +68,45 @@ export function Board(props: any) {
                     <Card.Body className="AddNewUnitsCard">
                         <Card.Title>Add new Units</Card.Title>
                         <div className="selectableUnitsBlock">
-                        <Form.Select size="sm">
-                            <option>Side select</option>
+                            <span>Side select</span>
+                        <Form.Select size="sm" onChange={(e) => setSelectedSideOfUnit(Side[e.currentTarget.value])}>
+                            <option>FreePeople</option>
+                            <option>SauronForces</option>
                         </Form.Select>
                         <br />
-                        <Form.Select size="sm">
-                            <option>Faction select</option>
+                        <span>Faction select</span>
+                        <Form.Select size="sm" onChange={(e) => setSelectedFactionOfUnit(Faction[e.currentTarget.value])}>
+                            {
+                                selectedSideOfUnit !== Side.SauronForces 
+                                &&
+                                <>
+                                    <option>Elves</option>
+                                    <option>Dwarfs</option>
+                                    <option>Northmen</option>
+                                    <option>Gondor</option>
+                                    <option>Rohan</option>
+                                </>
+                            }
+                            {
+                                selectedSideOfUnit === Side.SauronForces 
+                                &&
+                                <>
+                                    <option>Sauron</option>
+                                    <option>Isengard</option>
+                                    <option>Easterlings</option>
+                                </>
+                            }
                         </Form.Select>
                         <br />
-                        <Form.Select size="sm">
-                            <option>Unit type select</option>
+                            <span>Unit type select</span>
+                        <Form.Select size="sm" onChange={(e) => setSelectedUnitType(UnitType[e.currentTarget.value])}>
+                            <option>Regular</option>
+                            <option>Elite</option>
+                            <option>Leader</option>
                         </Form.Select>
                         </div>
                         <div className="buttonGroup">
-                            <Button variant="secondary" onClick={() => { /*showUnitsMenu(false) */}}>Add</Button>
+                            <Button variant="secondary" onClick={() => addNewUnit()}>Add</Button>
                             <Button variant="primary" onClick={() => {setShowAddNewUnitsModal(false)}}>Cancel</Button>
                         </div>
                     </Card.Body>
