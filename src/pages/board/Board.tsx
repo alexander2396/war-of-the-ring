@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import { useAppSelector, useAppDispatch } from "../../tools/hooks/hooks";
 import { RenderRegionAreas } from "../../components/render-region-areas/renderRegionAreas";
 import { RenderRegions } from "../../components/render-regions/renderRegions";
@@ -11,6 +11,8 @@ import { selectUnit } from "../../tools/helpers/selectUnit";
 export function Board(props: any) {
     const [ShowUnitsMenu, showUnitsMenu]=useState(false);
     const [SelectedRegion, setSelectedRegion]=useState(null as Region);
+    const [showAddNewUnitsModal, setShowAddNewUnitsModal] = useState(false);
+
     const regions = useAppSelector(selectRegions);
     const dispatch = useAppDispatch();
 
@@ -25,21 +27,50 @@ export function Board(props: any) {
             </map>
 
             {ShowUnitsMenu && 
-            <Card className="unitsMenu">
-                <Card.Body>
-                    <Card.Title>Selected Army</Card.Title>
-                    <div className="selectableUnitsBlock">
-                        {SelectedRegion.units.map((unit, i) => {    
-                            return (
-                                <div key={i} className={ "selectableUnit" + (unit.selected ? " selected" : "") } onClick={() => { selectUnit({unit, setSelectedRegion, SelectedRegion}) }}>
-                                    <img className="selectedUnit" style={{height: '50px'}} src={unit.imageUrl} alt=""/>
-                                </div>
-                            ) 
-                        })}
-                    </div>
-                    <Button variant="primary" onClick={() => {showUnitsMenu(false); setSelectedRegion(null);}}>Cancel</Button>
-                </Card.Body>
-            </Card>}            
+            <>
+                <Card className="unitsMenu">
+                    <Card.Body className="SelectedArmyCard">
+                        <Card.Title>Selected Army</Card.Title>
+                        <div className="selectableUnitsBlock">
+                            {SelectedRegion.units.map((unit, i) => {    
+                                return (
+                                    <div key={i} className={ "selectableUnit" + (unit.selected ? " selected" : "") } onClick={() => { selectUnit({unit, setSelectedRegion, SelectedRegion}) }}>
+                                        <img className="selectedUnit" style={{height: '50px'}} src={unit.imageUrl} alt=""/>
+                                    </div>
+                                ) 
+                            })}
+                        </div>
+                        <div className="buttonGroup">
+                            <Button variant="secondary" onClick={() => { setShowAddNewUnitsModal(true) }}>Add</Button>
+                            <Button variant="primary" onClick={() => {showUnitsMenu(false); setSelectedRegion(null); setShowAddNewUnitsModal(false);}}>Cancel</Button>
+                        </div>
+                    </Card.Body>
+            
+                </Card>
+                {showAddNewUnitsModal && <Card className="AddNewUnitsMenu">
+                    <Card.Body className="AddNewUnitsCard">
+                        <Card.Title>Add new Units</Card.Title>
+                        <div className="selectableUnitsBlock">
+                        <Form.Select size="sm">
+                            <option>Side select</option>
+                        </Form.Select>
+                        <br />
+                        <Form.Select size="sm">
+                            <option>Faction select</option>
+                        </Form.Select>
+                        <br />
+                        <Form.Select size="sm">
+                            <option>Unit type select</option>
+                        </Form.Select>
+                        </div>
+                        <div className="buttonGroup">
+                            <Button variant="secondary" onClick={() => { /*showUnitsMenu(false) */}}>Add</Button>
+                            <Button variant="primary" onClick={() => {setShowAddNewUnitsModal(false)}}>Cancel</Button>
+                        </div>
+                    </Card.Body>
+                </Card>}
+            </>
+            }            
         </div>
     );
 }

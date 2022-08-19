@@ -25,10 +25,23 @@
 }
 
 .unitsMenu {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
     position: fixed;
-    width: 200px;
+    width: 250px;
     top: 100px;
     right: 275px;
+}
+
+.AddNewUnitsMenu {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    position: fixed;
+    width: 250px;
+    top: 100px;
+    right: 550px;
 }
 
 .selectedUnit {
@@ -50,3 +63,17 @@
 .selectableUnitsBlock {
     padding: 2px;
 }
+
+.buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4%;
+}
+
+/* .SelectedArmyCard {
+    width: 50%;
+}
+
+.AddNewUnitsCard {
+    width: 50%;
+} */
