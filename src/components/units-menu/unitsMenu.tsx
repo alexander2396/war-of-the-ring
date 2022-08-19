@@ -63,7 +63,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
             <Card className="unitsMenu">
                 <Card.Body className="SelectedArmyCard">
                     <Card.Title className="text-center">Selected Army</Card.Title>
-                    <div className="selectableUnitsBlock">
+                    <div className="selectableUnitsBlock text-center">
                         {selectedRegion.units.map((unit, i) => {    
                             return (
                                 <div key={i} className={ "selectableUnit" + (unit.selected ? " selected" : "") } onClick={() => selectUnit(unit)}>

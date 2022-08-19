@@ -25,9 +25,9 @@ export class CardService {
     
     static buildSauronStrategyDeck(): Card[] {
         const cards = [
-            new Card('sas001.png', Side.FreePeople, CardType.Strategy),
-            new Card('sas002.png', Side.FreePeople, CardType.Strategy),
-            new Card('sas003.png', Side.FreePeople, CardType.Strategy)
+            new Card('sas001.png', Side.SauronForces, CardType.Strategy),
+            new Card('sas002.png', Side.SauronForces, CardType.Strategy),
+            new Card('sas003.png', Side.SauronForces, CardType.Strategy)
         ];
 
         return cards;
@@ -35,9 +35,9 @@ export class CardService {
 
     static buildSauronCharacterDeck(): Card[] {
         const cards = [
-            new Card('sac001.png', Side.FreePeople, CardType.Character),
-            new Card('sac002.png', Side.FreePeople, CardType.Character),
-            new Card('sac003.png', Side.FreePeople, CardType.Character)
+            new Card('sac001.png', Side.SauronForces, CardType.Character),
+            new Card('sac002.png', Side.SauronForces, CardType.Character),
+            new Card('sac003.png', Side.SauronForces, CardType.Character)
         ];
 
         return cards;

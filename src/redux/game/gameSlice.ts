@@ -106,6 +106,23 @@ export const gameSlice = createSlice({
             } else {
                 state.cards.sauronForces.hand.push(card);
             }
+        },
+        playCard: (state, action: PayloadAction<Card>) => {
+            let hand: Card[];
+            let playedCards: Card[];
+
+            if (action.payload.side === Side.FreePeople) {
+                hand = state.cards.freePeople.hand;
+                playedCards = state.cards.freePeople.played;
+            } else {
+                hand = state.cards.sauronForces.hand;
+                playedCards = state.cards.sauronForces.played;
+            }
+
+            const card = hand.find(x => x.key === action.payload.key);
+
+            hand.splice(hand.indexOf(card), 1);
+            playedCards.push(card);
         }
     }
 });
@@ -117,7 +134,8 @@ export const {
     setRegionUnits,
     useFreePeopleDice,
     useSauronForcesDice,
-    drawCard
+    drawCard,
+    playCard
  } = gameSlice.actions;
 
 export const selectRegions = (state: RootState) => state.game.regions;

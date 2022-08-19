@@ -2,7 +2,7 @@ import { Dice } from "../../models/dice";
 import { Side } from "../../models/side";
 import { CardType } from "../../models/cardType";
 import { Modal, Button, Tabs, Tab } from "react-bootstrap";
-import { selectFreePeopleDices, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesUsedDices, useFreePeopleDice, useSauronForcesDice, drawCard, selectFreePeopleCards, selectSauronForcesCards } from "../../redux/game/gameSlice";
+import { selectFreePeopleDices, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesUsedDices, useFreePeopleDice, useSauronForcesDice, drawCard, selectFreePeopleCards, selectSauronForcesCards, playCard } from "../../redux/game/gameSlice";
 import { useAppSelector, useAppDispatch } from "../../tools/hooks/hooks";
 import { useState } from "react";
 import { Card } from "../../models/card";
@@ -36,6 +36,12 @@ export function GameModal(props: any) {
         setSelectedCard(card);
     }
 
+    function _playSelectedCard() {
+        if (!SelectedCard) return;
+        dispatch(playCard(SelectedCard));
+        setSelectedCard(null);
+    }
+
     return (
         <Modal {...props} dialogClassName={styles.gameModal}>
             <Modal.Header closeButton>
@@ -65,8 +71,8 @@ export function GameModal(props: any) {
                                 <Col className="d-flex flex-row-reverse">
                                     {SelectedCard &&
                                     <>
-                                        <Button variant="danger" className={styles.btnLeftMargin}>Drop</Button>
-                                        <Button variant="success">Play</Button>
+                                        <Button variant="danger" className={styles.btnLeftMargin} onClick={() => _playSelectedCard()}>Drop</Button>
+                                        <Button variant="success" onClick={() => _playSelectedCard()}>Play</Button>
                                     </>}
                                 </Col>
                             </Row>
@@ -127,8 +133,8 @@ export function GameModal(props: any) {
                                 <Col className="d-flex flex-row-reverse">
                                     {SelectedCard &&
                                     <>
-                                        <Button variant="danger" className={styles.btnLeftMargin}>Drop</Button>
-                                        <Button variant="success">Play</Button>
+                                        <Button variant="danger" className={styles.btnLeftMargin} onClick={() => _playSelectedCard()}>Drop</Button>
+                                        <Button variant="success" onClick={() => _playSelectedCard()}>Play</Button>
                                     </>}
                                 </Col>
                             </Row>
