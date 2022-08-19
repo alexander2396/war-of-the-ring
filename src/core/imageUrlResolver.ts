@@ -27,6 +27,30 @@ export class ImageUrlResolver {
                 if (unit.type === UnitType.Leader) 
                     return 'images/units/DwarvenLeader.png';
                 break;
+            case Faction.Northmen:
+                if (unit.type === UnitType.Regular) 
+                    return 'images/units/NorthRegular.png';            
+                if (unit.type === UnitType.Elite) 
+                    return 'images/units/NorthElite.png';
+                if (unit.type === UnitType.Leader) 
+                    return 'images/units/NorthLeader.png';
+                break;
+            case Faction.Rohan:
+                if (unit.type === UnitType.Regular) 
+                    return 'images/units/RohanRegular.png';            
+                if (unit.type === UnitType.Elite) 
+                    return 'images/units/RohanElite.png';
+                if (unit.type === UnitType.Leader) 
+                    return 'images/units/RohanLeader.png';
+                break;
+            case Faction.Gondor:
+                if (unit.type === UnitType.Regular) 
+                    return 'images/units/GondorRegular.png';            
+                if (unit.type === UnitType.Elite) 
+                    return 'images/units/GondorElite.png';
+                if (unit.type === UnitType.Leader) 
+                    return 'images/units/GondorLeader.png';
+                break;
             case Faction.Sauron:
                 if (unit.type === UnitType.Regular) 
                     return 'images/units/SauronRegular.png';
@@ -34,6 +58,18 @@ export class ImageUrlResolver {
                     return 'images/units/SauronElite.png';
                 if (unit.type === UnitType.Leader) 
                     return 'images/units/Nazgul.png';
+                break;
+            case Faction.Isengard:
+                if (unit.type === UnitType.Regular) 
+                    return 'images/units/IsengardRegular.png';
+                if (unit.type === UnitType.Elite) 
+                    return 'images/units/IsengardElite.png';
+                break;
+            case Faction.Easterlings:
+                if (unit.type === UnitType.Regular) 
+                    return 'images/units/SouthronRegular.png';
+                if (unit.type === UnitType.Elite) 
+                    return 'images/units/SouthronElite.png';
                 break;
             default:
                 return ''
