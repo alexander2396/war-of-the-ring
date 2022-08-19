@@ -1,6 +1,7 @@
 import { AnyAction, Dispatch, ThunkDispatch } from "@reduxjs/toolkit";
+import { GameState } from "../../models/gameState";
 import { Region } from "../../models/region";
-import { GameState, setRegionUnits } from "../../redux/game/gameSlice";
+import { setRegionUnits } from "../../redux/game/gameSlice";
 
 export type RegionClickedTypes = {
     region?: Region;

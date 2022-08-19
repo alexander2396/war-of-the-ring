@@ -1,6 +1,5 @@
-import React from 'react'
 import { Region } from '../../models/region'
-import { regionClicked, RegionClickedTypes } from '../../tools/helpers/regionClicked'
+import { regionClicked, RegionClickedTypes } from './regionClicked'
 
 type PropTypes = {
     regions: Region[]

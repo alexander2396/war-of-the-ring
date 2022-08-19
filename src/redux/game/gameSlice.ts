@@ -6,39 +6,9 @@ import { InitialData } from "../../core/initialData";
 import { Card } from "../../models/card";
 import { CardType } from "../../models/cardType";
 import { Dice } from "../../models/dice";
-import { Region } from "../../models/region";
+import { GameState } from "../../models/gameState";
 import { Side } from "../../models/side";
 import { RootState } from "../store";
-
-
-export interface GameState {
-    gameStarted: boolean;
-    regions: Region[];
-    dices: {
-        freePeople: {
-            available: Dice[];
-            used: Dice[];
-        },
-        sauronForces: {
-            available: Dice[];
-            used: Dice[];
-        }
-    },
-    cards: {
-        freePeople: {
-            strategyDeck: Card[],
-            characterDeck: Card[],
-            hand: Card[],
-            played: Card[]
-        },
-        sauronForces: {
-            strategyDeck: Card[],
-            characterDeck: Card[],
-            hand: Card[],
-            played: Card[]
-        }
-    }
-}
 
 const initialState: GameState = {
     gameStarted: false,

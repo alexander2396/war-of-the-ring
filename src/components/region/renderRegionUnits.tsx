@@ -1,4 +1,3 @@
-import { RenderUnit } from "../../elements/renderUnit";
 import { Region } from "../../models/region";
 import { UnitType } from "../../models/unitType";
 
@@ -32,8 +31,12 @@ export const RenderRegionUnits = ({region}: PropTypes) => {
             <>
                 {
                     units.map((unit, i) => {
-                        return (<RenderUnit key={i} imageUrl={unit.imageUrl} count={unit.count} />)
-                    })
+                        return (
+                            <div className='unit d-flex flex-column' key={i}>
+                                <div><img style={{height: '65px'}} src={unit.imageUrl} alt = ""/></div>
+                                <div className="unitCount">{unit.count}</div>
+                            </div>)
+                        })
                 }
             </>
         )
