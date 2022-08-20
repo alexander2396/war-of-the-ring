@@ -9,6 +9,7 @@ export class Card {
     type: CardType;
 
     imageUrl: string;
+    smallImageUrl: string;
 
     constructor(fileName: string, side: Side, type: CardType) {
         this.key = uuidv4();
@@ -16,5 +17,6 @@ export class Card {
         this.type = type;        
         
         this.imageUrl = ImageUrlResolver.getCardUrl(fileName);
+        this.smallImageUrl = ImageUrlResolver.getSmallCardUrl(fileName);
     }
 }

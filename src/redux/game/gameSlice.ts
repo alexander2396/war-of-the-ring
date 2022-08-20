@@ -28,13 +28,15 @@ const initialState: GameState = {
             strategyDeck: CardService.buildFreePeopleStrategyDeck(),
             characterDeck: CardService.buildFreePeopleCharacterDeck(),
             hand: [],
-            played: []
+            draft: [],
+            active: []
         },
         sauronForces: {
             strategyDeck: CardService.buildSauronStrategyDeck(),
             characterDeck: CardService.buildSauronCharacterDeck(),
             hand: [],
-            played: []
+            draft: [],
+            active: []
         }
     }
 };
@@ -51,13 +53,15 @@ export const gameSlice = createSlice({
                     strategyDeck: CardService.buildFreePeopleStrategyDeck(),
                     characterDeck: CardService.buildFreePeopleCharacterDeck(),
                     hand: [],
-                    played: []
+                    draft: [],
+                    active: []
                 },
                 sauronForces: {
                     strategyDeck: CardService.buildSauronStrategyDeck(),
                     characterDeck: CardService.buildSauronCharacterDeck(),
                     hand: [],
-                    played: []
+                    draft: [],
+                    active: []
                 }
             };
         },
@@ -107,22 +111,50 @@ export const gameSlice = createSlice({
                 state.cards.sauronForces.hand.push(card);
             }
         },
-        playCard: (state, action: PayloadAction<Card>) => {
+        draftCard: (state, action: PayloadAction<Card>) => {
             let hand: Card[];
-            let playedCards: Card[];
+            let draftCards: Card[];
 
             if (action.payload.side === Side.FreePeople) {
                 hand = state.cards.freePeople.hand;
-                playedCards = state.cards.freePeople.played;
+                draftCards = state.cards.freePeople.draft;
             } else {
                 hand = state.cards.sauronForces.hand;
-                playedCards = state.cards.sauronForces.played;
+                draftCards = state.cards.sauronForces.draft;
+            }
+
+            let card = hand.find(x => x.key === action.payload.key);
+
+            if (card) {
+                hand.splice(hand.indexOf(card), 1);           
+            } else {
+                let activeCards = action.payload.side === Side.FreePeople
+                    ? state.cards.freePeople.active
+                    : state.cards.sauronForces.active;
+
+                card = activeCards.find(x => x.key === action.payload.key);
+
+                activeCards.splice(activeCards.indexOf(card), 1); 
+            }
+
+            draftCards.push(card);
+        },
+        activateCard: (state, action: PayloadAction<Card>) => {
+            let hand: Card[];
+            let activeCards: Card[];
+
+            if (action.payload.side === Side.FreePeople) {
+                hand = state.cards.freePeople.hand;
+                activeCards = state.cards.freePeople.active;
+            } else {
+                hand = state.cards.sauronForces.hand;
+                activeCards = state.cards.sauronForces.active;
             }
 
             const card = hand.find(x => x.key === action.payload.key);
 
             hand.splice(hand.indexOf(card), 1);
-            playedCards.push(card);
+            activeCards.push(card);
         }
     }
 });
@@ -135,7 +167,8 @@ export const {
     useFreePeopleDice,
     useSauronForcesDice,
     drawCard,
-    playCard
+    draftCard,
+    activateCard
  } = gameSlice.actions;
 
 export const selectRegions = (state: RootState) => state.game.regions;

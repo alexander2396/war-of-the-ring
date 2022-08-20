@@ -401,6 +401,7 @@ export class InitialData {
             xposition: '1323',
             yposition: '1003',
             units: [
+                new Unit(Side.FreePeople, Faction.Gondor, UnitType.Regular),
                 new Unit(Side.FreePeople, Faction.Gondor, UnitType.Regular)
             ],
             side: null,
@@ -413,9 +414,7 @@ export class InitialData {
             yposition: '352',
             units: [
                 new Unit(Side.SauronForces, Faction.Easterlings, UnitType.Regular),
-                new Unit(Side.SauronForces, Faction.Easterlings, UnitType.Regular),
-                new Unit(Side.SauronForces, Faction.Easterlings, UnitType.Regular),
-                new Unit(Side.SauronForces, Faction.Easterlings, UnitType.Elite)
+                new Unit(Side.SauronForces, Faction.Easterlings, UnitType.Regular)
             ],
             side: Side.SauronForces,
             faction: Faction.Easterlings,

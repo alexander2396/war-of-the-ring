@@ -1,0 +1,18 @@
+.cards {
+    position: absolute;
+    top: 624px;
+    left: 250px;
+    width: 175px;
+    background: transparent;
+}
+
+.card {
+    width: 100%;
+    background: transparent;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+}

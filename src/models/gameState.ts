@@ -20,13 +20,15 @@ export interface GameState {
             strategyDeck: Card[],
             characterDeck: Card[],
             hand: Card[],
-            played: Card[]
+            draft: Card[],
+            active: Card[]
         },
         sauronForces: {
             strategyDeck: Card[],
             characterDeck: Card[],
             hand: Card[],
-            played: Card[]
+            draft: Card[],
+            active: Card[]
         }
     }
 }

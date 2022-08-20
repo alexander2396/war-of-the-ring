@@ -77,5 +77,6 @@ export class ImageUrlResolver {
 
     }
 
-    static getCardUrl = (fileName: string) => 'images/cards/' + fileName;
+    static getCardUrl = (fileName: string) => 'images/cards/' + fileName + '.png';
+    static getSmallCardUrl = (fileName: string) => 'images/cards/small/' + fileName + '_s.png';
 }
