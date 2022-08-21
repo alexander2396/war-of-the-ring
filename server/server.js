@@ -7,19 +7,46 @@ const app = express();
 
 app.use(express.static(path.join(__dirname + "/public")));
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 const server = http.createServer(app);
 const io = socketio(server, {
     cors: {
-      origin: "http://localhost:3001",
+      origin: "http://localhost:3000",
       methods: ["GET", "POST"]
     }
-})
-
-io.on('connection', (sock) => {
-    sock.emit('message', 'You are connected');
 });
+
+io.use((socket, next) => {
+    const username = socket.handshake.auth.username;
+    if (!username) {
+      return next(new Error("invalid username"));
+    }
+    socket.username = username;
+    next();
+
+    socket.on('disconnect', () => {
+        io.emit("users", _getAllUsers());
+    });
+});
+
+io.on("connection", (socket) => {
+    io.emit("users", _getAllUsers());
+});
+
+function _getAllUsers() {
+    const users = [];
+    for (let [id, socket] of io.of("/").sockets) {
+        users.push({
+            userID: id,
+            username: socket.username,
+        });
+
+    }
+    return users;
+}
+
+
 
 server.on('error', (err) => {
     console.error(err);
