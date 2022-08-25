@@ -38,6 +38,16 @@ const initialState: GameState = {
             draft: [],
             active: []
         }
+    },
+    availableReinforcements: {
+        0: {regular: 2, elite: 4, leader: 0}, // Elves
+        1: {regular: 2, elite: 3, leader: 3}, //Dwarfs
+        2: {regular: 6, elite: 4, leader: 3}, //Northmen
+        3: {regular: 6, elite: 4, leader: 3}, //Gondor
+        4: {regular: 6, elite: 4, leader: 3}, //Rohan
+        5: {regular: 8, elite: 4, leader: 4}, //Sauron
+        6: {regular: 6, elite: 5, leader: 0}, //Isengard
+        7: {regular: 10, elite: 3, leader: 0}, //Easterlings
     }
 };
 
@@ -155,6 +165,12 @@ export const gameSlice = createSlice({
 
             hand.splice(hand.indexOf(card), 1);
             activeCards.push(card);
+        },
+        availableReinforcementsReducer: (state, action: any) => {
+            const faction = action.payload.faction
+            const newValue = action.payload.newValue
+            state.availableReinforcements[faction] = newValue
+            console.log(action.payload)
         }
     }
 });
@@ -168,7 +184,8 @@ export const {
     useSauronForcesDice,
     drawCard,
     draftCard,
-    activateCard
+    activateCard,
+    availableReinforcementsReducer
  } = gameSlice.actions;
 
 export const selectRegions = (state: RootState) => state.game.regions;

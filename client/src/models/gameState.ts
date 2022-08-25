@@ -30,5 +30,6 @@ export interface GameState {
             draft: Card[],
             active: Card[]
         }
-    }
+    },
+    availableReinforcements: any
 }

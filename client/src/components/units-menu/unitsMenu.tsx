@@ -1,12 +1,14 @@
 import React, { useState } from "react"
 import { Card, Button, Form } from "react-bootstrap"
+import { useSelector } from "react-redux"
 import { Faction } from "../../models/faction"
 import { Hero } from "../../models/hero"
 import { Region } from "../../models/region"
 import { Side } from "../../models/side"
 import { Unit } from "../../models/unit"
 import { UnitType } from "../../models/unitType"
-import { setRegionUnits } from "../../redux/game/gameSlice"
+import { availableReinforcementsReducer, setRegionUnits } from "../../redux/game/gameSlice"
+import { RootState } from "../../redux/store"
 import { useAppDispatch } from "../../tools/hooks/hooks"
 
 type UnitsMenuProps = {
@@ -22,10 +24,41 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
     const [selectedFactionOfUnit, setSelectedFactionOfUnit] = useState(selectedRegion.faction);
     const [selectedUnitType, setSelectedUnitType] = useState(UnitType.Regular);
     const [selectedHero, setSelectedHero] = useState(null as Hero);
+    const [notAvaliableUnitType, setNotAvaliableUnitType] = useState(false)
     
+    const avaliableReinforcement = useSelector((state: RootState) => state.game.availableReinforcements)
     const dispatch = useAppDispatch();
 
+    const defineSelectedUnitType = (selectedUnitType) => {
+        switch (selectedUnitType) {
+            case 0:
+                return "regular"
+            case 1:
+                return 'elite'
+            case 2:
+                return 'leader'
+        }
+    }
+
+
     const addNewUnit = () => {
+        if (avaliableReinforcement[selectedFactionOfUnit][defineSelectedUnitType(selectedUnitType)] === 0) {
+            setNotAvaliableUnitType(true)
+            return;
+        }
+
+        const payload = {
+           newValue: { ...avaliableReinforcement[selectedFactionOfUnit],
+            [defineSelectedUnitType(selectedUnitType)]: avaliableReinforcement[selectedFactionOfUnit][defineSelectedUnitType(selectedUnitType)] - 1},
+            faction: selectedFactionOfUnit
+        }
+
+        dispatch(availableReinforcementsReducer(payload))
+
+
+        // console.log(avaliableReinforcement[selectedFactionOfUnit][defineSelectedUnitType(selectedUnitType)])
+        
+        ////////////////////////////////////
         const newUnit = selectedHero !== null
             ? new Unit(selectedSideOfUnit, selectedFactionOfUnit, UnitType.Leader, selectedHero)
             : new Unit(selectedSideOfUnit, selectedFactionOfUnit, selectedUnitType)
@@ -127,7 +160,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
 
                         <Form.Group className="mb-3">
                             <Form.Label>Unit type</Form.Label>
-                            <Form.Select size="sm" onChange={(e) => setSelectedUnitType(Number(e.currentTarget.value))}>
+                            <Form.Select size="sm" onChange={(e) => {setSelectedUnitType(Number(e.currentTarget.value)); setNotAvaliableUnitType(false)}}>
                                 <option value={UnitType.Regular}>Regular</option>
                                 <option value={UnitType.Elite}>Elite</option>
                                 <option value={UnitType.Leader}>Leader</option>
@@ -135,7 +168,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                         </Form.Group>
 
                         {   
-                            selectedUnitType == UnitType.Leader
+                            selectedUnitType === UnitType.Leader
                             &&
                             <Form.Group className="mb-3">
                                 <Form.Label>Hero</Form.Label>
@@ -172,6 +205,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                         <Button variant="secondary" onClick={() => addNewUnit()}>Add</Button>
                         <Button variant="primary" onClick={() => {setShowAddNewUnitsModal(false)}}>Cancel</Button>
                     </div>
+                    {notAvaliableUnitType && <p>There are no avaliable units of this type, please try another type</p>}
 
                 </Card.Body>
             </Card>}
