@@ -20,7 +20,7 @@ export function Board(props: any) {
             <img className='boardMap' src={"images/board.jpg"} useMap="#Map" alt=""/>
 
             {regions.map((region, i) => (
-                <RenderRegion region = {region} regionClicked = {{showUnitsMenu, setSelectedRegion, dispatch, SelectedRegion}} />
+                <RenderRegion key={i} region = {region} regionClicked = {{showUnitsMenu, setSelectedRegion, dispatch, SelectedRegion}} />
             ))}
 
             <map name="Map" id="Map">
