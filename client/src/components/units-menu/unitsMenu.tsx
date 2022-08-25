@@ -31,11 +31,11 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
 
     const defineSelectedUnitType = (selectedUnitType) => {
         switch (selectedUnitType) {
-            case 0:
+            case UnitType.Regular:
                 return "regular"
-            case 1:
+            case UnitType.Elite:
                 return 'elite'
-            case 2:
+            case UnitType.Leader:
                 return 'leader'
         }
     }

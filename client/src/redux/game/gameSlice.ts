@@ -6,9 +6,11 @@ import { InitialData } from "../../core/initialData";
 import { Card } from "../../models/card";
 import { CardType } from "../../models/cardType";
 import { Dice } from "../../models/dice";
+import { Faction } from "../../models/faction";
 import { GameState } from "../../models/gameState";
 import { Side } from "../../models/side";
 import { RootState } from "../store";
+
 
 const initialState: GameState = {
     gameStarted: false,
@@ -40,14 +42,14 @@ const initialState: GameState = {
         }
     },
     availableReinforcements: {
-        0: {regular: 2, elite: 4, leader: 0}, // Elves
-        1: {regular: 2, elite: 3, leader: 3}, //Dwarfs
-        2: {regular: 6, elite: 4, leader: 3}, //Northmen
-        3: {regular: 6, elite: 4, leader: 3}, //Gondor
-        4: {regular: 6, elite: 4, leader: 3}, //Rohan
-        5: {regular: 8, elite: 4, leader: 4}, //Sauron
-        6: {regular: 6, elite: 5, leader: 0}, //Isengard
-        7: {regular: 10, elite: 3, leader: 0}, //Easterlings
+        [Faction.Elves]: {regular: 2, elite: 4, leader: 0}, // Elves
+        [Faction.Dwarfs]: {regular: 2, elite: 3, leader: 3}, //Dwarfs
+        [Faction.Northmen]: {regular: 6, elite: 4, leader: 3}, //Northmen
+        [Faction.Gondor]: {regular: 6, elite: 4, leader: 3}, //Gondor
+        [Faction.Rohan]: {regular: 6, elite: 4, leader: 3}, //Rohan
+        [Faction.Sauron]: {regular: 8, elite: 4, leader: 4}, //Sauron
+        [Faction.Isengard]: {regular: 6, elite: 5, leader: 0}, //Isengard
+        [Faction.Easterlings]: {regular: 10, elite: 3, leader: 0}, //Easterlings
     }
 };
 

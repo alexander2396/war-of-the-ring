@@ -31,5 +31,7 @@ export interface GameState {
             active: Card[]
         }
     },
-    availableReinforcements: any
+    availableReinforcements: {
+        [key: number]: {regular: number, elite: number, leader: number}
+    }
 }
