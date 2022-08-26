@@ -168,11 +168,10 @@ export const gameSlice = createSlice({
             hand.splice(hand.indexOf(card), 1);
             activeCards.push(card);
         },
-        availableReinforcementsReducer: (state, action: any) => {
+        availableReinforcementsReducer: (state, action: PayloadAction<{faction: number, unitType: string}>) => {
             const faction = action.payload.faction
-            const newValue = action.payload.newValue
-            state.availableReinforcements[faction] = newValue
-            console.log(action.payload)
+            const unitType = action.payload.unitType
+            state.availableReinforcements[faction][unitType] = --state.availableReinforcements[faction][unitType]
         }
     }
 });

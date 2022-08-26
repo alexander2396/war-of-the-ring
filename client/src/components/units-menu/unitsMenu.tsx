@@ -48,17 +48,12 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
         }
 
         const payload = {
-           newValue: { ...avaliableReinforcement[selectedFactionOfUnit],
-            [defineSelectedUnitType(selectedUnitType)]: avaliableReinforcement[selectedFactionOfUnit][defineSelectedUnitType(selectedUnitType)] - 1},
-            faction: selectedFactionOfUnit
-        }
+           faction: selectedFactionOfUnit,
+           unitType: defineSelectedUnitType(selectedUnitType)
+        } 
 
         dispatch(availableReinforcementsReducer(payload))
-
-
-        // console.log(avaliableReinforcement[selectedFactionOfUnit][defineSelectedUnitType(selectedUnitType)])
         
-        ////////////////////////////////////
         const newUnit = selectedHero !== null
             ? new Unit(selectedSideOfUnit, selectedFactionOfUnit, UnitType.Leader, selectedHero)
             : new Unit(selectedSideOfUnit, selectedFactionOfUnit, selectedUnitType)
