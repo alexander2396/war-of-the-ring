@@ -2,6 +2,7 @@ const http = require("http");
 const express = require('express');
 const path = require('path');
 const socketio = require('socket.io');
+const JSONFileStorage = require('node-json-file-storage');
 
 const app = express();
 
@@ -17,6 +18,9 @@ const io = socketio(server, {
     }
 });
 
+const file_uri = __dirname + "/data.json";
+const storage = new JSONFileStorage(file_uri);
+
 io.use((socket, next) => {
     const username = socket.handshake.auth.username;
     if (!username) {
@@ -28,11 +32,32 @@ io.use((socket, next) => {
     socket.on('disconnect', () => {
         io.emit("users", _getAllUsers());
     });
+
+    socket.on("new-game", (game) => {
+        storage.put(game);
+        io.emit("games", storage.all());
+    });
+
+    socket.on("join-game", (key) => {
+        const game = storage.get(key);
+        
+        if (game.sauronForcesPlayer !== null && game.freePeoplePlayer !== null)
+            return;
+
+        game.sauronForcesPlayer === null
+            ? game.sauronForcesPlayer = socket.username
+            : game.freePeoplePlayer = socket.username;
+        storage.put(game);
+        io.emit("games", storage.all());
+    });
 });
 
 io.on("connection", (socket) => {
     io.emit("users", _getAllUsers());
+    io.emit("games", storage.all());
 });
+
+
 
 function _getAllUsers() {
     const users = [];
@@ -45,6 +70,21 @@ function _getAllUsers() {
     }
     return users;
 }
+
+function _createGame() {
+    return storage.put(obj_1);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,6 +3,7 @@ import { Dice } from "./dice";
 import { Region } from "./region";
 
 export interface GameState {
+    key: string;
     gameStarted: boolean;
     regions: Region[];
     dices: {

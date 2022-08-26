@@ -351,7 +351,7 @@ export class InitialData {
             yposition: '822',
             units: [
                 new Unit(Side.FreePeople, Faction.Rohan, UnitType.Elite),
-                new Unit(Side.FreePeople, Faction.Rohan, UnitType.Leader)
+                new Unit(Side.FreePeople, Faction.Rohan, UnitType.Regular)
             ],
             side: Side.FreePeople,
             faction: Faction.Rohan,

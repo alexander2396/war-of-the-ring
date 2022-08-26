@@ -6,11 +6,13 @@ import { InitialData } from "../../core/initialData";
 import { Card } from "../../models/card";
 import { CardType } from "../../models/cardType";
 import { Dice } from "../../models/dice";
+import { Game } from "../../models/game";
 import { GameState } from "../../models/gameState";
 import { Side } from "../../models/side";
 import { RootState } from "../store";
 
 const initialState: GameState = {
+    key: null,
     gameStarted: false,
     regions: new InitialData().Regions,
     dices: {
@@ -64,6 +66,9 @@ export const gameSlice = createSlice({
                     active: []
                 }
             };
+        },
+        startGame: (state, action: PayloadAction<Game>) => {
+            state = action.payload.gameState;
         },
         setFreePeopleDices: (state, action: PayloadAction<Dice[]>) => {
             state.dices.freePeople.available = action.payload;
@@ -163,6 +168,7 @@ export const {
     setFreePeopleDices,
     setSauronForcesDices,
     newGame,
+    startGame,
     setRegionUnits,
     useFreePeopleDice,
     useSauronForcesDice,
@@ -170,6 +176,8 @@ export const {
     draftCard,
     activateCard
  } = gameSlice.actions;
+
+ export const selectGame = (state: RootState) => state.game;
 
 export const selectRegions = (state: RootState) => state.game.regions;
 
