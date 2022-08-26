@@ -105,7 +105,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                         })}
                     </div>
                     <div className="buttonGroup">
-                        <Button variant="secondary" onClick={() => { setShowAddNewUnitsModal(true) }}>Add</Button>
+                        <Button variant="success" onClick={() => { setShowAddNewUnitsModal(true) }}>Add</Button>
 
                         <Button variant="danger" onClick={deleteUnits}>Delete</Button>
 
@@ -197,7 +197,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                     </Form>
 
                     <div className="buttonGroup">
-                        <Button variant="secondary" onClick={() => addNewUnit()}>Add</Button>
+                        <Button variant={notAvaliableUnitType ? "secondary" : "success"} onClick={() => addNewUnit()}>Add</Button>
                         <Button variant="primary" onClick={() => {setShowAddNewUnitsModal(false)}}>Cancel</Button>
                     </div>
                     {notAvaliableUnitType && <p>There are no avaliable units of this type, please try another type</p>}
