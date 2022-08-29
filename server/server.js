@@ -50,6 +50,14 @@ io.use((socket, next) => {
         storage.put(game);
         io.emit("games", storage.all());
     });
+
+    socket.on("update-game", ({key, gameState}) => {
+        const game = storage.get(key);
+
+        game.gameState = gameState;
+
+        storage.put(game);
+    });
 });
 
 io.on("connection", (socket) => {

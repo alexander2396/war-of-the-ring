@@ -4,10 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Board } from './pages/board/Board';
 import { io } from 'socket.io-client';
 import { Lobby } from './pages/lobby/Lobby';
+import { useAppDispatch } from './tools/hooks/hooks';
+import { openSocket } from './redux/game/gameSlice';
 
 function App() {
-    const socket = process.env.NODE_ENV == 'development' ? io("http://localhost:3001", { autoConnect: false }) : io({ autoConnect: false });
+    const dispatch = useAppDispatch();
 
+    dispatch(openSocket());
     // socket.onAny((event, ...args) => {
     //     console.log(event, args);
     // });
@@ -16,7 +19,7 @@ function App() {
         <div className="App">
             <AppMenu/>
             <Board/>
-            <Lobby socket={socket}/>
+            <Lobby/>
         </div>
     );
 }

@@ -3,21 +3,20 @@ import { Modal, Button, Form, Card } from "react-bootstrap";
 import { Socket } from "socket.io-client";
 import { Game } from "../../models/game";
 import { Side } from "../../models/side";
-import { selectGame, startGame } from "../../redux/game/gameSlice";
+import { getSocket, selectGame, startGame } from "../../redux/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks";
 import styles from './Lobby.module.css';
 
-type LobbyProps = {
-    socket: Socket
-}
-export function Lobby({socket}: LobbyProps) {
-    const [GameStarted, setGameStarted]=useState(false);
+export function Lobby() {
+    const [ShowLobby, setShowLobby]=useState(false);
     const [UserName, setUserName]=useState(null);
     const [UserNameInput, setUserNameIput]=useState(null);
     const [Users, setUsers]=useState([]);
     const [Games, setGames]=useState([]);
     const gameSlice = useAppSelector(selectGame);
     const dispatch = useAppDispatch();
+
+    const socket = useAppSelector(getSocket);
 
     function loginUser() {
         setUserName(UserNameInput);
@@ -48,9 +47,10 @@ export function Lobby({socket}: LobbyProps) {
 
     function _startGame(key: string) {
         const game = Games[key];
+
         game.gameState.key = key;
         dispatch(startGame(game));
-        setGameStarted(true);
+        setShowLobby(true);
     }
 
     socket.on("connect_error", (err) => {
@@ -69,14 +69,14 @@ export function Lobby({socket}: LobbyProps) {
     });
 
     return (
-        <Modal show={!GameStarted} size="xl">
+        <Modal show={!ShowLobby} size="xl">
             <Modal.Header closeButton>
-                <Modal.Title>Welcome {UserName}</Modal.Title>
+                <Modal.Title className={styles.marginRight}>Welcome {UserName}</Modal.Title>
                 {
                     UserName &&
                     <>
-                    <Button className={styles.newGameBtn} variant="primary" onClick={() => { createGame(Side.FreePeople) }}>Create game as FP</Button>
-                    <Button className={styles.newGameBtn} variant="danger" onClick={() => { createGame(Side.SauronForces) }}>Create game as SF</Button>
+                    <Button className={styles.marginRight} variant="primary" onClick={() => { createGame(Side.FreePeople) }}>Create game as FP</Button>
+                    <Button variant="danger" onClick={() => { createGame(Side.SauronForces) }}>Create game as SF</Button>
                     </>
                 }
             </Modal.Header>
@@ -109,12 +109,13 @@ export function Lobby({socket}: LobbyProps) {
                                             ((x[1].freePeoplePlayer === null || x[1].sauronForcesPlayer === null) &&
                                                  UserName !== x[1].freePeoplePlayer && UserName !== x[1].sauronForcesPlayer) &&
                                             <>
-                                            <Button variant="primary" onClick={() => joinGame(x[0])}>Join</Button>
+                                            <Button className={styles.marginRight} variant="primary" onClick={() => joinGame(x[0])}>Join</Button>
                                             </>
                                         } 
                                         {
                                             (UserName === x[1].freePeoplePlayer || UserName === x[1].sauronForcesPlayer) &&
-                                            <Button className={styles.newGameBtn} variant="success" onClick={() => _startGame(x[0])}>Start</Button>
+                                            (x[1].freePeoplePlayer !== null && x[1].sauronForcesPlayer !== null) &&
+                                            <Button variant="success" onClick={() => _startGame(x[0])}>Start</Button>
                                         }
                                     </Card.Body>
                                 </Card>
