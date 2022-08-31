@@ -7,6 +7,7 @@ import { selectRegions } from "../../redux/game/gameSlice";
 import './Board.css';
 import { UnitsMenu } from "../../components/units-menu/unitsMenu";
 import { ActiveCards } from "../../components/active-cards/activeCards";
+import { Room } from "../../components/room/room";
 
 export function Board(props: any) {
     const [ShowUnitsMenu, showUnitsMenu]=useState(false);
@@ -31,7 +32,9 @@ export function Board(props: any) {
                 <UnitsMenu selectedRegion={SelectedRegion} setSelectedRegion={setSelectedRegion} showUnitsMenu={showUnitsMenu}/>
             }
 
-            <ActiveCards />   
+            <ActiveCards />
+
+            <Room />
         </div>
     );
 }

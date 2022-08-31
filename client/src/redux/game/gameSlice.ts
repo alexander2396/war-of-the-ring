@@ -16,6 +16,7 @@ import { Unit } from "../../models/unit";
 
 const initialState: ApplicationState = {
     socket: null,
+    username: '',
     gameState: {
         key: null,
         gameStarted: false,
@@ -49,6 +50,14 @@ const initialState: ApplicationState = {
     }
 };
 
+function saveGame(state, message) {
+    state.socket.emit('update-game', {
+        key: state.gameState.key,
+        gameState: state.gameState,
+        message: message
+    });
+};
+
 export const gameSlice = createSlice({
     name: 'game',
     initialState,
@@ -57,6 +66,9 @@ export const gameSlice = createSlice({
             state.socket = process.env.NODE_ENV == 'development' 
                 ? io("http://localhost:3001", { autoConnect: false }) 
                 : io({ autoConnect: false });
+        },
+        setUser: (state, action: PayloadAction<string>) => {
+            state.username = action.payload;
         },
         newGame: (state) => {
             state.gameState.gameStarted = true;
@@ -78,7 +90,7 @@ export const gameSlice = createSlice({
                 }
             };
         },
-        startGame: (state, action: PayloadAction<Game>) => {
+        setGame: (state, action: PayloadAction<Game>) => {
 
             action.payload.gameState.regions.forEach(x => {
                 var units = x.units.map(u => new Unit(u.side, u.faction, u.type, u.hero));
@@ -98,17 +110,21 @@ export const gameSlice = createSlice({
         setRegionUnits: (state, action: PayloadAction<SetUnitsAction>) => {
             state.gameState.regions.find(x => x.key === action.payload.regionKey).units = action.payload.units;
 
-            state.socket.emit('update-game', {key: state.gameState.key, gameState: state.gameState});
+            saveGame(state, `${state.username} moved units.`);
         },
         useFreePeopleDice: (state, action: PayloadAction<Dice>) => {
             let dice = state.gameState.dices.freePeople.available.find(x => x.key === action.payload.key);
             state.gameState.dices.freePeople.available = state.gameState.dices.freePeople.available.filter(x => x.key !== dice.key);
             state.gameState.dices.freePeople.used.push(dice);
+
+            saveGame(state, `${state.username} used dice.`);
         },
         useSauronForcesDice: (state, action: PayloadAction<Dice>) => {
             let dice = state.gameState.dices.sauronForces.available.find(x => x.key === action.payload.key);
             state.gameState.dices.sauronForces.available = state.gameState.dices.sauronForces.available.filter(x => x.key !== dice.key);
             state.gameState.dices.sauronForces.used.push(dice);
+
+            saveGame(state, `${state.username} used dice.`);
         },
         drawCard: (state, action: PayloadAction<DrawCardAction>) => {
             let deck: Card[];
@@ -134,6 +150,8 @@ export const gameSlice = createSlice({
             } else {
                 state.gameState.cards.sauronForces.hand.push(card);
             }
+
+            saveGame(state, `${state.username} drawn card.`);
         },
         draftCard: (state, action: PayloadAction<Card>) => {
             let hand: Card[];
@@ -162,6 +180,8 @@ export const gameSlice = createSlice({
             }
 
             draftCards.push(card);
+
+            saveGame(state, `${state.username} discarded card.`);
         },
         activateCard: (state, action: PayloadAction<Card>) => {
             let hand: Card[];
@@ -179,16 +199,19 @@ export const gameSlice = createSlice({
 
             hand.splice(hand.indexOf(card), 1);
             activeCards.push(card);
+
+            saveGame(state, `${state.username} activated card.`);
         }
     }
 });
 
 export const {
     openSocket,
+    setUser,
     setFreePeopleDices,
     setSauronForcesDices,
     newGame,
-    startGame,
+    setGame,
     setRegionUnits,
     useFreePeopleDice,
     useSauronForcesDice,

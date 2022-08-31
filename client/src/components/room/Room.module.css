@@ -1,0 +1,11 @@
+.room {
+    width: 281px;
+    height: 247px;
+    position: absolute;
+    background-color: white;
+    left: 10px;
+    top: 12px;
+    padding: 10px;
+    overflow-y: scroll;
+    font-size: 14px;
+}

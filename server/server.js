@@ -29,6 +29,12 @@ io.use((socket, next) => {
     socket.username = username;
     next();
 
+    socket.on('disconnecting', function(){
+        socket.rooms.forEach(room => {
+            io.to(room).emit("user-leaved", `${socket.username} has leaved`);
+        })
+    });
+
     socket.on('disconnect', () => {
         io.emit("users", _getAllUsers());
     });
@@ -51,12 +57,21 @@ io.use((socket, next) => {
         io.emit("games", storage.all());
     });
 
-    socket.on("update-game", ({key, gameState}) => {
+    socket.on("update-game", ({key, gameState, message}) => {
         const game = storage.get(key);
 
         game.gameState = gameState;
 
         storage.put(game);
+
+        io.to(key).emit("room-message", message);
+        io.to(key).emit("game-updated", game);
+    });
+
+    socket.on("enter-game", (key) => {
+        socket.join(key);
+
+        io.to(key).emit("room-message", `${socket.username} has joined`);
     });
 });
 

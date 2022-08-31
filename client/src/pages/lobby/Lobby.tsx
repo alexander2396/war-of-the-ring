@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Modal, Button, Form, Card } from "react-bootstrap";
-import { Socket } from "socket.io-client";
 import { Game } from "../../models/game";
 import { Side } from "../../models/side";
-import { getSocket, selectGame, startGame } from "../../redux/game/gameSlice";
+import { getSocket, selectGame, setGame, setUser } from "../../redux/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks";
 import styles from './Lobby.module.css';
 
@@ -23,7 +22,7 @@ export function Lobby() {
         socket.auth = { username: UserNameInput };
         socket.connect();
 
-        //socket.emit('userLogged', UserNameInput);
+        dispatch(setUser(UserNameInput));
     }
 
     function createGame(side: Side) {
@@ -49,7 +48,10 @@ export function Lobby() {
         const game = Games[key];
 
         game.gameState.key = key;
-        dispatch(startGame(game));
+
+        socket.emit('enter-game', key);
+
+        dispatch(setGame(game));
         setShowLobby(true);
     }
 
@@ -66,6 +68,10 @@ export function Lobby() {
     
     socket.on('games', (data) => {
         setGames(data);
+    });
+
+    socket.on('game-updated', (game) => {
+        dispatch(setGame(game));
     });
 
     return (
@@ -100,6 +106,9 @@ export function Lobby() {
                         <div className="d-flex flex-row flex-wrap">
                             { Games && Object.entries(Games).map((x: [string, Game]) => <>
                                 <Card style={{ width: '340px', margin: '10px' }}>
+                                    <Card.Title>
+                                        <div className={styles.title}>{x[0]}</div>
+                                    </Card.Title>
                                     <Card.Body>
                                         <Card.Text>
                                             <div>Free People player: { x[1].freePeoplePlayer }</div>
