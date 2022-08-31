@@ -1,7 +1,7 @@
 .room {
     width: 281px;
     height: 247px;
-    position: absolute;
+    position: fixed;
     background-color: white;
     left: 10px;
     top: 12px;
