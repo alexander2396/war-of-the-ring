@@ -1,9 +1,21 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { CardService } from "../../core/cardService";
+import { DiceService } from "../../core/diceService";
 import { Game } from "../../models/game";
+import { GameState } from "../../models/gameState";
 import { Unit } from "../../models/unit";
+import { saveGame } from "./genericReducers";
 
-export const newGameReducer = (state) => {
+export const setGameReducer = (state, action: PayloadAction<Game>) => {
+    action.payload.gameState.regions.forEach(x => {
+        var units = x.units.map(u => new Unit(u.side, u.faction, u.type, u.hero));
+        x.units = units;
+    });
+
+    state.gameState = action.payload.gameState;
+};
+
+export const startNewGameReducer = (state) => {
     state.gameState.gameStarted = true;
 
     state.gameState.cards = {
@@ -22,13 +34,29 @@ export const newGameReducer = (state) => {
             active: []
         }
     };
-}
 
-export const setGameReducer = (state, action: PayloadAction<Game>) => {
-    action.payload.gameState.regions.forEach(x => {
-        var units = x.units.map(u => new Unit(u.side, u.faction, u.type, u.hero));
-        x.units = units;
-    });
+    state.gameState.cards.freePeople.hand = [
+        state.gameState.cards.freePeople.strategyDeck.shift(),
+        state.gameState.cards.freePeople.characterDeck.shift(),
+    ];
 
-    state.gameState = action.payload.gameState;
-}
+    state.gameState.cards.sauronForces.hand = [
+        state.gameState.cards.sauronForces.strategyDeck.shift(),
+        state.gameState.cards.sauronForces.characterDeck.shift(),
+    ];
+
+    state.gameState.dices = {
+        freePeople: {
+            available: DiceService.rollFreePeopleDices(4),
+            used: []
+        },
+        sauronForces: {
+            available: DiceService.rollSauronForcesDices(6),
+            used: []
+        }
+    };
+
+    new Audio('sounds/dice.wav').play();
+    
+    saveGame(state, `Game started.`);
+};

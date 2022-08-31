@@ -4,7 +4,7 @@ import { InitialData } from "../../core/initialData";
 import { ApplicationState } from "../../models/applicationState";
 import { RootState } from "../store";
 import { openSocketReducer, setUserReducer } from "../reducers/genericReducers";
-import { newGameReducer, setGameReducer } from "../reducers/gameReducers";
+import { setGameReducer, startNewGameReducer } from "../reducers/gameReducers";
 import { setFreePeopleDicesReducer, setSauronForcesDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
 import { setRegionUnitsReducer } from "../reducers/regionReducers";
 import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reducers/cardReducers";
@@ -51,8 +51,8 @@ export const gameSlice = createSlice({
     reducers: {
         openSocket: openSocketReducer,
         setUser: setUserReducer,
-        newGame: newGameReducer,
         setGame: setGameReducer,
+        startNewGame: startNewGameReducer,
         setFreePeopleDices: setFreePeopleDicesReducer,
         setSauronForcesDices: setSauronForcesDicesReducer,
         setRegionUnits: setRegionUnitsReducer,
@@ -69,8 +69,8 @@ export const {
     setUser,
     setFreePeopleDices,
     setSauronForcesDices,
-    newGame,
     setGame,
+    startNewGame,
     setRegionUnits,
     useFreePeopleDice,
     useSauronForcesDice,

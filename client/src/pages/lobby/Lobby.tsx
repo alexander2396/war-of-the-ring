@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Modal, Button, Form, Card } from "react-bootstrap";
 import { Game } from "../../models/game";
 import { Side } from "../../models/side";
-import { getSocket, selectGame, setGame, setUser } from "../../redux/game/gameSlice";
+import { getSocket, selectGame, setGame, setUser, startNewGame } from "../../redux/game/gameSlice";
+import { startNewGameReducer } from "../../redux/reducers/gameReducers";
 import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks";
 import styles from './Lobby.module.css';
 
@@ -45,13 +46,18 @@ export function Lobby() {
     }
 
     function _startGame(key: string) {
-        const game = Games[key];
+        const game = Games[key] as Game;
 
         game.gameState.key = key;
 
         socket.emit('enter-game', key);
 
         dispatch(setGame(game));
+
+        if (!game.gameState.gameStarted) {
+            dispatch(startNewGame());
+        }
+
         setShowLobby(true);
     }
 

@@ -60,12 +60,21 @@ io.use((socket, next) => {
     socket.on("update-game", ({key, gameState, message}) => {
         const game = storage.get(key);
 
+        let isNewGame = false;
+        if (game.gameState.gameStarted !== gameState.gameStarted) {
+            isNewGame = true;
+        }
+
         game.gameState = gameState;
 
         storage.put(game);
 
         io.to(key).emit("room-message", message);
         io.to(key).emit("game-updated", game);
+
+        if (isNewGame) {
+            io.emit("games", storage.all());
+        }
     });
 
     socket.on("enter-game", (key) => {
