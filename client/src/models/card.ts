@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ImageUrlResolver } from '../core/imageUrlResolver';
-import { CardType } from './cardType';
-import { Side } from './side';
+import { CardType } from './enums/cardType';
+import { Side } from './enums/side';
 
 export class Card {
     key: string;

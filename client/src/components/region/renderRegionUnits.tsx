@@ -1,5 +1,5 @@
 import { Region } from "../../models/region";
-import { UnitType } from "../../models/unitType";
+import { UnitType } from "../../models/enums/unitType";
 
 type PropTypes = {
     region: Region

@@ -1,8 +1,8 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { DrawCardAction } from "../../actions/drawCardAction";
 import { Card } from "../../models/card";
-import { CardType } from "../../models/cardType";
-import { Side } from "../../models/side";
+import { CardType } from "../../models/enums/cardType";
+import { Side } from "../../models/enums/side";
 import { saveGame } from "./genericReducers";
 
 export const drawCardReducer = (state, action: PayloadAction<DrawCardAction>) => {

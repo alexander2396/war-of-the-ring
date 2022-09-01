@@ -1,10 +1,10 @@
-import { Faction } from "../models/faction";
+import { Faction } from "../models/enums/faction";
 import { Hero } from "../models/hero";
 import { Region } from "../models/region";
-import { SettlementType } from "../models/settlementType";
-import { Side } from "../models/side";
+import { SettlementType } from "../models/enums/settlementType";
+import { Side } from "../models/enums/side";
 import { Unit } from "../models/unit";
-import { UnitType } from "../models/unitType";
+import { UnitType } from "../models/enums/unitType";
 
 export class InitialData {
     Regions: Region[] = [

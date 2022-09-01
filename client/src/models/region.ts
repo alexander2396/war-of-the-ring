@@ -1,6 +1,6 @@
-import { Faction } from "./faction";
-import { SettlementType } from "./settlementType";
-import { Side } from "./side";
+import { Faction } from "./enums/faction";
+import { SettlementType } from "./enums/settlementType";
+import { Side } from "./enums/side";
 import { Unit } from "./unit";
 
 export class Region {

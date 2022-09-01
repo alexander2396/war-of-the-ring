@@ -1,22 +1,40 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { CardService } from "../../core/cardService";
 import { DiceService } from "../../core/diceService";
+import { InitialData } from "../../core/initialData";
+import { ApplicationState } from "../../models/applicationState";
+import { DiceType } from "../../models/enums/diceType";
 import { Game } from "../../models/game";
-import { GameState } from "../../models/gameState";
 import { Unit } from "../../models/unit";
 import { saveGame } from "./genericReducers";
 
-export const setGameReducer = (state, action: PayloadAction<Game>) => {
+export const setGameReducer = (state: ApplicationState, action: PayloadAction<Game>) => {
     action.payload.gameState.regions.forEach(x => {
         var units = x.units.map(u => new Unit(u.side, u.faction, u.type, u.hero));
         x.units = units;
     });
 
+    // action.payload.gameState.dices = {
+    //     freePeople: {
+    //         available: action.payload.gameState.dices.freePeople.available.map(x => new Dice(x.side, x.type)),
+    //         used: action.payload.gameState.dices.freePeople.used.map(x => new Dice(x.side, x.type)),
+    //     },
+    //     sauronForces: {
+    //         available: action.payload.gameState.dices.freePeople.available.map(x => new Dice(x.side, x.type)),
+    //         used: action.payload.gameState.dices.freePeople.used.map(x => new Dice(x.side, x.type)),
+    //     }
+    // }
+
     state.gameState = action.payload.gameState;
 };
 
-export const startNewGameReducer = (state) => {
+export const startNewGameReducer = (state: ApplicationState) => {
+
+    const initialData = new InitialData();
+
     state.gameState.gameStarted = true;
+
+    state.gameState.regions = initialData.Regions;
 
     state.gameState.cards = {
         freePeople: {
@@ -45,16 +63,24 @@ export const startNewGameReducer = (state) => {
         state.gameState.cards.sauronForces.characterDeck.shift(),
     ];
 
+    const freePeopleDices = DiceService.rollFreePeopleDices(4);
+    const sauronForcesDices = DiceService.rollSauronForcesDices(7);
+
     state.gameState.dices = {
         freePeople: {
-            available: DiceService.rollFreePeopleDices(4),
-            used: []
+            available: freePeopleDices,
+            used: [],
+            hunt: []
         },
         sauronForces: {
-            available: DiceService.rollSauronForcesDices(6),
-            used: []
+            available: sauronForcesDices,
+            used: [],
+            hunt: sauronForcesDices.filter(x => x.type === DiceType.Eye).concat(state.gameState.dices.sauronForces.hunt)
         }
     };
+
+    
+    console.log(state.gameState.dices.sauronForces)
 
     new Audio('sounds/dice.wav').play();
     

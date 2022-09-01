@@ -1,7 +1,7 @@
 import { ImageUrlResolver } from '../core/imageUrlResolver';
-import { Faction } from './faction';
-import { Side } from './side';
-import { UnitType } from './unitType';
+import { Faction } from './enums/faction';
+import { Side } from './enums/side';
+import { UnitType } from './enums/unitType';
 import { v4 as uuidv4 } from 'uuid';
 import { Hero } from './hero';
 

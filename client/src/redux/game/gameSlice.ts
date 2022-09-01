@@ -1,11 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CardService } from "../../core/cardService";
-import { InitialData } from "../../core/initialData";
 import { ApplicationState } from "../../models/applicationState";
 import { RootState } from "../store";
 import { openSocketReducer, setUserReducer } from "../reducers/genericReducers";
 import { setGameReducer, startNewGameReducer } from "../reducers/gameReducers";
-import { setFreePeopleDicesReducer, setSauronForcesDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
+import { rollDicesReducer, setFreePeopleHuntDicesReducer, setSauronForcesHuntDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
 import { setRegionUnitsReducer } from "../reducers/regionReducers";
 import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reducers/cardReducers";
 
@@ -15,28 +13,30 @@ const initialState: ApplicationState = {
     gameState: {
         key: null,
         gameStarted: false,
-        regions: new InitialData().Regions,
+        regions: [],
         dices: {
             freePeople: {
                 available: [],
-                used: []
+                used: [],
+                hunt: []
             },
             sauronForces: {
                 available: [],
-                used: []
+                used: [],
+                hunt: []
             }
         },
         cards: {
             freePeople: {
-                strategyDeck: CardService.buildFreePeopleStrategyDeck(),
-                characterDeck: CardService.buildFreePeopleCharacterDeck(),
+                strategyDeck: [],
+                characterDeck: [],
                 hand: [],
                 draft: [],
                 active: []
             },
             sauronForces: {
-                strategyDeck: CardService.buildSauronStrategyDeck(),
-                characterDeck: CardService.buildSauronCharacterDeck(),
+                strategyDeck: [],
+                characterDeck: [],
                 hand: [],
                 draft: [],
                 active: []
@@ -53,11 +53,14 @@ export const gameSlice = createSlice({
         setUser: setUserReducer,
         setGame: setGameReducer,
         startNewGame: startNewGameReducer,
-        setFreePeopleDices: setFreePeopleDicesReducer,
-        setSauronForcesDices: setSauronForcesDicesReducer,
-        setRegionUnits: setRegionUnitsReducer,
+
         useFreePeopleDice: useFreePeopleDiceReducer,
         useSauronForcesDice: useSauronForcesDiceReducer,
+        rollDices: rollDicesReducer,
+        setFreePeopleHuntDices: setFreePeopleHuntDicesReducer,
+        setSauronForcesHuntDices: setSauronForcesHuntDicesReducer,
+
+        setRegionUnits: setRegionUnitsReducer,
         drawCard: drawCardReducer,
         draftCard: draftCardReducer,
         activateCard: activateCardReducer
@@ -67,13 +70,16 @@ export const gameSlice = createSlice({
 export const {
     openSocket,
     setUser,
-    setFreePeopleDices,
-    setSauronForcesDices,
     setGame,
     startNewGame,
     setRegionUnits,
+
     useFreePeopleDice,
     useSauronForcesDice,
+    rollDices,
+    setFreePeopleHuntDices,
+    setSauronForcesHuntDices,
+
     drawCard,
     draftCard,
     activateCard
@@ -85,10 +91,8 @@ export const {
 
 export const selectRegions = (state: RootState) => state.game.gameState.regions;
 
-export const selectFreePeopleDices = (state: RootState) => state.game.gameState.dices.freePeople.available;
-export const selectFreePeopleUsedDices = (state: RootState) => state.game.gameState.dices.freePeople.used;
-export const selectSauronForcesDices = (state: RootState) => state.game.gameState.dices.sauronForces.available;
-export const selectSauronForcesUsedDices = (state: RootState) => state.game.gameState.dices.sauronForces.used;
+export const selectFreePeopleDices = (state: RootState) => state.game.gameState.dices.freePeople;
+export const selectSauronForcesDices = (state: RootState) => state.game.gameState.dices.sauronForces;
 
 export const selectGameStarted = (state: RootState) => state.game.gameState.gameStarted;
 

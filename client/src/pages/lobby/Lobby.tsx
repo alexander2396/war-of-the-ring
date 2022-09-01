@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal, Button, Form, Card } from "react-bootstrap";
 import { Game } from "../../models/game";
-import { Side } from "../../models/side";
+import { Side } from "../../models/enums/side";
 import { getSocket, selectGame, setGame, setUser, startNewGame } from "../../redux/game/gameSlice";
 import { startNewGameReducer } from "../../redux/reducers/gameReducers";
 import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks";
@@ -110,16 +110,14 @@ export function Lobby() {
                     <div className="mt-3">
                         <h4>Games</h4>     
                         <div className="d-flex flex-row flex-wrap">
-                            { Games && Object.entries(Games).map((x: [string, Game]) => <>
-                                <Card style={{ width: '340px', margin: '10px' }}>
+                            { Games && Object.entries(Games).map((x: [string, Game], i) =>
+                                <Card key={i} style={{ width: '340px', margin: '10px' }}>
                                     <Card.Title>
                                         <div className={styles.title}>{x[0]}</div>
                                     </Card.Title>
                                     <Card.Body>
-                                        <Card.Text>
-                                            <div>Free People player: { x[1].freePeoplePlayer }</div>
-                                            <div>Sauron Forces player: { x[1].sauronForcesPlayer }</div>
-                                        </Card.Text>
+                                        <div>Free People player: { x[1].freePeoplePlayer }</div>
+                                        <div className="mb-4">Sauron Forces player: { x[1].sauronForcesPlayer }</div>
                                         {
                                             ((x[1].freePeoplePlayer === null || x[1].sauronForcesPlayer === null) &&
                                                  UserName !== x[1].freePeoplePlayer && UserName !== x[1].sauronForcesPlayer) &&
@@ -134,7 +132,7 @@ export function Lobby() {
                                         }
                                     </Card.Body>
                                 </Card>
-                            </>) }
+                            ) }
                         </div>
                     </div>
                 }  

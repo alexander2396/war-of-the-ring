@@ -10,10 +10,12 @@ export interface GameState {
         freePeople: {
             available: Dice[];
             used: Dice[];
+            hunt: Dice[];
         },
         sauronForces: {
             available: Dice[];
             used: Dice[];
+            hunt: Dice[];
         }
     },
     cards: {

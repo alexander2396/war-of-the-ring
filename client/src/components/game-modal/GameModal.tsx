@@ -1,8 +1,8 @@
 import { Dice } from "../../models/dice";
-import { Side } from "../../models/side";
-import { CardType } from "../../models/cardType";
-import { Modal, Button, Tabs, Tab } from "react-bootstrap";
-import { selectFreePeopleDices, selectFreePeopleUsedDices, selectSauronForcesDices, selectSauronForcesUsedDices, useFreePeopleDice, useSauronForcesDice, drawCard, selectFreePeopleCards, selectSauronForcesCards, draftCard, activateCard } from "../../redux/game/gameSlice";
+import { Side } from "../../models/enums/side";
+import { CardType } from "../../models/enums/cardType";
+import { Modal, Button, Tabs, Tab, Form } from "react-bootstrap";
+import { selectFreePeopleDices, selectSauronForcesDices, useFreePeopleDice, useSauronForcesDice, drawCard, selectFreePeopleCards, selectSauronForcesCards, draftCard, activateCard, rollDices } from "../../redux/game/gameSlice";
 import { useAppSelector, useAppDispatch } from "../../tools/hooks/hooks";
 import { useState } from "react";
 import { Card } from "../../models/card";
@@ -10,27 +10,21 @@ import styles from './GameModal.module.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Dices } from "../dices/dices";
 
 export function GameModal(props: any) {
     const [SelectedCard, setSelectedCard]=useState(null as Card);
 
     const freePeopleDices = useAppSelector(selectFreePeopleDices);
-    const freePeopleUsedDices = useAppSelector(selectFreePeopleUsedDices);
     const sauronForcesDices = useAppSelector(selectSauronForcesDices);
-    const sauronForcesUsedDices = useAppSelector(selectSauronForcesUsedDices);
 
     const freePeopleCards = useAppSelector(selectFreePeopleCards);
     const sauronForcesCards = useAppSelector(selectSauronForcesCards);
+
+    const [fpDiceCount, setFPDiceCount] = useState(4);
+    const [sfDiceCount, setSFDiceCount] = useState(7);
     
     const dispatch = useAppDispatch();
-
-    function _useFreePeopleDice(dice: Dice) {
-        dispatch(useFreePeopleDice(dice));
-    }
-
-    function _useSauronForcesDice(dice: Dice) {
-        dispatch(useSauronForcesDice(dice));
-    }
 
     function _selectCard(card: Card) {
         setSelectedCard(card);
@@ -59,7 +53,7 @@ export function GameModal(props: any) {
                     <div className="pt-2">
                         <Container>
                             <Row>
-                                <Col className="d-flex">
+                                <Col xs={9} className={styles.topNav}>
                                     <h4>Free People</h4>
 
                                     <Button className={styles.btnLeftMargin} variant="primary" onClick={() => { 
@@ -73,8 +67,13 @@ export function GameModal(props: any) {
                                     }}>Draw character card</Button>
 
                                     <div className={styles.cardCounter}>({freePeopleCards.characterDeck.length})</div>
+
+                                    <Form.Control type="number" className={styles.countInput} value={fpDiceCount} onChange={(e) => { setFPDiceCount(Number(e.target.value)) }}/>
+                                    <Button className={styles.btnLeftMargin}  variant="secondary" onClick={() => { 
+                                        dispatch(rollDices({ side: Side.FreePeople, count: fpDiceCount }));
+                                    }}>Roll dices</Button>
                                 </Col>
-                                <Col className="d-flex flex-row-reverse">
+                                <Col xs={3} className="d-flex flex-row-reverse">
                                     {SelectedCard &&
                                     <>
                                         <Button variant="danger" className={styles.btnLeftMargin} onClick={() => _draftSelectedCard()}>Draft</Button>
@@ -86,18 +85,12 @@ export function GameModal(props: any) {
                         <div className="d-flex flex-row mt-3">
                             <div className="w-50">
                                 <div>Available dices:</div>
-                                <div className="d-flex flex-row">
-                                    {freePeopleDices.map((dice) => {
-                                        return (<div className="m-1 c-pointer" onClick={() => _useFreePeopleDice(dice)}>
-                                            <img width={"40px"} src={dice.imageUrl} />
-                                        </div>) 
-                                    })}
-                                </div>           
+                                <Dices side={Side.FreePeople} />         
                             </div>
                             <div className="w-50">
                                 <div>Used dices:</div>
                                 <div  className="d-flex flex-row">
-                                    {freePeopleUsedDices.map((dice) => {
+                                    {freePeopleDices.used.map((dice) => {
                                         return (<div className="m-1 c-pointer">
                                             <img width={"40px"} src={dice.imageUrl} />
                                         </div>) 
@@ -121,22 +114,27 @@ export function GameModal(props: any) {
                     <div className="pt-2">
                         <Container>
                             <Row>
-                                <Col className="d-flex">
+                                <Col xs={9} className={styles.topNav}>
                                     <h4>Sauron Forces</h4>
 
-                                    <Button className={styles.drawButton} variant="primary" onClick={() => { 
+                                    <Button className={styles.btnLeftMargin} variant="primary" onClick={() => { 
                                         dispatch(drawCard({ side: Side.SauronForces, cardType: CardType.Strategy }));
                                     }}>Draw strategy card</Button>
                                     
                                     <div className={styles.cardCounter}>({sauronForcesCards.strategyDeck.length})</div>
 
-                                    <Button className={styles.drawButton}  variant="primary" onClick={() => { 
+                                    <Button className={styles.btnLeftMargin}  variant="primary" onClick={() => { 
                                         dispatch(drawCard({ side: Side.SauronForces, cardType: CardType.Character }));
                                     }}>Draw character card</Button>
                             
                                     <div className={styles.cardCounter}>({sauronForcesCards.characterDeck.length})</div>
+
+                                    <Form.Control type="number" className={styles.countInput} value={sfDiceCount} onChange={(e) => { setSFDiceCount(Number(e.target.value)) }}/>
+                                    <Button className={styles.btnLeftMargin}  variant="secondary" onClick={() => { 
+                                        dispatch(rollDices({ side: Side.SauronForces, count: sfDiceCount }));
+                                    }}>Roll dices</Button>
                                 </Col>
-                                <Col className="d-flex flex-row-reverse">
+                                <Col xs={3} className="d-flex flex-row-reverse">
                                     {SelectedCard &&
                                     <>
                                         <Button variant="danger" className={styles.btnLeftMargin} onClick={() => _draftSelectedCard()}>Draft</Button>
@@ -148,18 +146,12 @@ export function GameModal(props: any) {
                         <div className="d-flex flex-row">
                             <div className="w-50">
                                 <div>Available dices:</div>
-                                <div  className="d-flex flex-row">
-                                    {sauronForcesDices.map((dice) => {
-                                        return (<div className="m-1 c-pointer" onClick={() => _useSauronForcesDice(dice)}>
-                                            <img width={"40px"} src={dice.imageUrl} />
-                                        </div>) 
-                                    })}
-                                </div>           
+                                <Dices side={Side.SauronForces} />           
                             </div>
                             <div className="w-50">
                                 <div>Used dices:</div>
                                 <div  className="d-flex flex-row">
-                                    {sauronForcesUsedDices.map((dice) => {
+                                    {sauronForcesDices.used.map((dice) => {
                                         return (<div className="m-1 c-pointer">
                                             <img width={"40px"} src={dice.imageUrl} />
                                         </div>) 

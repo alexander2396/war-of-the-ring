@@ -1,7 +1,10 @@
-import { Faction } from "../models/faction";
+import { Faction } from "../models/enums/faction";
 import { Hero } from "../models/hero";
 import { Unit } from "../models/unit";
-import { UnitType } from "../models/unitType";
+import { UnitType } from "../models/enums/unitType";
+import { Dice } from "../models/dice";
+import { Side } from "../models/enums/side";
+import { DiceType } from "../models/enums/diceType";
 
 export class ImageUrlResolver {
     static getUnitUrl(unit: Unit): string {
@@ -74,7 +77,38 @@ export class ImageUrlResolver {
             default:
                 return ''
         }
+    }
 
+    static getDiceUrl(dice: Dice): string {
+        if (dice.side === Side.FreePeople) {
+            switch(dice.type) {
+                case DiceType.Character:   
+                    return 'images/dices/ADFPcharacter.png';
+                case DiceType.ArmyMuster:
+                    return 'images/dices/ADFParmymuster.png';
+                case DiceType.Palantir:
+                    return 'images/dices/ADFPevent.png';
+                case DiceType.Muster:
+                    return 'images/dices/ADFPmuster.png';
+                case DiceType.WillOfTheWest:
+                    return 'images/dices/ADFPwill.png';
+            }
+        } else {
+            switch(dice.type) {
+                case DiceType.Character:   
+                    return 'images/dices/ADSAcharacter.png';
+                case DiceType.ArmyMuster:
+                    return 'images/dices/ADSAarmymuster.png';
+                case DiceType.Palantir:
+                    return 'images/dices/ADSAevent.png';
+                case DiceType.Muster:
+                    return 'images/dices/ADSAmuster.png';
+                case DiceType.Eye:
+                    return 'images/dices/ADSAeye.png';
+                case DiceType.Army:
+                    return 'images/dices/ADSAarmy.png';
+            }
+        }
     }
 
     static getCardUrl = (fileName: string) => 'images/cards/' + fileName + '.png';

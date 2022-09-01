@@ -8,6 +8,7 @@ import './Board.css';
 import { UnitsMenu } from "../../components/units-menu/unitsMenu";
 import { ActiveCards } from "../../components/active-cards/activeCards";
 import { Room } from "../../components/room/room";
+import { HuntDices } from "../../components/hunt-dices/huntDices";
 
 export function Board(props: any) {
     const [ShowUnitsMenu, showUnitsMenu]=useState(false);
@@ -33,6 +34,8 @@ export function Board(props: any) {
             }
 
             <ActiveCards />
+
+            <HuntDices />
 
             <Room />
         </div>

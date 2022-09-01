@@ -17,3 +17,13 @@
     transform: scale(1.1);
     box-shadow: 0 0 43px 10px black;
 }
+
+.topNav {
+    display: flex;
+    height: 38px;
+}
+
+.countInput {
+    margin-left: 20px;
+    width: 60px!important;
+}

@@ -1,6 +1,6 @@
 import { Card } from "../models/card";
-import { CardType } from "../models/cardType";
-import { Side } from "../models/side";
+import { CardType } from "../models/enums/cardType";
+import { Side } from "../models/enums/side";
 
 export class CardService {
     static buildFreePeopleStrategyDeck(): Card[] {

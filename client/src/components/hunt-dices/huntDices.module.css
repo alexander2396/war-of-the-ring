@@ -1,0 +1,23 @@
+.dicesBlock {
+    position: absolute;
+    display: flex;
+    left: 21px;
+    top: 1125px;
+    width: 226px;
+    height: 170px;
+}
+
+.sauron {
+    width: 115px;
+    cursor: pointer;
+}
+
+.freePeople {
+    width: 115px;
+    cursor: pointer;
+}
+
+.dice {
+    display: inline-block;
+    margin: 2px;
+}
