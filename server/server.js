@@ -57,6 +57,10 @@ io.use((socket, next) => {
         io.emit("games", storage.all());
     });
 
+    socket.on("room-message", ({key, message}) => {
+        io.to(key).emit("room-message", message);
+    });
+
     socket.on("update-game", ({key, gameState, message}) => {
         const game = storage.get(key);
 

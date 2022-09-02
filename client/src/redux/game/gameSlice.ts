@@ -88,9 +88,9 @@ export const {
     activateCard
  } = gameSlice.actions;
 
- export const getSocket = (state: RootState) => state.game.socket;
+export const getSocket = (state: RootState) => state.game.socket;
 
- export const selectGame = (state: RootState) => state.game.gameState;
+export const selectGame = (state: RootState) => state.game.gameState;
 
 export const selectRegions = (state: RootState) => state.game.gameState.regions;
 
