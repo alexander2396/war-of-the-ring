@@ -40,8 +40,13 @@ export const rollDicesReducer = (state: ApplicationState, action: PayloadAction<
     } else {
         if (state.gameState.dices.sauronForces.available.length > 0) return;
 
-        state.gameState.dices.sauronForces.used = [];
         state.gameState.dices.sauronForces.available = DiceService.rollSauronForcesDices(action.payload.count);
+        state.gameState.dices.sauronForces.used = state.gameState.dices.sauronForces.available
+            .filter(x => x.type === DiceType.Eye);
+
+        state.gameState.dices.sauronForces.available = state.gameState.dices.sauronForces.available
+            .filter(x => x.type !== DiceType.Eye);
+
         state.gameState.dices.sauronForces.hunt = state.gameState.dices.sauronForces.available
             .filter(x => x.type === DiceType.Eye)
             .concat(state.gameState.dices.sauronForces.hunt);

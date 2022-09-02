@@ -71,6 +71,8 @@ export const startNewGameReducer = (state: ApplicationState) => {
         }
     };
 
+    state.gameState.politics = initialData.Politics;
+
     new Audio('sounds/dice.wav').play();
     
     saveGame(state, `Game started.`);

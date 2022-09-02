@@ -5,6 +5,7 @@ import { SettlementType } from "../models/enums/settlementType";
 import { Side } from "../models/enums/side";
 import { Unit } from "../models/unit";
 import { UnitType } from "../models/enums/unitType";
+import { Politics } from "../models/politics";
 
 export class InitialData {
     Regions: Region[] = [
@@ -476,4 +477,47 @@ export class InitialData {
             settlementType: SettlementType.LargeTown
         }
     ];
+
+    Politics: Politics[] = [
+        {
+            faction: Faction.Elves,
+            isActive: true,
+            track: 3
+        },
+        {
+            faction: Faction.Dwarfs,
+            isActive: false,
+            track: 3
+        },
+        {
+            faction: Faction.Northmen,
+            isActive: false,
+            track: 3
+        },
+        {
+            faction: Faction.Rohan,
+            isActive: false,
+            track: 3
+        },
+        {
+            faction: Faction.Gondor,
+            isActive: false,
+            track: 2
+        },
+        {
+            faction: Faction.Easterlings,
+            isActive: true,
+            track: 2
+        },
+        {
+            faction: Faction.Isengard,
+            isActive: true,
+            track: 1
+        },
+        {
+            faction: Faction.Sauron,
+            isActive: true,
+            track: 1
+        }
+    ]
 }

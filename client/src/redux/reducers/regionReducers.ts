@@ -5,5 +5,5 @@ import { saveGame } from "./genericReducers";
 export const setRegionUnitsReducer = (state, action: PayloadAction<SetUnitsAction>) => {
     state.gameState.regions.find(x => x.key === action.payload.regionKey).units = action.payload.units;
 
-    saveGame(state, `${state.username} moved units.`);
+    saveGame(state, `${state.username} updated units in ${action.payload.regionKey}.`);
 }

@@ -1,5 +1,7 @@
 import { Card } from "./card";
 import { Dice } from "./dice";
+import { Faction } from "./enums/faction";
+import { Politics } from "./politics";
 import { Region } from "./region";
 
 export interface GameState {
@@ -33,5 +35,6 @@ export interface GameState {
             draft: Card[],
             active: Card[]
         }
-    }
+    },
+    politics: Politics[]
 }
