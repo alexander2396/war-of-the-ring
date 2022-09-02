@@ -2,7 +2,7 @@ import { Dice } from "../../models/dice";
 import { Side } from "../../models/enums/side";
 import { CardType } from "../../models/enums/cardType";
 import { Modal, Button, Tabs, Tab, Form } from "react-bootstrap";
-import { selectFreePeopleDices, selectSauronForcesDices, useFreePeopleDice, useSauronForcesDice, drawCard, selectFreePeopleCards, selectSauronForcesCards, draftCard, activateCard, rollDices } from "../../redux/game/gameSlice";
+import { selectFreePeopleDices, selectSauronForcesDices, useFreePeopleDice, useSauronForcesDice, drawCard, selectFreePeopleCards, selectSauronForcesCards, draftCard, activateCard, rollDices, selectUserData } from "../../redux/game/gameSlice";
 import { useAppSelector, useAppDispatch } from "../../tools/hooks/hooks";
 import { useState } from "react";
 import { Card } from "../../models/card";
@@ -20,6 +20,8 @@ export function GameModal(props: any) {
 
     const freePeopleCards = useAppSelector(selectFreePeopleCards);
     const sauronForcesCards = useAppSelector(selectSauronForcesCards);
+
+    const userData = useAppSelector(selectUserData);
 
     const [fpDiceCount, setFPDiceCount] = useState(4);
     const [sfDiceCount, setSFDiceCount] = useState(7);
@@ -100,13 +102,16 @@ export function GameModal(props: any) {
                         </div>
                         <div>
                             <div>Cards:</div>
-                            <div className="d-flex flex-row">
-                                {freePeopleCards.hand.map((card) => {
-                                    return (<div className={"m-1 c-pointer "+ (SelectedCard?.key === card.key ? styles.selectedCard : "")} onClick={() => _selectCard(card)}>
-                                            <img src={card.imageUrl} />
-                                    </div>) 
-                                })}
-                            </div>             
+                            { 
+                                userData.username === userData.freePeoplePlayer &&
+                                <div className="d-flex flex-row">
+                                    {freePeopleCards.hand.map((card) => {
+                                        return (<div className={"m-1 c-pointer "+ (SelectedCard?.key === card.key ? styles.selectedCard : "")} onClick={() => _selectCard(card)}>
+                                                <img src={card.imageUrl} />
+                                        </div>) 
+                                    })}
+                                </div>  
+                            }           
                         </div>
                     </div>
                 </Tab>
@@ -161,21 +166,21 @@ export function GameModal(props: any) {
                         </div>
                         <div>
                             <div>Cards:</div>
-                            <div  className="d-flex flex-row">
-                                {sauronForcesCards.hand.map((card) => {
-                                    return (<div className={"m-1 c-pointer "+ (SelectedCard?.key === card.key ? styles.selectedCard : "")} onClick={() => _selectCard(card)}>
-                                        <img src={card.imageUrl} />
-                                    </div>) 
-                                })}
-                            </div>             
+                            { 
+                                userData.username === userData.sauronForcesPlayer &&
+                                <div className="d-flex flex-row">
+                                    {sauronForcesCards.hand.map((card) => {
+                                        return (<div className={"m-1 c-pointer "+ (SelectedCard?.key === card.key ? styles.selectedCard : "")} onClick={() => _selectCard(card)}>
+                                                <img src={card.imageUrl} />
+                                        </div>) 
+                                    })}
+                                </div>  
+                            }            
                         </div>
-                    </div>   
+                    </div>
                 </Tab>
             </Tabs>          
             </Modal.Body>
-            {/* <Modal.Footer>
-                <Button variant="primary" onClick={() => rollDices(4)}>Roll</Button>
-            </Modal.Footer> */}
         </Modal>
     );
   }

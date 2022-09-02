@@ -14,18 +14,10 @@ export const setGameReducer = (state: ApplicationState, action: PayloadAction<Ga
         x.units = units;
     });
 
-    // action.payload.gameState.dices = {
-    //     freePeople: {
-    //         available: action.payload.gameState.dices.freePeople.available.map(x => new Dice(x.side, x.type)),
-    //         used: action.payload.gameState.dices.freePeople.used.map(x => new Dice(x.side, x.type)),
-    //     },
-    //     sauronForces: {
-    //         available: action.payload.gameState.dices.freePeople.available.map(x => new Dice(x.side, x.type)),
-    //         used: action.payload.gameState.dices.freePeople.used.map(x => new Dice(x.side, x.type)),
-    //     }
-    // }
-
     state.gameState = action.payload.gameState;
+
+    state.freePeoplePlayer = action.payload.freePeoplePlayer;
+    state.sauronForcesPlayer = action.payload.sauronForcesPlayer;
 };
 
 export const startNewGameReducer = (state: ApplicationState) => {
@@ -78,9 +70,6 @@ export const startNewGameReducer = (state: ApplicationState) => {
             hunt: sauronForcesDices.filter(x => x.type === DiceType.Eye).concat(state.gameState.dices.sauronForces.hunt)
         }
     };
-
-    
-    console.log(state.gameState.dices.sauronForces)
 
     new Audio('sounds/dice.wav').play();
     

@@ -6,10 +6,13 @@ import { setGameReducer, startNewGameReducer } from "../reducers/gameReducers";
 import { rollDicesReducer, setFreePeopleHuntDicesReducer, setSauronForcesHuntDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
 import { setRegionUnitsReducer } from "../reducers/regionReducers";
 import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reducers/cardReducers";
+import { IUserData } from "../../models/userData";
 
 const initialState: ApplicationState = {
     socket: null,
     username: '',
+    freePeoplePlayer: '',
+    sauronForcesPlayer: '',
     gameState: {
         key: null,
         gameStarted: false,
@@ -98,5 +101,13 @@ export const selectGameStarted = (state: RootState) => state.game.gameState.game
 
 export const selectFreePeopleCards = (state: RootState) => state.game.gameState.cards.freePeople;
 export const selectSauronForcesCards = (state: RootState) => state.game.gameState.cards.sauronForces;
+
+export const selectUserData = (state: RootState) => {
+    return {
+        username: state.game.username,
+        freePeoplePlayer: state.game.freePeoplePlayer,
+        sauronForcesPlayer: state.game.sauronForcesPlayer
+    } as IUserData;
+}
 
 export default gameSlice.reducer;
