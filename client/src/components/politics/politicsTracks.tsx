@@ -46,22 +46,22 @@ export const PoliticsTracks = () => {
 
     return (
         <>
-            <div className={styles.track3}>
+            <div className={styles.track3 + ' ' + styles.track}>
                 {politics.filter(x => x.track === 3).map((track, i) => {
                     return renderTrack(track, i)
                 })}
             </div>
-            <div className={styles.track2}>
+            <div className={styles.track2 + ' ' + styles.track}>
                 {politics.filter(x => x.track === 2).map((track, i) => {
                     return renderTrack(track, i)
                 })}
             </div>
-            <div className={styles.track1}>
+            <div className={styles.track1 + ' ' + styles.track}>
                 {politics.filter(x => x.track === 1).map((track, i) => {
                     return renderTrack(track, i)
                 })}
             </div>
-            <div className={styles.track0}>
+            <div className={styles.track0 + ' ' + styles.track}>
                 {politics.filter(x => x.track === 0).map((track, i) => {
                     return renderTrack(track, i)
                 })}

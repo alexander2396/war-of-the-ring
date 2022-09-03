@@ -1,37 +1,32 @@
 .track3 {
-    position: absolute;
-    top: 400px;
+    top: 392px;
     left: 1793px;
-    display: flex;
-    width: 92px;
-    flex-wrap: wrap;
 }
 
 .track2 {
-    position: absolute;
     top: 535px;
     left: 1793px;
-    display: flex;
-    width: 92px;
-    flex-wrap: wrap;
 }
 
 .track1 {
-    position: absolute;
     top: 670px;
     left: 1793px;
-    display: flex;
-    width: 92px;
-    flex-wrap: wrap;
 }
 
 .track0 {
-    position: absolute;
-    top: 805px;
+    top: 815px;
     left: 1793px;
+}
+
+.track {
+    position: absolute;
     display: flex;
-    width: 92px;
+    width: 95px;
+    height: 103px;
     flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
 }
 
 .politics {

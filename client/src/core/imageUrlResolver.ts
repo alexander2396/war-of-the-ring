@@ -116,7 +116,6 @@ export class ImageUrlResolver {
     static getSmallCardUrl = (fileName: string) => 'images/cards/small/' + fileName + '_s.png';
 
     static getPoliticsUrl(politics: Politics) {
-        return 'images/dices/ADSAarmy.png';
-        return `images/politics/${Politics[politics.faction]}-${politics.isActive}.png`;
+        return `images/politics/${Faction[politics.faction]}-${politics.isActive}.png`;
     }
 }
