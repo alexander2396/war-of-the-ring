@@ -10,6 +10,7 @@ import { ActiveCards } from "../../components/active-cards/activeCards";
 import { Room } from "../../components/room/room";
 import { HuntDices } from "../../components/hunt-dices/huntDices";
 import { PoliticsTracks } from "../../components/politics/politicsTracks";
+import { Rings } from "../../components/rings/rings";
 
 export function Board(props: any) {
     const [ShowUnitsMenu, showUnitsMenu]=useState(false);
@@ -41,6 +42,8 @@ export function Board(props: any) {
             <Room />
 
             <PoliticsTracks />
+
+            <Rings />
         </div>
     );
 }

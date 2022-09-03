@@ -1,0 +1,29 @@
+.fpRings {
+    position: absolute;
+    left: 416px;
+    top: 27px;
+    display: flex;
+    background-color: white;
+    padding: 5px;
+    width: 110px;
+    height: 34px;
+}
+
+.sfRings {
+    position: absolute;
+    left: 1486px;
+    top: 1254px;
+    display: flex;
+    background-color: white;
+    padding: 5px;
+    width: 110px;
+    height: 34px;
+}
+
+.ring:not(:last-of-type) {
+    margin-right: 20px;
+}
+
+.ring {
+    cursor: pointer;
+}

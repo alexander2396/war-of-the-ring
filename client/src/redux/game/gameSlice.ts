@@ -8,6 +8,7 @@ import { setRegionUnitsReducer } from "../reducers/regionReducers";
 import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reducers/cardReducers";
 import { IUserData } from "../../models/userData";
 import { activatePoliticsReducer, movePoliticsReducer } from "../reducers/politicsReducers";
+import { useFreePeopleRingReducer, useSauronForcesRingReducer } from "../reducers/ringReducers";
 
 const initialState: ApplicationState = {
     socket: null,
@@ -46,7 +47,11 @@ const initialState: ApplicationState = {
                 active: []
             }
         },
-        politics: []
+        politics: [],
+        rings: {
+            freePeople: [],
+            sauronForces: []
+        }
     }
 };
 
@@ -71,7 +76,10 @@ export const gameSlice = createSlice({
         activateCard: activateCardReducer,
 
         movePolitics: movePoliticsReducer,
-        activatePolitics: activatePoliticsReducer
+        activatePolitics: activatePoliticsReducer,
+
+        useFreePeopleRing: useFreePeopleRingReducer,
+        useSauronForcesRing: useSauronForcesRingReducer
     }
 });
 
@@ -93,7 +101,11 @@ export const {
     activateCard,
 
     movePolitics,
-    activatePolitics
+    activatePolitics,
+
+    useFreePeopleRing,
+    useSauronForcesRing
+
  } = gameSlice.actions;
 
 export const getSocket = (state: RootState) => state.game.socket;
@@ -111,6 +123,8 @@ export const selectFreePeopleCards = (state: RootState) => state.game.gameState.
 export const selectSauronForcesCards = (state: RootState) => state.game.gameState.cards.sauronForces;
 
 export const selectPolitics = (state: RootState) => state.game.gameState.politics;
+
+export const selectRings = (state: RootState) => state.game.gameState.rings;
 
 export const selectUserData = (state: RootState) => {
     return {

@@ -6,6 +6,7 @@ import { Dice } from "../models/dice";
 import { Side } from "../models/enums/side";
 import { DiceType } from "../models/enums/diceType";
 import { Politics } from "../models/politics";
+import { Ring } from "../models/ring";
 
 export class ImageUrlResolver {
     static getUnitUrl(unit: Unit): string {
@@ -115,7 +116,7 @@ export class ImageUrlResolver {
     static getCardUrl = (fileName: string) => 'images/cards/' + fileName + '.png';
     static getSmallCardUrl = (fileName: string) => 'images/cards/small/' + fileName + '_s.png';
 
-    static getPoliticsUrl(politics: Politics) {
-        return `images/politics/${Faction[politics.faction]}-${politics.isActive}.png`;
-    }
+    static getPoliticsUrl = (politics: Politics) => `images/politics/${Faction[politics.faction]}-${politics.isActive}.png`;
+
+    static getRingUrl = (ring: Ring) => `images/rings/elvenring${ring.number}.png`;
 }

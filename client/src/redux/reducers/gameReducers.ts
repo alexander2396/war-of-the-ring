@@ -5,6 +5,7 @@ import { InitialData } from "../../core/initialData";
 import { ApplicationState } from "../../models/applicationState";
 import { DiceType } from "../../models/enums/diceType";
 import { Game } from "../../models/game";
+import { Ring } from "../../models/ring";
 import { Unit } from "../../models/unit";
 import { saveGame } from "./genericReducers";
 
@@ -72,6 +73,10 @@ export const startNewGameReducer = (state: ApplicationState) => {
     };
 
     state.gameState.politics = initialData.Politics;
+
+    state.gameState.rings.freePeople.push({ number: 1 });
+    state.gameState.rings.freePeople.push({ number: 2 });
+    state.gameState.rings.freePeople.push({ number: 3 });
 
     new Audio('sounds/dice.wav').play();
     

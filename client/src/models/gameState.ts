@@ -3,6 +3,7 @@ import { Dice } from "./dice";
 import { Faction } from "./enums/faction";
 import { Politics } from "./politics";
 import { Region } from "./region";
+import { Ring } from "./ring";
 
 export interface GameState {
     key: string;
@@ -36,5 +37,9 @@ export interface GameState {
             active: Card[]
         }
     },
-    politics: Politics[]
+    politics: Politics[],
+    rings: {
+        freePeople: Ring[],
+        sauronForces: Ring[]
+    }
 }
