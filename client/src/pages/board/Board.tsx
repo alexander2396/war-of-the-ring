@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "../../tools/hooks/hooks";
 import { RenderRegionAreas } from "../../components/region/renderRegionAreas";
 import { RenderRegion } from "../../components/region/renderRegion";
 import { Region } from "../../models/region";
-import { selectRegions } from "../../redux/game/gameSlice";
+import { selectFellowship, selectRegions } from "../../redux/game/gameSlice";
 import './Board.css';
 import { UnitsMenu } from "../../components/units-menu/unitsMenu";
 import { ActiveCards } from "../../components/active-cards/activeCards";
@@ -19,6 +19,8 @@ export function Board(props: any) {
     const [SelectedRegion, setSelectedRegion]=useState(null as Region);
 
     const regions = useAppSelector(selectRegions);
+    const fellowship = useAppSelector(selectFellowship);
+    
     const dispatch = useAppDispatch();
 
     return (
@@ -50,6 +52,13 @@ export function Board(props: any) {
             <VictoryPoints />
 
             <FellowshipTrack />
+
+            {
+                fellowship.mordorPosition > 0 &&
+                <div className={"fellowship-mordor track-" + fellowship.mordorPosition}>
+                    <img src='images/units/Fellowship.png' alt = ""/>
+                </div>
+            }
         </div>
     );
 }

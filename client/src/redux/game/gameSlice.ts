@@ -9,7 +9,7 @@ import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reduc
 import { IUserData } from "../../models/userData";
 import { activatePoliticsReducer, movePoliticsReducer } from "../reducers/politicsReducers";
 import { useFreePeopleRingReducer, useSauronForcesRingReducer } from "../reducers/ringReducers";
-import { hideFellowshipReducer, moveFellowshipToRegionReduces, revealFellowshipReducer, setCorruptionReducer, setFellowshipTrackPositionReducer } from "../reducers/fellowshipReducers";
+import { hideFellowshipReducer, moveFellowshipToRegionReduces, revealFellowshipReducer, setCorruptionReducer, setFellowshipTrackPositionReducer, setMordorTrackReducer } from "../reducers/fellowshipReducers";
 import { addHuntTileToPoolReducer, removeHuntTileFromPoolReducer, getRandomHuntTileFromPoolReducer } from "../reducers/huntReducers";
 
 const initialState: ApplicationState = {
@@ -61,7 +61,8 @@ const initialState: ApplicationState = {
         fellowship: {
             isRevealed: false,
             trackPosition: 0,
-            corruption: 0
+            corruption: 0,
+            mordorPosition: 0
         },
         hunt: {
             drawn: [],
@@ -104,6 +105,7 @@ export const gameSlice = createSlice({
         setCorruption: setCorruptionReducer,
         revealFellowship: revealFellowshipReducer,
         hideFellowship: hideFellowshipReducer,
+        setMordorTrack: setMordorTrackReducer,
 
         addHuntTileToPool: addHuntTileToPoolReducer,
         removeHuntTileFromPool: removeHuntTileFromPoolReducer,
@@ -142,6 +144,7 @@ export const {
     setCorruption,
     revealFellowship,
     hideFellowship,
+    setMordorTrack,
 
     addHuntTileToPool,
     removeHuntTileFromPool,

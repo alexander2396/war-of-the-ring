@@ -89,3 +89,43 @@
   top: 48px;
   left: 15px;
 }
+
+.fellowship-mordor {
+    position: absolute;
+    width: 49px;
+}
+
+.fellowship-mordor.track-1 {
+    top: 981px;
+    left: 1604px;
+}
+
+.fellowship-mordor.track-2 {
+    top: 979px;
+    left: 1666px;
+}
+
+.fellowship-mordor.track-3 {
+    top: 945px;
+    left: 1720px;
+}
+
+.fellowship-mordor.track-4 {
+    top: 879px;
+    left: 1708px;
+}
+
+.fellowship-mordor.track-5 {
+    top: 847px;
+    left: 1653px;
+}
+
+.fellowship-mordor.track-6 {
+    top: 863px;
+    left: 1590px;
+}
+
+.fellowship-mordor img {
+    width: 100%;
+}
+

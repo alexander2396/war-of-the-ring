@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../tools/hooks/hooks';
 import { GameModal } from '../../components/game-modal/GameModal';
 import styles from './AppMenu.module.css';
-import { getSocket, selectGame, selectUserData } from '../../redux/game/gameSlice';
+import { getSocket, selectFellowship, selectGame, selectUserData, setMordorTrack } from '../../redux/game/gameSlice';
 
 export function AppMenu() {
 
@@ -13,6 +13,7 @@ export function AppMenu() {
     const socket = useAppSelector(getSocket);
     const game = useAppSelector(selectGame);
     const userData = useAppSelector(selectUserData);
+    const fellowship = useAppSelector(selectFellowship);
 
     const dispatch = useAppDispatch();
 
@@ -47,6 +48,10 @@ export function AppMenu() {
         });
     }
 
+    function fellowshipToMordor() {
+        dispatch(setMordorTrack(fellowship.mordorPosition + 1));
+    }
+
     return (
         <div className={styles.menu}>
             <Button className={styles.menuBtn} variant="light" size="lg"
@@ -70,8 +75,14 @@ export function AppMenu() {
                     <Button variant="secondary" onClick={() => rollDices(5)}>5</Button>
                 </div>
 
+                <div className='mt-5'>
+                    <Button variant="danger" onClick={() => fellowshipToMordor()}>To Mordor!!!</Button>
+
+                </div>
+
             </div>
         }
+
         {modalShow && <GameModal show='true' onHide={() => setModalShow(false)} />}
         
         </div>

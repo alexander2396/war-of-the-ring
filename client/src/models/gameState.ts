@@ -50,7 +50,8 @@ export interface GameState {
     fellowship: {
         isRevealed: boolean,
         trackPosition: number,
-        corruption: number
+        corruption: number,
+        mordorPosition: number
     },
     hunt: {
         drawn: HuntTile[],

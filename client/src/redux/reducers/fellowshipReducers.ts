@@ -37,3 +37,9 @@ export const hideFellowshipReducer = (state: ApplicationState, action: PayloadAc
 
     saveGame(state, `${state.username} hide fellowship.`);
 }
+
+export const setMordorTrackReducer = (state: ApplicationState, action: PayloadAction<number>) => {
+    state.gameState.fellowship.mordorPosition = action.payload;
+
+    saveGame(state, `${state.username} moved fellowship in Mordor on track ${action.payload}.`);
+}
