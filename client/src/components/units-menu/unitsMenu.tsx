@@ -6,7 +6,7 @@ import { Region } from "../../models/region"
 import { Side } from "../../models/enums/side"
 import { Unit } from "../../models/unit"
 import { UnitType } from "../../models/enums/unitType"
-import { moveFellowshipToRegion, setRegionUnits } from "../../redux/game/gameSlice"
+import { killRandomCompanion, moveFellowshipToRegion, setRegionUnits } from "../../redux/game/gameSlice"
 import { useAppDispatch } from "../../tools/hooks/hooks"
 
 type UnitsMenuProps = {
@@ -66,6 +66,14 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
         dispatch(moveFellowshipToRegion(selectedRegion.key));
     }
 
+    function _killRandomCompanion() {
+        dispatch(killRandomCompanion());
+
+        showUnitsMenu(false);
+        setSelectedRegion(null);
+        setShowAddNewUnitsModal(false);
+    }
+
     return (
         <>
             <Card className="unitsMenu">
@@ -87,9 +95,18 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
 
                         <Button variant="secondary" onClick={() => {showUnitsMenu(false); setSelectedRegion(null); setShowAddNewUnitsModal(false);}}>Cancel</Button>
                     </div>
-                    <div className="buttonGroup">
-                        <Button variant="success" onClick={() => {moveFellowship();showUnitsMenu(false); setSelectedRegion(null); setShowAddNewUnitsModal(false);}}>Move Fellowship here</Button>
-                    </div>
+                    {
+                        selectedRegion.key !== 'fellowship' &&
+                        <div className="buttonGroup">
+                            <Button variant="success" onClick={() => {moveFellowship();showUnitsMenu(false); setSelectedRegion(null); setShowAddNewUnitsModal(false);}}>Move Fellowship here</Button>
+                        </div>
+                    }
+                    {
+                        selectedRegion.key === 'fellowship' &&
+                        <div className="buttonGroup">
+                            <Button variant="danger" onClick={() => {_killRandomCompanion();}}>Kill random companion</Button>
+                        </div>
+                    }
                 </Card.Body>
             </Card>
             

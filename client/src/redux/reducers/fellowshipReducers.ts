@@ -1,5 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { ApplicationState } from "../../models/applicationState";
+import { Hero } from "../../models/hero";
 import { saveGame } from "./genericReducers";
 
 export const moveFellowshipToRegionReduces = (state: ApplicationState, action: PayloadAction<string>) => {
@@ -42,4 +43,13 @@ export const setMordorTrackReducer = (state: ApplicationState, action: PayloadAc
     state.gameState.fellowship.mordorPosition = action.payload;
 
     saveGame(state, `${state.username} moved fellowship in Mordor on track ${action.payload}.`);
+}
+
+export const killRandomCompanionReducer = (state: ApplicationState, action: PayloadAction<void>) => {
+    let fellowship = state.gameState.regions.find(x => x.key === 'fellowship');
+    let target = fellowship.units[Math.floor(Math.random() * fellowship.units.length)];
+
+    fellowship.units = fellowship.units.filter(x => x.hero !== target.hero);
+
+    saveGame(state, `${state.username} killed ${Hero[target.hero]}.`);
 }
