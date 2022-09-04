@@ -9,6 +9,7 @@ import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reduc
 import { IUserData } from "../../models/userData";
 import { activatePoliticsReducer, movePoliticsReducer } from "../reducers/politicsReducers";
 import { useFreePeopleRingReducer, useSauronForcesRingReducer } from "../reducers/ringReducers";
+import { hideFellowshipReducer, moveFellowshipToRegionReduces, revealFellowshipReducer, setCorruptionReducer, setFellowshipTrackPositionReducer } from "../reducers/fellowshipReducers";
 
 const initialState: ApplicationState = {
     socket: null,
@@ -55,6 +56,11 @@ const initialState: ApplicationState = {
         victoryPoints: {
             freePeople: 0,
             sauronForces: 0
+        },
+        fellowship: {
+            isRevealed: false,
+            trackPosition: 0,
+            corruption: 0
         }
     }
 };
@@ -86,7 +92,13 @@ export const gameSlice = createSlice({
         useSauronForcesRing: useSauronForcesRingReducer,
 
         setFreePeopleVictoryPoints: setFreePeopleVictoryPointsReducer,
-        setSauronForcesVictoryPoints: setSauronForcesVictoryPointsReducer
+        setSauronForcesVictoryPoints: setSauronForcesVictoryPointsReducer,
+
+        moveFellowshipToRegion: moveFellowshipToRegionReduces,
+        setFellowshipTrackPosition: setFellowshipTrackPositionReducer,
+        setCorruption: setCorruptionReducer,
+        revealFellowship: revealFellowshipReducer,
+        hideFellowship: hideFellowshipReducer
     }
 });
 
@@ -114,7 +126,13 @@ export const {
     useSauronForcesRing,
 
     setFreePeopleVictoryPoints,
-    setSauronForcesVictoryPoints
+    setSauronForcesVictoryPoints,
+
+    moveFellowshipToRegion,
+    setFellowshipTrackPosition,
+    setCorruption,
+    revealFellowship,
+    hideFellowship
 
  } = gameSlice.actions;
 
@@ -138,6 +156,7 @@ export const selectRings = (state: RootState) => state.game.gameState.rings;
 
 export const selectVictoryPoints = (state: RootState) => state.game.gameState.victoryPoints;
 
+export const selectFellowship = (state: RootState) => state.game.gameState.fellowship;
 
 export const selectUserData = (state: RootState) => {
     return {

@@ -1,0 +1,13 @@
+.fellowship {
+    position: absolute;
+    width: 40px;
+    left: 50%;
+    transform: translate(-50%,0);
+    top: -23px;
+    z-index: 20;
+}
+
+.fellowship img{
+    width: 100%;
+    height: auto;
+}

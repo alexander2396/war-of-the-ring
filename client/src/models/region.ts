@@ -11,4 +11,5 @@ export class Region {
     settlementType: SettlementType;
     side: Side;
     faction: Faction;
+    isFellowshipHere: boolean;
 }

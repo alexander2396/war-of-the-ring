@@ -12,6 +12,7 @@ import { HuntDices } from "../../components/hunt-dices/huntDices";
 import { PoliticsTracks } from "../../components/politics/politicsTracks";
 import { Rings } from "../../components/rings/rings";
 import { VictoryPoints } from "../../components/victory-points/victoryPoints";
+import { FellowshipTrack } from "../../components/fellowship-track/fellowshipTrack";
 
 export function Board(props: any) {
     const [ShowUnitsMenu, showUnitsMenu]=useState(false);
@@ -47,6 +48,8 @@ export function Board(props: any) {
             <Rings />
 
             <VictoryPoints />
+
+            <FellowshipTrack />
         </div>
     );
 }

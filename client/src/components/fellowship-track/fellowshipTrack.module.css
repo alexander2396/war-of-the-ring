@@ -1,0 +1,27 @@
+.fellowship {
+    position: absolute;
+    top: 28px;
+    left: 1089px;
+    width: 23px;
+    cursor: pointer;
+}
+
+.corruption {
+    position: absolute;
+    top: 28px;
+    left: 1089px;
+    width: 23px;
+    cursor: pointer;
+}
+
+.felEquals {
+    top: 17px;  
+}
+
+.cEquals {
+    top: 40px;
+}
+
+.fellowship img, .corruption img {
+    width: 100%;
+}

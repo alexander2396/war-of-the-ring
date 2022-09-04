@@ -10,6 +10,24 @@ import { Politics } from "../models/politics";
 export class InitialData {
     Regions: Region[] = [
         {
+            key: 'fellowship',
+            xposition: '1715',
+            yposition: '200',
+            units: [
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Gandalf),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Aragorn),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Legolas),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Gimli),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Boromir),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Merry),
+                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Pippin)
+            ],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
             key: 'rivendell',
             xposition: '985',
             yposition: '190',
@@ -20,7 +38,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Elves,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: true
         },
         {
             key: 'lorien',
@@ -34,7 +53,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Elves,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'grey-havens',
@@ -47,7 +67,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Elves,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'woodland-realm',
@@ -60,7 +81,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Elves,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'mount-gundabad',
@@ -72,7 +94,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Sauron,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'moria',
@@ -84,7 +107,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Sauron,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'dol-guldur',
@@ -101,7 +125,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Sauron,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'morannon',
@@ -117,7 +142,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Sauron,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'minas-morgul',
@@ -133,7 +159,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Sauron,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'barad-dur',
@@ -149,7 +176,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Sauron,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'gorgoroth',
@@ -162,7 +190,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Sauron,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'nurn',
@@ -174,7 +203,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Sauron,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'ered-luin',
@@ -185,7 +215,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Dwarfs,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'iron-hills',
@@ -196,7 +227,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Dwarfs,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'erebor',
@@ -210,24 +242,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Dwarfs,
-            settlementType: SettlementType.Castle
-        },
-        {
-            key: 'fellowship',
-            xposition: '1715',
-            yposition: '200',
-            units: [
-                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Gandalf),
-                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Aragorn),
-                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Legolas),
-                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Gimli),
-                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Boromir),
-                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Merry),
-                new Unit(Side.FreePeople, Faction.Elves, UnitType.Leader, Hero.Pippin)
-            ],
-            side: null,
-            faction: null,
-            settlementType: null
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'shire',
@@ -238,7 +254,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Northmen,
-            settlementType: SettlementType.LargeTown
+            settlementType: SettlementType.LargeTown,
+            isFellowshipHere: false
         },
         {
             key: 'bree',
@@ -249,7 +266,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Northmen,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'north-downs',
@@ -260,7 +278,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Northmen,
-            settlementType: SettlementType.None
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
         },
         {
             key: 'carrock',
@@ -271,7 +290,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Northmen,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'dale',
@@ -283,7 +303,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Northmen,
-            settlementType: SettlementType.LargeTown
+            settlementType: SettlementType.LargeTown,
+            isFellowshipHere: false
         },
         {
             key: 'orthanc',
@@ -298,7 +319,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Isengard,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'north-dunland',
@@ -309,7 +331,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Isengard,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'south-dunland',
@@ -320,7 +343,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Isengard,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'fords-of-isen',
@@ -333,7 +357,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Rohan,
-            settlementType: SettlementType.Fortification
+            settlementType: SettlementType.Fortification,
+            isFellowshipHere: false
         },
         {
             key: 'helms-deep',
@@ -344,7 +369,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Rohan,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'edoras',
@@ -356,7 +382,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Rohan,
-            settlementType: SettlementType.LargeTown
+            settlementType: SettlementType.LargeTown,
+            isFellowshipHere: false
         },
         {
             key: 'dol-amroth',
@@ -369,7 +396,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Gondor,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'pelargir',
@@ -380,7 +408,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Gondor,
-            settlementType: SettlementType.LargeTown
+            settlementType: SettlementType.LargeTown,
+            isFellowshipHere: false
         },
         {
             key: 'minas-tirith',
@@ -395,7 +424,8 @@ export class InitialData {
             ],
             side: Side.FreePeople,
             faction: Faction.Gondor,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'osgiliath',
@@ -407,7 +437,8 @@ export class InitialData {
             ],
             side: null,
             faction: null,
-            settlementType: SettlementType.Fortification
+            settlementType: SettlementType.Fortification,
+            isFellowshipHere: false
         },
         {
             key: 'north-rhun',
@@ -419,7 +450,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Easterlings,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'south-rhun',
@@ -433,7 +465,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Easterlings,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'umbar',
@@ -446,7 +479,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Easterlings,
-            settlementType: SettlementType.Castle
+            settlementType: SettlementType.Castle,
+            isFellowshipHere: false
         },
         {
             key: 'near-harad',
@@ -460,7 +494,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Easterlings,
-            settlementType: SettlementType.SmallTown
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
         },
         {
             key: 'far-harad',
@@ -474,7 +509,8 @@ export class InitialData {
             ],
             side: Side.SauronForces,
             faction: Faction.Easterlings,
-            settlementType: SettlementType.LargeTown
+            settlementType: SettlementType.LargeTown,
+            isFellowshipHere: false
         }
     ];
 

@@ -1,4 +1,5 @@
 import { Region } from '../../models/region'
+import { Fellowship } from './fellowship'
 import { regionClicked, RegionClickedTypes } from './regionClicked'
 import { RenderRegionUnits } from './renderRegionUnits'
 
@@ -14,10 +15,12 @@ export const RenderRegion = ({region, regionClicked: regionClickedProp}: PropTyp
             className='regionArmy d-flex flex-row' 
             style={{ left: region.xposition + 'px', top: region.yposition + 'px' }}
             onClick={
-                () => regionClicked({region, dispatch, setSelectedRegion, SelectedRegion, showUnitsMenu})
+                () => {regionClicked({region, dispatch, setSelectedRegion, SelectedRegion, showUnitsMenu})}
             }>
                     
-                <RenderRegionUnits region={region}/>
+                <RenderRegionUnits region={region} />
+
+                { region.isFellowshipHere === true && <Fellowship region={region} />}
             </div>
         </div>
     )

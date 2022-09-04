@@ -45,5 +45,10 @@ export interface GameState {
     victoryPoints: {
         freePeople: number,
         sauronForces: number
+    },
+    fellowship: {
+        isRevealed: boolean,
+        trackPosition: number,
+        corruption: number
     }
 }

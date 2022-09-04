@@ -6,7 +6,7 @@ import { Region } from "../../models/region"
 import { Side } from "../../models/enums/side"
 import { Unit } from "../../models/unit"
 import { UnitType } from "../../models/enums/unitType"
-import { setRegionUnits } from "../../redux/game/gameSlice"
+import { moveFellowshipToRegion, setRegionUnits } from "../../redux/game/gameSlice"
 import { useAppDispatch } from "../../tools/hooks/hooks"
 
 type UnitsMenuProps = {
@@ -62,6 +62,10 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
         setSelectedRegion(region);
     }
 
+    function moveFellowship() {
+        dispatch(moveFellowshipToRegion(selectedRegion.key));
+    }
+
     return (
         <>
             <Card className="unitsMenu">
@@ -77,11 +81,14 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                         })}
                     </div>
                     <div className="buttonGroup">
-                        <Button variant="secondary" onClick={() => { setShowAddNewUnitsModal(true) }}>Add</Button>
+                        <Button variant="primary" onClick={() => { setShowAddNewUnitsModal(true) }}>Add</Button>
 
                         <Button variant="danger" onClick={deleteUnits}>Delete</Button>
 
-                        <Button variant="primary" onClick={() => {showUnitsMenu(false); setSelectedRegion(null); setShowAddNewUnitsModal(false);}}>Cancel</Button>
+                        <Button variant="secondary" onClick={() => {showUnitsMenu(false); setSelectedRegion(null); setShowAddNewUnitsModal(false);}}>Cancel</Button>
+                    </div>
+                    <div className="buttonGroup">
+                        <Button variant="success" onClick={() => {moveFellowship();showUnitsMenu(false); setSelectedRegion(null); setShowAddNewUnitsModal(false);}}>Move Fellowship here</Button>
                     </div>
                 </Card.Body>
             </Card>
