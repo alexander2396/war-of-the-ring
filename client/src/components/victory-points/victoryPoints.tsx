@@ -40,7 +40,7 @@ export const VictoryPoints = () => {
                         </Popover.Body>
                     </Popover>
                 }>
-                <div className={styles.fpVP} style={{ left: getFPLeftStyle() }}>
+                <div className={styles.fpVP + (victoryPoints.freePeople === victoryPoints.sauronForces ? ` ${styles.FPequals}` : '')} style={{ left: getFPLeftStyle() }}>
                     <img src='images/vp_free.png' />
                 </div>
             </OverlayTrigger>
@@ -53,7 +53,7 @@ export const VictoryPoints = () => {
                         </Popover.Body>
                     </Popover>
                 }>
-                <div className={styles.sfVP} style={{ left: getSFLeftStyle() }}>
+                <div className={styles.sfVP + (victoryPoints.freePeople === victoryPoints.sauronForces ? ` ${styles.SFequals}` : '')} style={{ left: getSFLeftStyle() }}>
                     <img src='images/vp_shadow.png' />
                 </div>
             </OverlayTrigger>

@@ -1,6 +1,6 @@
 .fpVP {
     position: absolute;
-    top: 1243px;
+    top: 1255px;
     left: 391px;
     width: 23px;
     cursor: pointer;
@@ -8,12 +8,20 @@
 
 .sfVP {
     position: absolute;
-    top: 1268px;
     left: 391px;
+    top: 1255px;
     width: 23px;
     cursor: pointer;
 }
 
 .fpVP img, .sfVP img {
     width: 100%;
+}
+
+.FPequals {
+    top: 1243px;
+}
+
+.SFequals {
+    top: 1268px;
 }
