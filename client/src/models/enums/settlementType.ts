@@ -3,5 +3,6 @@ export enum SettlementType {
     Fortification,
     SmallTown,
     LargeTown,
-    Castle
+    Castle,
+    CastleInside
 }

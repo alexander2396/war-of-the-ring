@@ -512,6 +512,166 @@ export class InitialData {
             faction: Faction.Easterlings,
             settlementType: SettlementType.LargeTown,
             isFellowshipHere: false
+        },
+        {
+            key: 'erebor-castle',
+            xposition: '60',
+            yposition: '305',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Dwarfs,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'grey-havens-castle',
+            xposition: '60',
+            yposition: '411',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Elves,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'rivendell-castle',
+            xposition: '60',
+            yposition: '517',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Elves,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'woodland-realm-castle',
+            xposition: '60',
+            yposition: '620',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Elves,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'lorien-castle',
+            xposition: '60',
+            yposition: '724',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Elves,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'helms-deep-castle',
+            xposition: '60',
+            yposition: '829',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Rohan,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'minas-tirith-castle',
+            xposition: '60',
+            yposition: '933',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Gondor,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'dol-amroth-castle',
+            xposition: '60',
+            yposition: '1035',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Gondor,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'mount-gundabad-castle',
+            xposition: '160',
+            yposition: '305',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'moria-castle',
+            xposition: '160',
+            yposition: '411',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'dol-guldur-castle',
+            xposition: '160',
+            yposition: '517',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'orthhanc-castle',
+            xposition: '160',
+            yposition: '620',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Isengard,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'morannon-castle',
+            xposition: '160',
+            yposition: '724',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'barad-dur-castle',
+            xposition: '160',
+            yposition: '829',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'minas-morgul-castle',
+            xposition: '160',
+            yposition: '933',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
+        },
+        {
+            key: 'umbar-castle',
+            xposition: '160',
+            yposition: '1035',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Easterlings,
+            settlementType: SettlementType.CastleInside,
+            isFellowshipHere: false
         }
     ];
 
