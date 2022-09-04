@@ -5,6 +5,7 @@ import { HuntTile } from "./huntTile";
 import { Politics } from "./politics";
 import { Region } from "./region";
 import { Ring } from "./ring";
+import { Unit } from "./unit";
 
 export interface GameState {
     key: string;
@@ -56,5 +57,6 @@ export interface GameState {
     hunt: {
         drawn: HuntTile[],
         pool: HuntTile[]
-    }
+    },
+    unitsPool: Unit[]
 }

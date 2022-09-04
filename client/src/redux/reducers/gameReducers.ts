@@ -81,6 +81,8 @@ export const startNewGameReducer = (state: ApplicationState) => {
     state.gameState.hunt.drawn = initialData.Hunt.Drawn;
     state.gameState.hunt.pool = initialData.Hunt.Pool;
 
+    state.gameState.unitsPool = initialData.UnitsPool;
+
     new Audio('sounds/dice.wav').play();
     
     saveGame(state, `Game started.`);

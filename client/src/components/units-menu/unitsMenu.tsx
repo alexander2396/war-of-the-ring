@@ -6,8 +6,8 @@ import { Region } from "../../models/region"
 import { Side } from "../../models/enums/side"
 import { Unit } from "../../models/unit"
 import { UnitType } from "../../models/enums/unitType"
-import { killRandomCompanion, moveFellowshipToRegion, setRegionUnits } from "../../redux/game/gameSlice"
-import { useAppDispatch } from "../../tools/hooks/hooks"
+import { killRandomCompanion, moveFellowshipToRegion, selectUnitsPool, setRegionUnits, updateUnitsPool } from "../../redux/game/gameSlice"
+import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks"
 
 type UnitsMenuProps = {
     selectedRegion: Region,
@@ -22,14 +22,26 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
     const [selectedFactionOfUnit, setSelectedFactionOfUnit] = useState(selectedRegion.faction);
     const [selectedUnitType, setSelectedUnitType] = useState(UnitType.Regular);
     const [selectedHero, setSelectedHero] = useState(null as Hero);
+
+    const unitsPool = useAppSelector(selectUnitsPool);
     
     const dispatch = useAppDispatch();
 
     const addNewUnit = () => {
-        const newUnit = selectedHero !== null
-            ? new Unit(selectedSideOfUnit, selectedFactionOfUnit, UnitType.Leader, selectedHero)
-            : new Unit(selectedSideOfUnit, selectedFactionOfUnit, selectedUnitType)
-        const units = [...selectedRegion.units, newUnit]
+
+        let unit = null;
+
+        if (selectedHero !== 0 && !selectedHero) {
+            unit = unitsPool.find(x => x.side === selectedSideOfUnit && x.faction === selectedFactionOfUnit && x.type === selectedUnitType);
+
+            if (!unit) return;
+
+            dispatch(updateUnitsPool(unitsPool.filter(x => x.key !== unit.key)));
+        } else {
+            unit = new Unit(selectedSideOfUnit, selectedFactionOfUnit, UnitType.Leader, selectedHero);
+        }
+        
+        const units = [...selectedRegion.units, unit]
 
         dispatch(setRegionUnits({
             regionKey: selectedRegion.key,
@@ -43,8 +55,9 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
     }
     
     const deleteUnits = () => {
-        const units = selectedRegion.units.filter(unit => !unit.selected)
-        
+        const selectedSFUnits = selectedRegion.units.filter(x => x.selected === true && x.side === Side.SauronForces);
+        const units = selectedRegion.units.filter(unit => !unit.selected);
+
         dispatch(setRegionUnits({
             regionKey: selectedRegion.key,
             units: units
@@ -54,6 +67,10 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
             ...selectedRegion,
             units: units
         });
+
+        if (selectedSFUnits.some(x => x)) {
+            dispatch(updateUnitsPool(selectedSFUnits.concat(unitsPool)));
+        }
     }
 
     const selectUnit = (unit: Unit) => {

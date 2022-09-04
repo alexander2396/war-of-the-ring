@@ -12,6 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Dices } from "../dices/dices";
 import { Hunt } from "../hunt/hunt";
+import { UnitsPool } from "../units-pool/unitsPool";
 
 export function GameModal(props: any) {
     const [SelectedCard, setSelectedCard]=useState(null as Card);
@@ -182,6 +183,9 @@ export function GameModal(props: any) {
                 </Tab>
                 <Tab eventKey="hunt" title="Hunt">
                     <Hunt />
+                </Tab>
+                <Tab eventKey="units-pool" title="Units pool">
+                    <UnitsPool />
                 </Tab>
             </Tabs>          
             </Modal.Body>

@@ -1,6 +1,9 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { io } from "socket.io-client";
 import { ApplicationState } from "../../models/applicationState";
+import { Faction } from "../../models/enums/faction";
+import { UnitType } from "../../models/enums/unitType";
+import { Unit } from "../../models/unit";
 
 export const openSocketReducer = (state) => {
     state.socket = process.env.NODE_ENV == 'development' 
@@ -30,4 +33,10 @@ export const setSauronForcesVictoryPointsReducer = (state: ApplicationState, act
     state.gameState.victoryPoints.sauronForces = action.payload;
 
     saveGame(state, `${state.username} set SF victory points to ${action.payload}.`);
+}
+
+export const updateUnitsPoolReducer = (state: ApplicationState, action: PayloadAction<Unit[]>) => {
+    state.gameState.unitsPool = action.payload;
+
+    saveGame(state, `${state.username} updated units pool.`);
 }

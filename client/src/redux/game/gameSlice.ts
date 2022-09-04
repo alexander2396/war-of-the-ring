@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ApplicationState } from "../../models/applicationState";
 import { RootState } from "../store";
-import { openSocketReducer, setFreePeopleVictoryPointsReducer, setSauronForcesVictoryPointsReducer, setUserReducer } from "../reducers/genericReducers";
+import { openSocketReducer, setFreePeopleVictoryPointsReducer, setSauronForcesVictoryPointsReducer, setUserReducer, updateUnitsPoolReducer } from "../reducers/genericReducers";
 import { setGameReducer, startNewGameReducer } from "../reducers/gameReducers";
 import { rollDicesReducer, setFreePeopleHuntDicesReducer, setSauronForcesHuntDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
 import { setRegionUnitsReducer } from "../reducers/regionReducers";
@@ -67,7 +67,8 @@ const initialState: ApplicationState = {
         hunt: {
             drawn: [],
             pool: []
-        }
+        },
+        unitsPool: []
     }
 };
 
@@ -110,7 +111,9 @@ export const gameSlice = createSlice({
 
         addHuntTileToPool: addHuntTileToPoolReducer,
         removeHuntTileFromPool: removeHuntTileFromPoolReducer,
-        getRandomHuntTileFromPool: getRandomHuntTileFromPoolReducer
+        getRandomHuntTileFromPool: getRandomHuntTileFromPoolReducer,
+
+        updateUnitsPool: updateUnitsPoolReducer
     }
 });
 
@@ -150,7 +153,9 @@ export const {
 
     addHuntTileToPool,
     removeHuntTileFromPool,
-    getRandomHuntTileFromPool
+    getRandomHuntTileFromPool,
+
+    updateUnitsPool,
 
  } = gameSlice.actions;
 
@@ -177,6 +182,8 @@ export const selectVictoryPoints = (state: RootState) => state.game.gameState.vi
 export const selectFellowship = (state: RootState) => state.game.gameState.fellowship;
 
 export const selectHunt = (state: RootState) => state.game.gameState.hunt;
+
+export const selectUnitsPool = (state: RootState) => state.game.gameState.unitsPool;
 
 export const selectUserData = (state: RootState) => {
     return {
