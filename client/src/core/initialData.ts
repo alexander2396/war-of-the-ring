@@ -6,6 +6,7 @@ import { Side } from "../models/enums/side";
 import { Unit } from "../models/unit";
 import { UnitType } from "../models/enums/unitType";
 import { Politics } from "../models/politics";
+import { HuntTile } from "../models/huntTile";
 
 export class InitialData {
     Regions: Region[] = [
@@ -556,4 +557,35 @@ export class InitialData {
             track: 1
         }
     ]
+
+    Hunt = {
+        Pool: [
+            new HuntTile('3.png'),
+            new HuntTile('3.png'),
+            new HuntTile('3.png'),
+            new HuntTile('2.png'),
+            new HuntTile('2.png'),
+            new HuntTile('1.png'),
+            new HuntTile('1.png'),
+            new HuntTile('eyer.png'),
+            new HuntTile('eyer.png'),
+            new HuntTile('eyer.png'),
+            new HuntTile('eyer.png'),
+            new HuntTile('2r.png'),
+            new HuntTile('1r.png'),
+            new HuntTile('1r.png'),
+            new HuntTile('0r.png'),
+            new HuntTile('0r.png')
+        ],
+        Drawn: [
+            new HuntTile('b0.png'),
+            new HuntTile('b0.png'),
+            new HuntTile('b-1.png'),
+            new HuntTile('b-2.png'),
+            new HuntTile('r1rs.png'),
+            new HuntTile('r3s.png'),
+            new HuntTile('rds.png'),
+            new HuntTile('reyers.png'),
+        ],
+    };
 }

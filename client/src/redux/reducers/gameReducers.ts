@@ -78,6 +78,9 @@ export const startNewGameReducer = (state: ApplicationState) => {
     state.gameState.rings.freePeople.push({ number: 2 });
     state.gameState.rings.freePeople.push({ number: 3 });
 
+    state.gameState.hunt.drawn = initialData.Hunt.Drawn;
+    state.gameState.hunt.pool = initialData.Hunt.Pool;
+
     new Audio('sounds/dice.wav').play();
     
     saveGame(state, `Game started.`);

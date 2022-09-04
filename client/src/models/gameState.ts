@@ -1,6 +1,7 @@
 import { Card } from "./card";
 import { Dice } from "./dice";
 import { Faction } from "./enums/faction";
+import { HuntTile } from "./huntTile";
 import { Politics } from "./politics";
 import { Region } from "./region";
 import { Ring } from "./ring";
@@ -50,5 +51,9 @@ export interface GameState {
         isRevealed: boolean,
         trackPosition: number,
         corruption: number
+    },
+    hunt: {
+        drawn: HuntTile[],
+        pool: HuntTile[]
     }
 }

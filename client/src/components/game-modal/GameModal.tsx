@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Dices } from "../dices/dices";
+import { Hunt } from "../hunt/hunt";
 
 export function GameModal(props: any) {
     const [SelectedCard, setSelectedCard]=useState(null as Card);
@@ -178,6 +179,9 @@ export function GameModal(props: any) {
                             }            
                         </div>
                     </div>
+                </Tab>
+                <Tab eventKey="hunt" title="Hunt">
+                    <Hunt />
                 </Tab>
             </Tabs>          
             </Modal.Body>

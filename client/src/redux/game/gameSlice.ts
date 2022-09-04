@@ -10,6 +10,7 @@ import { IUserData } from "../../models/userData";
 import { activatePoliticsReducer, movePoliticsReducer } from "../reducers/politicsReducers";
 import { useFreePeopleRingReducer, useSauronForcesRingReducer } from "../reducers/ringReducers";
 import { hideFellowshipReducer, moveFellowshipToRegionReduces, revealFellowshipReducer, setCorruptionReducer, setFellowshipTrackPositionReducer } from "../reducers/fellowshipReducers";
+import { addHuntTileToPoolReducer, removeHuntTileFromPoolReducer, getRandomHuntTileFromPoolReducer } from "../reducers/huntReducers";
 
 const initialState: ApplicationState = {
     socket: null,
@@ -61,6 +62,10 @@ const initialState: ApplicationState = {
             isRevealed: false,
             trackPosition: 0,
             corruption: 0
+        },
+        hunt: {
+            drawn: [],
+            pool: []
         }
     }
 };
@@ -98,7 +103,11 @@ export const gameSlice = createSlice({
         setFellowshipTrackPosition: setFellowshipTrackPositionReducer,
         setCorruption: setCorruptionReducer,
         revealFellowship: revealFellowshipReducer,
-        hideFellowship: hideFellowshipReducer
+        hideFellowship: hideFellowshipReducer,
+
+        addHuntTileToPool: addHuntTileToPoolReducer,
+        removeHuntTileFromPool: removeHuntTileFromPoolReducer,
+        getRandomHuntTileFromPool: getRandomHuntTileFromPoolReducer
     }
 });
 
@@ -132,7 +141,11 @@ export const {
     setFellowshipTrackPosition,
     setCorruption,
     revealFellowship,
-    hideFellowship
+    hideFellowship,
+
+    addHuntTileToPool,
+    removeHuntTileFromPool,
+    getRandomHuntTileFromPool
 
  } = gameSlice.actions;
 
@@ -157,6 +170,8 @@ export const selectRings = (state: RootState) => state.game.gameState.rings;
 export const selectVictoryPoints = (state: RootState) => state.game.gameState.victoryPoints;
 
 export const selectFellowship = (state: RootState) => state.game.gameState.fellowship;
+
+export const selectHunt = (state: RootState) => state.game.gameState.hunt;
 
 export const selectUserData = (state: RootState) => {
     return {

@@ -1,0 +1,18 @@
+.tiles {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    padding: 3px;
+    cursor: pointer;
+}
+
+.tiles img {
+    width: 50px;
+}
+
+.selectedTile {
+    transform: scale(1.1);
+    box-shadow: 0 0 43px 10px black;
+}
