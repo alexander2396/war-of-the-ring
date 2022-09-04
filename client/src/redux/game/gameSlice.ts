@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ApplicationState } from "../../models/applicationState";
 import { RootState } from "../store";
-import { openSocketReducer, setUserReducer } from "../reducers/genericReducers";
+import { openSocketReducer, setFreePeopleVictoryPointsReducer, setSauronForcesVictoryPointsReducer, setUserReducer } from "../reducers/genericReducers";
 import { setGameReducer, startNewGameReducer } from "../reducers/gameReducers";
 import { rollDicesReducer, setFreePeopleHuntDicesReducer, setSauronForcesHuntDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
 import { setRegionUnitsReducer } from "../reducers/regionReducers";
@@ -51,6 +51,10 @@ const initialState: ApplicationState = {
         rings: {
             freePeople: [],
             sauronForces: []
+        },
+        victoryPoints: {
+            freePeople: 0,
+            sauronForces: 0
         }
     }
 };
@@ -79,7 +83,10 @@ export const gameSlice = createSlice({
         activatePolitics: activatePoliticsReducer,
 
         useFreePeopleRing: useFreePeopleRingReducer,
-        useSauronForcesRing: useSauronForcesRingReducer
+        useSauronForcesRing: useSauronForcesRingReducer,
+
+        setFreePeopleVictoryPoints: setFreePeopleVictoryPointsReducer,
+        setSauronForcesVictoryPoints: setSauronForcesVictoryPointsReducer
     }
 });
 
@@ -104,7 +111,10 @@ export const {
     activatePolitics,
 
     useFreePeopleRing,
-    useSauronForcesRing
+    useSauronForcesRing,
+
+    setFreePeopleVictoryPoints,
+    setSauronForcesVictoryPoints
 
  } = gameSlice.actions;
 
@@ -125,6 +135,9 @@ export const selectSauronForcesCards = (state: RootState) => state.game.gameStat
 export const selectPolitics = (state: RootState) => state.game.gameState.politics;
 
 export const selectRings = (state: RootState) => state.game.gameState.rings;
+
+export const selectVictoryPoints = (state: RootState) => state.game.gameState.victoryPoints;
+
 
 export const selectUserData = (state: RootState) => {
     return {

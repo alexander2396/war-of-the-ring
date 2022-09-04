@@ -11,6 +11,7 @@ import { Room } from "../../components/room/room";
 import { HuntDices } from "../../components/hunt-dices/huntDices";
 import { PoliticsTracks } from "../../components/politics/politicsTracks";
 import { Rings } from "../../components/rings/rings";
+import { VictoryPoints } from "../../components/victory-points/victoryPoints";
 
 export function Board(props: any) {
     const [ShowUnitsMenu, showUnitsMenu]=useState(false);
@@ -44,6 +45,8 @@ export function Board(props: any) {
             <PoliticsTracks />
 
             <Rings />
+
+            <VictoryPoints />
         </div>
     );
 }

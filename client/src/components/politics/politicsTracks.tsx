@@ -21,7 +21,7 @@ export const PoliticsTracks = () => {
     function renderTrack(track: Politics, index: number) {
         return (
             <>
-                <OverlayTrigger trigger="click" key={index} placement="left"
+                <OverlayTrigger trigger="click" key={index} placement="left" rootClose
                     overlay={
                         <Popover>
                             <Popover.Body>
@@ -31,7 +31,7 @@ export const PoliticsTracks = () => {
                                 }
                                 {
                                     track.track !== 0 &&
-                                    <Button variant="secondary" onClick={() => move(track)}>Move</Button>
+                                    <Button className="ml-10" variant="secondary" onClick={() => move(track)}>Move</Button>
                                 }
                             </Popover.Body>
                         </Popover>

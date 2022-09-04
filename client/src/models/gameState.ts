@@ -41,5 +41,9 @@ export interface GameState {
     rings: {
         freePeople: Ring[],
         sauronForces: Ring[]
+    },
+    victoryPoints: {
+        freePeople: number,
+        sauronForces: number
     }
 }

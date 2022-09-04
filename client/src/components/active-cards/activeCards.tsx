@@ -20,7 +20,7 @@ export const ActiveCards = () => {
 
                 return (
                     <>
-                        <OverlayTrigger trigger="click" key={card.key} placement="right"
+                        <OverlayTrigger trigger="click" key={card.key} placement="right" rootClose
                             overlay={
                                 <Popover>
                                     <Popover.Body>
