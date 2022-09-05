@@ -672,6 +672,706 @@ export class InitialData {
             faction: Faction.Easterlings,
             settlementType: SettlementType.CastleInside,
             isFellowshipHere: false
+        },
+        {
+            key: 'forlindon',
+            xposition: '322',
+            yposition: '228',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'north-ered-luin',
+            xposition: '474',
+            yposition: '124',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Dwarfs,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'evendim',
+            xposition: '564',
+            yposition: '157',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'arnor',
+            xposition: '611',
+            yposition: '62',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'ettenmoors',
+            xposition: '793',
+            yposition: '126',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'buckland',
+            xposition: '674',
+            yposition: '257',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Northmen,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'angmar',
+            xposition: '713',
+            yposition: '35',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.LargeTown,
+            isFellowshipHere: false
+        },
+        {
+            key: 'mount-gram',
+            xposition: '833',
+            yposition: '51',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'weather-hills',
+            xposition: '821',
+            yposition: '224',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'troll-shaws',
+            xposition: '886',
+            yposition: '260',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'south-downs',
+            xposition: '815',
+            yposition: '341',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'old-forest',
+            xposition: '680',
+            yposition: '350',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'cardolan',
+            xposition: '707',
+            yposition: '447',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'harlindon',
+            xposition: '340',
+            yposition: '433',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'tower-hills',
+            xposition: '474',
+            yposition: '407',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'south-ered-luin',
+            xposition: '573',
+            yposition: '403',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'minhiriath',
+            xposition: '583',
+            yposition: '560',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'fords-of-bruinen',
+            xposition: '936',
+            yposition: '305',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'high-pass',
+            xposition: '993',
+            yposition: '268',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'hollin',
+            xposition: '902',
+            yposition: '412',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'tharoad',
+            xposition: '745',
+            yposition: '575',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'enedwaith',
+            xposition: '684',
+            yposition: '696',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'cap-of-rohan',
+            xposition: '794',
+            yposition: '719',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Isengard,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'druwaith-laur',
+            xposition: '720',
+            yposition: '820',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'andrast',
+            xposition: '662',
+            yposition: '924',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'goblins-gate',
+            xposition: '1061',
+            yposition: '241',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'old-ford',
+            xposition: '1123',
+            yposition: '244',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'eagles-eyrie',
+            xposition: '1070',
+            yposition: '152',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'gladden-fields',
+            xposition: '1102',
+            yposition: '329',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'dimrill-dale',
+            xposition: '1111',
+            yposition: '401',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'north-anduin-vale',
+            xposition: '1195',
+            yposition: '390',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'south-anduin-vale',
+            xposition: '1170',
+            yposition: '483',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'parth-celebrant',
+            xposition: '1106',
+            yposition: '560',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'fangorn',
+            xposition: '1020',
+            yposition: '608',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'eastemnet',
+            xposition: '1157',
+            yposition: '668',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Rohan,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'westemnet',
+            xposition: '1080',
+            yposition: '741',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Rohan,
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
+        },
+        {
+            key: 'folde',
+            xposition: '1172',
+            yposition: '805',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Rohan,
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
+        },
+        {
+            key: 'northern-mirkwood',
+            xposition: '1227',
+            yposition: '122',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'western-mirkwood',
+            xposition: '1230',
+            yposition: '208',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'withered-heath',
+            xposition: '1314',
+            yposition: '123',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'rhosgobel',
+            xposition: '1190',
+            yposition: '303',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Northmen,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'old-forest-road',
+            xposition: '1295',
+            yposition: '297',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Northmen,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'narrows-of-the-forest',
+            xposition: '1269',
+            yposition: '359',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'eastern-mirkwood',
+            xposition: '1331',
+            yposition: '365',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'southern-mirkwood',
+            xposition: '1340',
+            yposition: '472',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Sauron,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'northern-rhovanion',
+            xposition: '1403',
+            yposition: '366',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'vale-of-the-carnen',
+            xposition: '1518',
+            yposition: '290',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'vale-of-the-celduin',
+            xposition: '1507',
+            yposition: '373',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'east-rhun',
+            xposition: '1738',
+            yposition: '348',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Easterlings,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'sothern-rhovanion',
+            xposition: '1447',
+            yposition: '468',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'northern-dorwinion',
+            xposition: '1560',
+            yposition: '448',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'southern-dorwinion',
+            xposition: '1555',
+            yposition: '560',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'ash-mountains',
+            xposition: '1607',
+            yposition: '695',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'noman-lands',
+            xposition: '1472',
+            yposition: '586',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'eastern-brown-lands',
+            xposition: '1365',
+            yposition: '570',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'western-brown-lands',
+            xposition: '1258',
+            yposition: '586',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'western-emyn-muil',
+            xposition: '1273',
+            yposition: '691',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'eastern-emyn-muil',
+            xposition: '1392',
+            yposition: '656',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'dagorlad',
+            xposition: '1504',
+            yposition: '704',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'dead-marshes',
+            xposition: '1326',
+            yposition: '766',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'north-ithilien',
+            xposition: '1397',
+            yposition: '818',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'south-ithilien',
+            xposition: '1391',
+            yposition: '1005',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'west-harondor',
+            xposition: '1235',
+            yposition: '1172',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'east-harondor',
+            xposition: '1380',
+            yposition: '1140',
+            units: [],
+            side: null,
+            faction: null,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'kahnd',
+            xposition: '1560',
+            yposition: '1130',
+            units: [],
+            side: Side.SauronForces,
+            faction: Faction.Easterlings,
+            settlementType: null,
+            isFellowshipHere: false
+        },
+        {
+            key: 'lossarnach',
+            xposition: '1216',
+            yposition: '984',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Gondor,
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
+        },
+        {
+            key: 'lamedon',
+            xposition: '1120',
+            yposition: '936',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Gondor,
+            settlementType: SettlementType.SmallTown,
+            isFellowshipHere: false
+        },
+        {
+            key: 'erech',
+            xposition: '971',
+            yposition: '910',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Gondor,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'anfalas',
+            xposition: '815',
+            yposition: '970',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Gondor,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
+        },
+        {
+            key: 'druada-forest',
+            xposition: '1240',
+            yposition: '813',
+            units: [],
+            side: Side.FreePeople,
+            faction: Faction.Gondor,
+            settlementType: SettlementType.None,
+            isFellowshipHere: false
         }
     ];
 

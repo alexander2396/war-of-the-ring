@@ -18,8 +18,8 @@ type UnitsMenuProps = {
 export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: UnitsMenuProps) => {   
     
     const [showAddNewUnitsModal, setShowAddNewUnitsModal] = useState(false);
-    const [selectedSideOfUnit, setSelectedSideOfUnit] = useState(selectedRegion.side);
-    const [selectedFactionOfUnit, setSelectedFactionOfUnit] = useState(selectedRegion.faction);
+    const [selectedSideOfUnit, setSelectedSideOfUnit] = useState(selectedRegion.side ?? Side.FreePeople);
+    const [selectedFactionOfUnit, setSelectedFactionOfUnit] = useState(selectedRegion.faction ?? Faction.Elves);
     const [selectedUnitType, setSelectedUnitType] = useState(UnitType.Regular);
     const [selectedHero, setSelectedHero] = useState(null as Hero);
 
@@ -28,7 +28,6 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
     const dispatch = useAppDispatch();
 
     const addNewUnit = () => {
-
         let unit = null;
 
         if (selectedHero !== 0 && !selectedHero) {
@@ -95,7 +94,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
         <>
             <Card className="unitsMenu">
                 <Card.Body className="SelectedArmyCard">
-                    <Card.Title className="text-center">Selected Army</Card.Title>
+                    <Card.Title className="text-center">{selectedRegion.key}</Card.Title>
                     <div className="selectableUnitsBlock text-center">
                         {selectedRegion.units.map((unit, i) => {    
                             return (
