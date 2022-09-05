@@ -47,7 +47,7 @@ export const HuntDices = () => {
 
     return (
         <div className={styles.dicesBlock}>
-            <OverlayTrigger trigger="click" key="sf-hunt" placement="right"
+            <OverlayTrigger trigger="click" key="sf-hunt" placement="right" rootClose
                 overlay={
                     <Popover>
                         <Popover.Body>
@@ -64,7 +64,7 @@ export const HuntDices = () => {
                     })}
                 </div>
             </OverlayTrigger>
-            <OverlayTrigger trigger="click" key="fp-hunt" placement="right"
+            <OverlayTrigger trigger="click" key="fp-hunt" placement="right" rootClose
                 overlay={
                     <Popover>
                         <Popover.Body>

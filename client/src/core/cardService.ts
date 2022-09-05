@@ -2,6 +2,24 @@ import { Card } from "../models/card";
 import { CardType } from "../models/enums/cardType";
 import { Side } from "../models/enums/side";
 
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
 export class CardService {
     static buildFreePeopleStrategyDeck(): Card[] {
         const cards = [
@@ -9,6 +27,8 @@ export class CardService {
             new Card('fps002', Side.FreePeople, CardType.Strategy),
             new Card('fps003', Side.FreePeople, CardType.Strategy)
         ];
+
+        shuffle(cards);
 
         return cards;
     }
@@ -19,6 +39,8 @@ export class CardService {
             new Card('fpc002', Side.FreePeople, CardType.Character),
             new Card('fpc003', Side.FreePeople, CardType.Character)
         ];
+        
+        shuffle(cards);
 
         return cards;
     }
