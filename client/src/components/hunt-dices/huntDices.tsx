@@ -52,7 +52,7 @@ export const HuntDices = () => {
                     <Popover>
                         <Popover.Body>
                             <Button variant="success" onClick={() => addEye()}>Add</Button>
-                            <Button variant="danger" onClick={() => removeEye()}>Remove</Button>
+                            <Button className="ml-10" variant="danger" onClick={() => removeEye()}>Remove</Button>
                         </Popover.Body>
                     </Popover>
                 }>
@@ -69,7 +69,7 @@ export const HuntDices = () => {
                     <Popover>
                         <Popover.Body>
                             <Button variant="success" onClick={() => addSword()}>Add</Button>
-                            <Button variant="danger" onClick={() => removeSword()}>Remove</Button>
+                            <Button className="ml-10" variant="danger" onClick={() => removeSword()}>Remove</Button>
                         </Popover.Body>
                     </Popover>
                 }>

@@ -36,7 +36,19 @@ export function GameModal(props: any) {
 
     function _draftSelectedCard() {
         if (!SelectedCard) return;
-        dispatch(draftCard(SelectedCard));
+        dispatch(draftCard({
+            card: SelectedCard,
+            isPlayed: false
+        }));
+        setSelectedCard(null);
+    }
+
+    function _playSelectedCard() {
+        if (!SelectedCard) return;
+        dispatch(draftCard({
+            card: SelectedCard,
+            isPlayed: true
+        }));
         setSelectedCard(null);
     }
 
@@ -80,8 +92,9 @@ export function GameModal(props: any) {
                                 <Col xs={3} className="d-flex flex-row-reverse">
                                     {SelectedCard &&
                                     <>
+                                        <Button variant="success" className={styles.btnLeftMargin} onClick={() => _playSelectedCard()}>Play</Button>
                                         <Button variant="danger" className={styles.btnLeftMargin} onClick={() => _draftSelectedCard()}>Draft</Button>
-                                        <Button variant="success" onClick={() => _activateSelectedCard()}>Activate</Button>
+                                        <Button variant="secondary" onClick={() => _activateSelectedCard()}>Activate</Button>
                                     </>}
                                 </Col>
                             </Row>
@@ -106,7 +119,7 @@ export function GameModal(props: any) {
                             <div>Cards:</div>
                             { 
                                 userData.username === userData.freePeoplePlayer &&
-                                <div className="d-flex flex-row">
+                                <div className="d-flex flex-row flex-wrap">
                                     {freePeopleCards.hand.map((card) => {
                                         return (<div className={"m-1 c-pointer "+ (SelectedCard?.key === card.key ? styles.selectedCard : "")} onClick={() => _selectCard(card)}>
                                                 <img src={card.imageUrl} />
@@ -144,8 +157,9 @@ export function GameModal(props: any) {
                                 <Col xs={3} className="d-flex flex-row-reverse">
                                     {SelectedCard &&
                                     <>
+                                        <Button variant="success" className={styles.btnLeftMargin} onClick={() => _playSelectedCard()}>Play</Button>
                                         <Button variant="danger" className={styles.btnLeftMargin} onClick={() => _draftSelectedCard()}>Draft</Button>
-                                        <Button variant="success" onClick={() => _activateSelectedCard()}>Activate</Button>
+                                        <Button variant="secondary" onClick={() => _activateSelectedCard()}>Activate</Button>
                                     </>}
                                 </Col>
                             </Row>
@@ -170,7 +184,7 @@ export function GameModal(props: any) {
                             <div>Cards:</div>
                             { 
                                 userData.username === userData.sauronForcesPlayer &&
-                                <div className="d-flex flex-row">
+                                <div className="d-flex flex-row flex-wrap">
                                     {sauronForcesCards.hand.map((card) => {
                                         return (<div className={"m-1 c-pointer "+ (SelectedCard?.key === card.key ? styles.selectedCard : "")} onClick={() => _selectCard(card)}>
                                                 <img src={card.imageUrl} />

@@ -11,7 +11,10 @@ export const ActiveCards = () => {
     const sauronForcesCards = useAppSelector(selectSauronForcesCards);
     
     function _draftCard(card: Card) {
-        dispatch(draftCard(card));
+        dispatch(draftCard({
+            card: card,
+            isPlayed: false
+        }));
     }
 
     return (
@@ -24,7 +27,8 @@ export const ActiveCards = () => {
                             overlay={
                                 <Popover>
                                     <Popover.Body>
-                                        <Button variant="secondary" onClick={() => _draftCard(card)}>Remove</Button>
+                                        <img src={card.imageUrl} />
+                                        <Button className="mt-2" variant="danger" onClick={() => _draftCard(card)}>Remove</Button>
                                     </Popover.Body>
                                 </Popover>
                             }>

@@ -21,7 +21,7 @@ export const Rings = () => {
     function renderFPRing(ring: Ring,index: number) {
         return (
             <>
-                <OverlayTrigger trigger="click" key={index} placement="bottom"
+                <OverlayTrigger trigger="click" key={index} placement="bottom" rootClose
                     overlay={
                         <Popover>
                             <Popover.Body>
@@ -40,7 +40,7 @@ export const Rings = () => {
     function renderSFRing(ring: Ring,index: number) {
         return (
             <>
-                <OverlayTrigger trigger="click" key={index} placement="top"
+                <OverlayTrigger trigger="click" key={index} placement="top" rootClose
                     overlay={
                         <Popover>
                             <Popover.Body>

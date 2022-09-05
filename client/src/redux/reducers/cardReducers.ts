@@ -33,11 +33,11 @@ export const drawCardReducer = (state, action: PayloadAction<DrawCardAction>) =>
     saveGame(state, `${state.username} drawn card.`);
 }
 
-export const draftCardReducer = (state, action: PayloadAction<Card>) => {
+export const draftCardReducer = (state, action: PayloadAction<{card: Card, isPlayed: boolean}>) => {
     let hand: Card[];
     let draftCards: Card[];
 
-    if (action.payload.side === Side.FreePeople) {
+    if (action.payload.card.side === Side.FreePeople) {
         hand = state.gameState.cards.freePeople.hand;
         draftCards = state.gameState.cards.freePeople.draft;
     } else {
@@ -45,23 +45,23 @@ export const draftCardReducer = (state, action: PayloadAction<Card>) => {
         draftCards = state.gameState.cards.sauronForces.draft;
     }
 
-    let card = hand.find(x => x.key === action.payload.key);
+    let card = hand.find(x => x.key === action.payload.card.key);
 
     if (card) {
         hand.splice(hand.indexOf(card), 1);           
     } else {
-        let activeCards = action.payload.side === Side.FreePeople
+        let activeCards = action.payload.card.side === Side.FreePeople
             ? state.gameState.cards.freePeople.active
             : state.gameState.cards.sauronForces.active;
 
-        card = activeCards.find(x => x.key === action.payload.key);
+        card = activeCards.find(x => x.key === action.payload.card.key);
 
         activeCards.splice(activeCards.indexOf(card), 1); 
     }
 
     draftCards.push(card);
 
-    saveGame(state, `${state.username} discarded card.`);
+    saveGame(state, `${state.username} ${action.payload.isPlayed ? 'played' : 'discarded'} card ${action.payload.card.imageUrl}.`);
 }
 
 export const activateCardReducer = (state, action: PayloadAction<Card>) => {
