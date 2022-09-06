@@ -69,6 +69,16 @@ io.use((socket, next) => {
             isNewGame = true;
         }
 
+        if (!isNewGame) {
+            if (game.freePeoplePlayer === socket.username) {
+                gameState.dices.sauronForces = game.gameState.dices.sauronForces;
+                gameState.cards.sauronForces = game.gameState.cards.sauronForces;
+            } else {
+                gameState.dices.freePeople = game.gameState.dices.freePeople;
+                gameState.cards.freePeople = game.gameState.cards.freePeople;
+            }
+        }
+
         game.gameState = gameState;
 
         storage.put(game);
