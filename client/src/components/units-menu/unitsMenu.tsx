@@ -6,7 +6,7 @@ import { Region } from "../../models/region"
 import { Side } from "../../models/enums/side"
 import { Unit } from "../../models/unit"
 import { UnitType } from "../../models/enums/unitType"
-import { killRandomCompanion, moveFellowshipToRegion, selectUnitsPool, setRegionUnits, updateUnitsPool } from "../../redux/game/gameSlice"
+import { addUnit, downgradeUnit, killRandomCompanion, moveFellowshipToRegion, removeUnits, selectRegions, selectUnitsPool, selectUserData, updateUnitsPool } from "../../redux/game/gameSlice"
 import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks"
 
 type UnitsMenuProps = {
@@ -17,15 +17,29 @@ type UnitsMenuProps = {
 
 export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: UnitsMenuProps) => {   
     
+    const userData = useAppSelector(selectUserData);
+    const unitsPool = useAppSelector(selectUnitsPool);
+    
     const [showAddNewUnitsModal, setShowAddNewUnitsModal] = useState(false);
-    const [selectedSideOfUnit, setSelectedSideOfUnit] = useState(selectedRegion.side ?? Side.FreePeople);
-    const [selectedFactionOfUnit, setSelectedFactionOfUnit] = useState(selectedRegion.faction ?? Faction.Elves);
+
+    const [selectedSideOfUnit, setSelectedSideOfUnit] = useState(selectedRegion.side ?? (userData.freePeoplePlayer === userData.username
+        ? Side.FreePeople : Side.SauronForces));
+    const [selectedFactionOfUnit, setSelectedFactionOfUnit] = useState(selectedRegion.faction ?? (userData.freePeoplePlayer === userData.username
+        ? Faction.Elves : Faction.Sauron));
+
     const [selectedUnitType, setSelectedUnitType] = useState(UnitType.Regular);
     const [selectedHero, setSelectedHero] = useState(null as Hero);
 
-    const unitsPool = useAppSelector(selectUnitsPool);
-    
     const dispatch = useAppDispatch();
+
+    function _setSelectedSideOfUnit(side: Side) {
+        setSelectedSideOfUnit(side);
+
+        if (side === Side.FreePeople)
+            setSelectedFactionOfUnit(Faction.Elves);
+        else 
+            setSelectedFactionOfUnit(Faction.Sauron);
+    }
 
     const addNewUnit = () => {
         let unit = null;
@@ -40,40 +54,62 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
             unit = new Unit(selectedSideOfUnit, selectedFactionOfUnit, UnitType.Leader, selectedHero);
         }
         
-        const units = [...selectedRegion.units, unit]
-
-        dispatch(setRegionUnits({
+        dispatch(addUnit({
             regionKey: selectedRegion.key,
-            units: units
+            unit: unit
         }));
 
-        setSelectedRegion({
-            ...selectedRegion,
-            units: units
-        });
+        var tempRegion = {...selectedRegion};
+        tempRegion.units = [].concat(selectedRegion.units);
+        tempRegion.units.push(unit);
+
+        setSelectedRegion(tempRegion);
     }
     
     const deleteUnits = () => {
         const selectedSFUnits = selectedRegion.units.filter(x => x.selected === true && x.side === Side.SauronForces);
-        const units = selectedRegion.units.filter(unit => !unit.selected);
 
-        dispatch(setRegionUnits({
+        dispatch(removeUnits({
             regionKey: selectedRegion.key,
-            units: units
+            units: selectedRegion.units.filter(unit => unit.selected)
         }));
 
-        setSelectedRegion({
-            ...selectedRegion,
-            units: units
-        });
+        var tempRegion = {...selectedRegion};
+        tempRegion.units = [].concat(selectedRegion.units.filter(unit => !unit.selected));
+
+        setSelectedRegion(tempRegion);
 
         if (selectedSFUnits.some(x => x)) {
             dispatch(updateUnitsPool(selectedSFUnits.concat(unitsPool)));
         }
     }
 
+    const _downgradeUnit = () => {
+        const selectedUnits = selectedRegion.units.filter(x => x.selected === true);
+
+        if (selectedUnits.length > 1) return;
+
+        const selectedUnit = selectedRegion.units.find(x => x.selected === true);
+
+        if (selectedUnit.type !== UnitType.Elite) return;
+
+        dispatch(downgradeUnit({
+            regionKey: selectedRegion.key,
+            unit: selectedUnit
+        }));
+
+        var tempRegion = {...selectedRegion};
+        tempRegion.units = [].concat(selectedRegion.units.filter(unit => !unit.selected));
+
+        showUnitsMenu(false);
+        setSelectedRegion(null);
+        setShowAddNewUnitsModal(false);
+    }
+
     const selectUnit = (unit: Unit) => {
         let region = { ...selectedRegion };
+        region.units = [];
+        selectedRegion.units.forEach(x => region.units.push({...x}))
         region.units.find(x => x.key === unit.key).selected = !unit.selected;
         setSelectedRegion(region);
     }
@@ -123,6 +159,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                             <Button variant="danger" onClick={() => {_killRandomCompanion();}}>Kill random companion</Button>
                         </div>
                     }
+                    <Button variant="info" onClick={() => {_downgradeUnit()}}>Downgrade</Button>
                 </Card.Body>
             </Card>
             
@@ -133,7 +170,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Side</Form.Label>
-                            <Form.Select size="sm" value={selectedSideOfUnit} onChange={(e) => setSelectedSideOfUnit(Number(e.currentTarget.value))}>
+                            <Form.Select size="sm" value={selectedSideOfUnit} onChange={(e) => _setSelectedSideOfUnit(Number(e.currentTarget.value))}>
                                 <option value={Side.FreePeople}>Free People</option>
                                 <option value={Side.SauronForces}>Sauron Forces</option>
                             </Form.Select>

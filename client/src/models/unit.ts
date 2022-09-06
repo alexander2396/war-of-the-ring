@@ -15,12 +15,13 @@ export class Unit {
     imageUrl: string;
     selected: boolean;
 
-    constructor(side, faction, type, hero = null) {
-        this.key = uuidv4();
+    constructor(side, faction, type, hero = null, key = null) {
+        this.key = key ?? uuidv4();
         this.side = side;
         this.faction = faction;
         this.type = type;
         this.hero = hero;
+        this.selected = false
         
         this.imageUrl = ImageUrlResolver.getUnitUrl(this);
     }

@@ -13,6 +13,7 @@ import Col from 'react-bootstrap/Col';
 import { Dices } from "../dices/dices";
 import { Hunt } from "../hunt/hunt";
 import { UnitsPool } from "../units-pool/unitsPool";
+import { DeadUnits } from "../dead-units/deadUnits";
 
 export function GameModal(props: any) {
     const [SelectedCard, setSelectedCard]=useState(null as Card);
@@ -200,6 +201,9 @@ export function GameModal(props: any) {
                 </Tab>
                 <Tab eventKey="units-pool" title="Units pool">
                     <UnitsPool />
+                </Tab>
+                <Tab eventKey="dead-units" title="Dead units">
+                    <DeadUnits />
                 </Tab>
             </Tabs>          
             </Modal.Body>

@@ -4,13 +4,13 @@ import { RootState } from "../store";
 import { openSocketReducer, setFreePeopleVictoryPointsReducer, setSauronForcesVictoryPointsReducer, setUserReducer, updateUnitsPoolReducer } from "../reducers/genericReducers";
 import { setGameReducer, startNewGameReducer } from "../reducers/gameReducers";
 import { rollDicesReducer, setFreePeopleHuntDicesReducer, setSauronForcesHuntDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
-import { setRegionUnitsReducer } from "../reducers/regionReducers";
 import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reducers/cardReducers";
 import { IUserData } from "../../models/userData";
 import { activatePoliticsReducer, movePoliticsReducer } from "../reducers/politicsReducers";
 import { useFreePeopleRingReducer, useSauronForcesRingReducer } from "../reducers/ringReducers";
 import { hideFellowshipReducer, killRandomCompanionReducer, moveFellowshipToRegionReduces, revealFellowshipReducer, setCorruptionReducer, setFellowshipTrackPositionReducer, setMordorTrackReducer } from "../reducers/fellowshipReducers";
 import { addHuntTileToPoolReducer, removeHuntTileFromPoolReducer, getRandomHuntTileFromPoolReducer } from "../reducers/huntReducers";
+import { addUnitReducer, downgradeUnitReducer, moveUnitsReducer, removeUnitsReducer } from "../reducers/regionReducers";
 
 const initialState: ApplicationState = {
     socket: null,
@@ -68,7 +68,8 @@ const initialState: ApplicationState = {
             drawn: [],
             pool: []
         },
-        unitsPool: []
+        unitsPool: [],
+        deadUnits: []
     }
 };
 
@@ -87,7 +88,11 @@ export const gameSlice = createSlice({
         setFreePeopleHuntDices: setFreePeopleHuntDicesReducer,
         setSauronForcesHuntDices: setSauronForcesHuntDicesReducer,
 
-        setRegionUnits: setRegionUnitsReducer,
+        moveUnits: moveUnitsReducer,
+        removeUnits: removeUnitsReducer,
+        addUnit: addUnitReducer,
+        downgradeUnit: downgradeUnitReducer,
+
         drawCard: drawCardReducer,
         draftCard: draftCardReducer,
         activateCard: activateCardReducer,
@@ -122,7 +127,11 @@ export const {
     setUser,
     setGame,
     startNewGame,
-    setRegionUnits,
+
+    moveUnits,
+    removeUnits,
+    addUnit,
+    downgradeUnit,
 
     useFreePeopleDice,
     useSauronForcesDice,
@@ -184,6 +193,7 @@ export const selectFellowship = (state: RootState) => state.game.gameState.fello
 export const selectHunt = (state: RootState) => state.game.gameState.hunt;
 
 export const selectUnitsPool = (state: RootState) => state.game.gameState.unitsPool;
+export const selectDeadUnits = (state: RootState) => state.game.gameState.deadUnits;
 
 export const selectUserData = (state: RootState) => {
     return {

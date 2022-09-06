@@ -1,17 +1,14 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { CardService } from "../../core/cardService";
-import { DiceService } from "../../core/diceService";
 import { InitialData } from "../../core/initialData";
 import { ApplicationState } from "../../models/applicationState";
-import { DiceType } from "../../models/enums/diceType";
 import { Game } from "../../models/game";
-import { Ring } from "../../models/ring";
 import { Unit } from "../../models/unit";
 import { saveGame } from "./genericReducers";
 
 export const setGameReducer = (state: ApplicationState, action: PayloadAction<Game>) => {
     action.payload.gameState.regions.forEach(x => {
-        var units = x.units.map(u => new Unit(u.side, u.faction, u.type, u.hero));
+        var units = x.units.map(u => new Unit(u.side, u.faction, u.type, u.hero, u.key));
         x.units = units;
     });
 

@@ -1,7 +1,7 @@
 import { AnyAction, Dispatch, ThunkDispatch } from "@reduxjs/toolkit";
 import { GameState } from "../../models/gameState";
 import { Region } from "../../models/region";
-import { setRegionUnits } from "../../redux/game/gameSlice";
+import { moveUnits } from "../../redux/game/gameSlice";
 
 export type RegionClickedTypes = {
     region?: Region;
@@ -21,16 +21,10 @@ export const regionClicked = ({region, showUnitsMenu, setSelectedRegion, dispatc
     } else {
         if (region.key === SelectedRegion.key) return;
 
-        let unitsArray = [];
-        unitsArray = unitsArray.concat(SelectedRegion.units.filter(x => x.selected));
-        unitsArray = unitsArray.concat(region.units);
-        dispatch(setRegionUnits({
-            regionKey: region.key,
-            units: unitsArray
-        }));
-        dispatch(setRegionUnits({
-            regionKey: SelectedRegion.key,
-            units: SelectedRegion.units.filter(x => !x.selected)
+        dispatch(moveUnits({
+            regionFromKey: SelectedRegion.key,
+            regionToKey: region.key,
+            units: SelectedRegion.units.filter(x => x.selected)
         }));
 
         showUnitsMenu(false);

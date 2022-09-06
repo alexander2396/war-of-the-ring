@@ -115,6 +115,8 @@ export class CardService {
             new Card('sas24', Side.SauronForces, CardType.Strategy)
         ];
 
+        shuffle(cards);
+
         return cards;
     }
 
@@ -145,6 +147,8 @@ export class CardService {
             new Card('sac23', Side.SauronForces, CardType.Character),
             new Card('sac24', Side.SauronForces, CardType.Character)
         ];
+        
+        shuffle(cards);
 
         return cards;
     }

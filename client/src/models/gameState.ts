@@ -58,5 +58,6 @@ export interface GameState {
         drawn: HuntTile[],
         pool: HuntTile[]
     },
-    unitsPool: Unit[]
+    unitsPool: Unit[],
+    deadUnits: Unit[]
 }
