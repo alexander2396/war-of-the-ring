@@ -56,19 +56,16 @@ export const startNewGameReducer = (state: ApplicationState) => {
         state.gameState.cards.sauronForces.characterDeck.shift(),
     ];
 
-    const freePeopleDices = DiceService.rollFreePeopleDices(4);
-    const sauronForcesDices = DiceService.rollSauronForcesDices(7);
-
     state.gameState.dices = {
         freePeople: {
-            available: freePeopleDices,
+            available: [],
             used: [],
             hunt: []
         },
         sauronForces: {
-            available: sauronForcesDices,
+            available: [],
             used: [],
-            hunt: sauronForcesDices.filter(x => x.type === DiceType.Eye).concat(state.gameState.dices.sauronForces.hunt)
+            hunt: []
         }
     };
 
@@ -82,8 +79,6 @@ export const startNewGameReducer = (state: ApplicationState) => {
     state.gameState.hunt.pool = initialData.Hunt.Pool;
 
     state.gameState.unitsPool = initialData.UnitsPool;
-
-    new Audio('sounds/dice.wav').play();
     
     saveGame(state, `Game started.`);
 };
