@@ -39,7 +39,6 @@ export const moveUnitsReducer = (state: ApplicationState, action: PayloadAction<
 
 export const removeUnitsReducer = (state: ApplicationState, action: PayloadAction<RemoveUnitsAction>) => {
     let region = state.gameState.regions.find(x => x.key === action.payload.regionKey);
-    console.log(region.units.map(x => x.key))
 
     region.units = region.units.filter(x => !action.payload.units.map(u => u.key).includes(x.key));
 
@@ -54,6 +53,16 @@ export const addUnitReducer = (state: ApplicationState, action: PayloadAction<Ad
     region.units.push(action.payload.unit);
 
     saveGame(state, `${state.username} added unit ${Faction[action.payload.unit.faction]} ${UnitType[action.payload.unit.type]} in ${action.payload.regionKey}.`);
+}
+
+export const moveDeadUnitToPoolReducer = (state: ApplicationState, action: PayloadAction<Unit>) => {
+    let unit = state.gameState.deadUnits.find(x => x.key === action.payload.key);
+
+    state.gameState.unitsPool.push(unit);
+
+    state.gameState.deadUnits = state.gameState.deadUnits.filter(x => x.key !== unit.key);
+    
+    saveGame(state, `${state.username} moved unit ${Faction[action.payload.faction]} from dead to pool.`);
 }
 
 export const downgradeUnitReducer = (state: ApplicationState, action: PayloadAction<DowngradeUnitAction>) => {

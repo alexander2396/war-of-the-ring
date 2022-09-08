@@ -7,4 +7,10 @@
     padding: 3px;
     width: 50px;
     text-align: center;
+    cursor: pointer;
+}
+
+.selectedUnit {
+    transform: scale(1.1);
+    box-shadow: 0 0 43px 10px black;
 }

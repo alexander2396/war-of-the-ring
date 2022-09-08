@@ -10,7 +10,7 @@ import { activatePoliticsReducer, movePoliticsReducer } from "../reducers/politi
 import { useFreePeopleRingReducer, useSauronForcesRingReducer } from "../reducers/ringReducers";
 import { hideFellowshipReducer, killRandomCompanionReducer, moveFellowshipToRegionReduces, revealFellowshipReducer, setCorruptionReducer, setFellowshipTrackPositionReducer, setMordorTrackReducer } from "../reducers/fellowshipReducers";
 import { addHuntTileToPoolReducer, removeHuntTileFromPoolReducer, getRandomHuntTileFromPoolReducer } from "../reducers/huntReducers";
-import { addUnitReducer, downgradeUnitReducer, moveUnitsReducer, removeUnitsReducer } from "../reducers/regionReducers";
+import { addUnitReducer, downgradeUnitReducer, moveDeadUnitToPoolReducer, moveUnitsReducer, removeUnitsReducer } from "../reducers/regionReducers";
 
 const initialState: ApplicationState = {
     socket: null,
@@ -92,6 +92,8 @@ export const gameSlice = createSlice({
         removeUnits: removeUnitsReducer,
         addUnit: addUnitReducer,
         downgradeUnit: downgradeUnitReducer,
+        moveDeadUnitToPool: moveDeadUnitToPoolReducer,
+        updateUnitsPool: updateUnitsPoolReducer,
 
         drawCard: drawCardReducer,
         draftCard: draftCardReducer,
@@ -117,8 +119,6 @@ export const gameSlice = createSlice({
         addHuntTileToPool: addHuntTileToPoolReducer,
         removeHuntTileFromPool: removeHuntTileFromPoolReducer,
         getRandomHuntTileFromPool: getRandomHuntTileFromPoolReducer,
-
-        updateUnitsPool: updateUnitsPoolReducer
     }
 });
 
@@ -132,6 +132,8 @@ export const {
     removeUnits,
     addUnit,
     downgradeUnit,
+    moveDeadUnitToPool,
+    updateUnitsPool,
 
     useFreePeopleDice,
     useSauronForcesDice,
@@ -163,9 +165,6 @@ export const {
     addHuntTileToPool,
     removeHuntTileFromPool,
     getRandomHuntTileFromPool,
-
-    updateUnitsPool,
-
  } = gameSlice.actions;
 
 export const getSocket = (state: RootState) => state.game.socket;
