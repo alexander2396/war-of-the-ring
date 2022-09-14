@@ -72,10 +72,10 @@ export function AppMenu() {
                 <div>
                     <div>Roll dices</div>
                     <Button variant="secondary" onClick={() => rollDices(1)}>1</Button>
-                    <Button variant="secondary" onClick={() => rollDices(2)}>2</Button>
-                    <Button variant="secondary" onClick={() => rollDices(3)}>3</Button>
-                    <Button variant="secondary" onClick={() => rollDices(4)}>4</Button>
-                    <Button variant="secondary" onClick={() => rollDices(5)}>5</Button>
+                    <Button className="ml-5" variant="secondary" onClick={() => rollDices(2)}>2</Button>
+                    <Button className="ml-5" variant="secondary" onClick={() => rollDices(3)}>3</Button>
+                    <Button className="ml-5" variant="secondary" onClick={() => rollDices(4)}>4</Button>
+                    <Button className="ml-5" variant="secondary" onClick={() => rollDices(5)}>5</Button>
                 </div>
 
                 <div className='mt-5'>
