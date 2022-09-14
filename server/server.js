@@ -2,7 +2,8 @@ const http = require("http");
 const express = require('express');
 const path = require('path');
 const socketio = require('socket.io');
-const JSONFileStorage = require('node-json-file-storage');
+const mongoClient = require('./mongo-client');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
@@ -17,9 +18,6 @@ const io = socketio(server, {
       methods: ["GET", "POST"]
     }
 });
-
-const file_uri = __dirname + "/data.json";
-const storage = new JSONFileStorage(file_uri);
 
 io.use((socket, next) => {
     const username = socket.handshake.auth.username;
@@ -39,13 +37,19 @@ io.use((socket, next) => {
         io.emit("users", _getAllUsers());
     });
 
-    socket.on("new-game", (game) => {
-        storage.put(game);
-        io.emit("games", storage.all());
+    socket.on("new-game", async (game) => {
+        const collection = await mongoClient.gamesCollection();
+
+        game.gameState.key = uuidv4();
+
+        await collection.insertOne(game);
+
+        io.emit("games", await collection.find().toArray());
     });
 
-    socket.on("join-game", (key) => {
-        const game = storage.get(key);
+    socket.on("join-game", async (key) => {
+        const collection = await mongoClient.gamesCollection();
+        const game = await collection.find({ 'gameState.key': key }).next();
         
         if (game.sauronForcesPlayer !== null && game.freePeoplePlayer !== null)
             return;
@@ -53,16 +57,21 @@ io.use((socket, next) => {
         game.sauronForcesPlayer === null
             ? game.sauronForcesPlayer = socket.username
             : game.freePeoplePlayer = socket.username;
-        storage.put(game);
-        io.emit("games", storage.all());
+
+        await collection.replaceOne({
+            'gameState.key': key
+        }, game);
+
+        io.emit("games", await collection.find().toArray());
     });
 
     socket.on("room-message", ({key, message}) => {
         io.to(key).emit("room-message", message);
     });
 
-    socket.on("update-game", ({key, gameState, message}) => {
-        const game = storage.get(key);
+    socket.on("update-game", async ({key, gameState, message}) => {
+        const collection = await mongoClient.gamesCollection();
+        const game = await collection.find({ 'gameState.key': key }).next();
 
         let isNewGame = false;
         if (game.gameState.gameStarted !== gameState.gameStarted) {
@@ -81,13 +90,13 @@ io.use((socket, next) => {
 
         game.gameState = gameState;
 
-        storage.put(game);
+        await collection.replaceOne({ 'gameState.key': key }, game);
 
         io.to(key).emit("room-message", message);
         io.to(key).emit("game-updated", game);
 
         if (isNewGame) {
-            io.emit("games", storage.all());
+            io.emit("games", await collection.find().toArray());
         }
     });
 
@@ -98,9 +107,10 @@ io.use((socket, next) => {
     });
 });
 
-io.on("connection", (socket) => {
+io.on("connection", async () => {
+    const collection = await mongoClient.gamesCollection()
     io.emit("users", _getAllUsers());
-    io.emit("games", storage.all());
+    io.emit("games", await collection.find().toArray());
 });
 
 
@@ -116,23 +126,6 @@ function _getAllUsers() {
     }
     return users;
 }
-
-function _createGame() {
-    return storage.put(obj_1);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 server.on('error', (err) => {
     console.error(err);

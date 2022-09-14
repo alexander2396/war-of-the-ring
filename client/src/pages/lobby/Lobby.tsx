@@ -38,7 +38,6 @@ export function Lobby() {
             : game.sauronForcesPlayer = UserName;
 
         socket.emit('new-game', game);
-        console.log('done')
     }
 
     function joinGame(key: string) {
@@ -46,9 +45,7 @@ export function Lobby() {
     }
 
     function _startGame(key: string) {
-        const game = Games[key] as Game;
-
-        game.gameState.key = key;
+        const game = Games.find(x => x.gameState.key === key) as Game;
 
         socket.emit('enter-game', key);
 
@@ -113,7 +110,7 @@ export function Lobby() {
                             { Games && Object.entries(Games).map((x: [string, Game], i) =>
                                 <Card key={i} style={{ width: '340px', margin: '10px' }}>
                                     <Card.Title>
-                                        <div className={styles.title}>{x[0]}</div>
+                                        <div className={styles.title}>{x[1].gameState.key}</div>
                                     </Card.Title>
                                     <Card.Body>
                                         <div>Free People player: { x[1].freePeoplePlayer }</div>
@@ -122,13 +119,13 @@ export function Lobby() {
                                             ((x[1].freePeoplePlayer === null || x[1].sauronForcesPlayer === null) &&
                                                  UserName !== x[1].freePeoplePlayer && UserName !== x[1].sauronForcesPlayer) &&
                                             <>
-                                            <Button className={styles.marginRight} variant="primary" onClick={() => joinGame(x[0])}>Join</Button>
+                                            <Button className={styles.marginRight} variant="primary" onClick={() => joinGame(x[1].gameState.key)}>Join</Button>
                                             </>
                                         } 
                                         {
                                             (UserName === x[1].freePeoplePlayer || UserName === x[1].sauronForcesPlayer) &&
                                             (x[1].freePeoplePlayer !== null && x[1].sauronForcesPlayer !== null) &&
-                                            <Button variant="success" onClick={() => _startGame(x[0])}>Start</Button>
+                                            <Button variant="success" onClick={() => _startGame(x[1].gameState.key)}>Start</Button>
                                         }
                                     </Card.Body>
                                 </Card>
