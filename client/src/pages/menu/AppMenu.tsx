@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../tools/hooks/hooks';
 import { GameModal } from '../../components/game-modal/GameModal';
 import styles from './AppMenu.module.css';
-import { getSocket, selectFellowship, selectGame, selectUserData, setMordorTrack } from '../../redux/game/gameSlice';
+import { getSocket, selectFellowship, selectGame, selectTurn, selectUserData, setMordorTrack } from '../../redux/game/gameSlice';
 
 export function AppMenu() {
 
@@ -14,6 +14,7 @@ export function AppMenu() {
     const game = useAppSelector(selectGame);
     const userData = useAppSelector(selectUserData);
     const fellowship = useAppSelector(selectFellowship);
+    const turn = useAppSelector(selectTurn);
 
     const dispatch = useAppDispatch();
 
@@ -65,6 +66,8 @@ export function AppMenu() {
                 <div>
                     <Button className={styles.menuBoxBtn} variant="primary" onClick={() => setModalShow(true)}>Current Game</Button>
                 </div>
+
+                <h5>Turn: {turn}</h5>
 
                 <div>
                     <div>Roll dices</div>

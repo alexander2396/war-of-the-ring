@@ -19,6 +19,7 @@ const initialState: ApplicationState = {
     sauronForcesPlayer: '',
     gameState: {
         key: null,
+        turn: 0,
         gameStarted: false,
         regions: [],
         dices: {
@@ -201,5 +202,7 @@ export const selectUserData = (state: RootState) => {
         sauronForcesPlayer: state.game.sauronForcesPlayer
     } as IUserData;
 }
+
+export const selectTurn = (state: RootState) => state.game.gameState.turn;
 
 export default gameSlice.reducer;

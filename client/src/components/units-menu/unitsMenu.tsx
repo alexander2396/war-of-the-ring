@@ -159,7 +159,12 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                             <Button variant="danger" onClick={() => {_killRandomCompanion();}}>Kill random companion</Button>
                         </div>
                     }
-                    <Button variant="info" onClick={() => {_downgradeUnit()}}>Downgrade</Button>
+                    {
+                        selectedRegion.units.filter(x => x.selected === true && x.type === UnitType.Elite).length == 1 &&
+                        <div className="buttonGroup">
+                        <Button variant="info" onClick={() => {_downgradeUnit()}}>Downgrade</Button>
+                        </div>
+                    }
                 </Card.Body>
             </Card>
             

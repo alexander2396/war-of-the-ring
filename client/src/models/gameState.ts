@@ -1,6 +1,5 @@
 import { Card } from "./card";
 import { Dice } from "./dice";
-import { Faction } from "./enums/faction";
 import { HuntTile } from "./huntTile";
 import { Politics } from "./politics";
 import { Region } from "./region";
@@ -9,6 +8,7 @@ import { Unit } from "./unit";
 
 export interface GameState {
     key: string;
+    turn: number;
     gameStarted: boolean;
     regions: Region[];
     dices: {

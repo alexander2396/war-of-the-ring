@@ -37,6 +37,8 @@ export const rollDicesReducer = (state: ApplicationState, action: PayloadAction<
 
         state.gameState.dices.freePeople.used = []
         state.gameState.dices.freePeople.available = DiceService.rollFreePeopleDices(action.payload.count);
+
+        state.gameState.turn++;
     } else {
         if (state.gameState.dices.sauronForces.available.length > 0) return;
 

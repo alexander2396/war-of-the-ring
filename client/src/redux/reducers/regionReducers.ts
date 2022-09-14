@@ -42,7 +42,11 @@ export const removeUnitsReducer = (state: ApplicationState, action: PayloadActio
 
     region.units = region.units.filter(x => !action.payload.units.map(u => u.key).includes(x.key));
 
-    action.payload.units.forEach(x => state.gameState.deadUnits.push(x));
+    let fpUnits = action.payload.units.filter(x => x.side === Side.FreePeople);
+    fpUnits.forEach(x => state.gameState.deadUnits.push(x));
+
+    let sfUnits = action.payload.units.filter(x => x.side === Side.SauronForces);
+    sfUnits.forEach(x => state.gameState.unitsPool.push(x));
 
     saveGame(state, `${state.username} removed units in ${action.payload.regionKey}.`);
 }
@@ -73,7 +77,7 @@ export const downgradeUnitReducer = (state: ApplicationState, action: PayloadAct
     if (unit.type !== UnitType.Elite) return;
 
     if (unit.side === Side.SauronForces) {
-        let regular = state.gameState.unitsPool.find(x => x.faction === unit.faction && x.type === UnitType.Regular);
+        let regular = current(state.gameState.unitsPool).find(x => x.faction === unit.faction && x.type === UnitType.Regular);
         if (!regular) return;
 
         region.units = region.units.filter(x => x.key !== unit.key);
@@ -86,12 +90,20 @@ export const downgradeUnitReducer = (state: ApplicationState, action: PayloadAct
     if (unit.side === Side.FreePeople) {
         let regular = current(state.gameState.deadUnits).find(x => x.faction === unit.faction && x.type === UnitType.Regular);
 
-        if (!regular) return;
+        if (regular) {
+            state.gameState.deadUnits = state.gameState.deadUnits.filter(x => x.key !== regular.key);
+        } else {
+            regular = current(state.gameState.unitsPool).find(x => x.faction === unit.faction && x.type === UnitType.Regular);
+
+            if (!regular) return;
+
+            state.gameState.unitsPool = state.gameState.unitsPool.filter(x => x.key !== regular.key);
+        }
+
 
         region.units = region.units.filter(x => x.key !== unit.key);
         region.units.push(regular);
 
-        state.gameState.deadUnits = state.gameState.deadUnits.filter(x => x.key !== regular.key);
         state.gameState.deadUnits.push(unit);
     }
 

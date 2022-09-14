@@ -25,6 +25,7 @@
 }
 
 .unitsMenu {
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
