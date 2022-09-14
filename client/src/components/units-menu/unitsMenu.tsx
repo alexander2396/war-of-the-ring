@@ -29,6 +29,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
 
     const [selectedUnitType, setSelectedUnitType] = useState(UnitType.Regular);
     const [selectedHero, setSelectedHero] = useState(null as Hero);
+    const [allUnitsSelected, setAllUnitsSelected] = useState(true);
 
     const dispatch = useAppDispatch();
 
@@ -126,11 +127,29 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
         setShowAddNewUnitsModal(false);
     }
 
+    function _changeAllUnitsSelected() {
+        const value = !allUnitsSelected;
+        setAllUnitsSelected(value);
+        let region = { ...selectedRegion };
+        region.units = [];
+        selectedRegion.units.forEach(x => region.units.push({...x}))
+        region.units.forEach(unit => {
+            unit.selected = value;
+        });
+        setSelectedRegion(region);
+    }
+
     return (
         <>
             <Card className="unitsMenu">
                 <Card.Body className="SelectedArmyCard">
                     <Card.Title className="text-center">{selectedRegion.key}</Card.Title>
+
+                    <div>
+                        <Form.Check type='checkbox' id='select-units-checkbox' label='select all'
+                            checked={allUnitsSelected} onChange={() => _changeAllUnitsSelected()} />
+                    </div>
+
                     <div className="selectableUnitsBlock text-center">
                         {selectedRegion.units.map((unit, i) => {    
                             return (
@@ -160,6 +179,7 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                         </div>
                     }
                     {
+                        selectedRegion.units.filter(x => x.selected === true).length == 1 &&
                         selectedRegion.units.filter(x => x.selected === true && x.type === UnitType.Elite).length == 1 &&
                         <div className="buttonGroup">
                         <Button variant="info" onClick={() => {_downgradeUnit()}}>Downgrade</Button>
