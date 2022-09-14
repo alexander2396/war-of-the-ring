@@ -26,7 +26,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'rivendell',
@@ -40,7 +41,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Elves,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: true
+            isFellowshipHere: true,
+            captured: false
         },
         {
             key: 'lorien',
@@ -55,7 +57,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Elves,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'grey-havens',
@@ -69,7 +72,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Elves,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'woodland-realm',
@@ -83,7 +87,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Elves,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'mount-gundabad',
@@ -96,7 +101,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'moria',
@@ -109,7 +115,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'dol-guldur',
@@ -127,7 +134,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'morannon',
@@ -144,7 +152,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'minas-morgul',
@@ -161,7 +170,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'barad-dur',
@@ -178,7 +188,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'gorgoroth',
@@ -192,7 +203,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'nurn',
@@ -205,7 +217,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'ered-luin',
@@ -217,7 +230,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Dwarfs,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'iron-hills',
@@ -229,7 +243,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Dwarfs,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'erebor',
@@ -244,7 +259,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Dwarfs,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'shire',
@@ -256,7 +272,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Northmen,
             settlementType: SettlementType.LargeTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'bree',
@@ -268,7 +285,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Northmen,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'north-downs',
@@ -280,7 +298,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Northmen,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'carrock',
@@ -292,7 +311,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Northmen,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'dale',
@@ -305,7 +325,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Northmen,
             settlementType: SettlementType.LargeTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'orthanc',
@@ -321,7 +342,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Isengard,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'north-dunland',
@@ -333,7 +355,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Isengard,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'south-dunland',
@@ -345,7 +368,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Isengard,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'fords-of-isen',
@@ -359,7 +383,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Rohan,
             settlementType: SettlementType.Fortification,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'helms-deep',
@@ -371,7 +396,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Rohan,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'edoras',
@@ -384,7 +410,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Rohan,
             settlementType: SettlementType.LargeTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'dol-amroth',
@@ -398,7 +425,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'pelargir',
@@ -410,7 +438,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.LargeTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'minas-tirith',
@@ -426,7 +455,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'osgiliath',
@@ -439,7 +469,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.Fortification,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'north-rhun',
@@ -452,7 +483,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Easterlings,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'south-rhun',
@@ -467,7 +499,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Easterlings,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'umbar',
@@ -481,7 +514,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Easterlings,
             settlementType: SettlementType.Castle,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'near-harad',
@@ -496,7 +530,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Easterlings,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'far-harad',
@@ -511,7 +546,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Easterlings,
             settlementType: SettlementType.LargeTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'erebor-castle',
@@ -521,7 +557,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Dwarfs,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'grey-havens-castle',
@@ -531,7 +568,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Elves,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'rivendell-castle',
@@ -541,7 +579,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Elves,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'woodland-realm-castle',
@@ -551,7 +590,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Elves,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'lorien-castle',
@@ -561,7 +601,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Elves,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'helms-deep-castle',
@@ -571,7 +612,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Rohan,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'minas-tirith-castle',
@@ -581,7 +623,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'dol-amroth-castle',
@@ -591,7 +634,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'mount-gundabad-castle',
@@ -601,7 +645,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'moria-castle',
@@ -611,7 +656,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'dol-guldur-castle',
@@ -621,7 +667,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'orthhanc-castle',
@@ -631,7 +678,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Isengard,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'morannon-castle',
@@ -641,7 +689,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'barad-dur-castle',
@@ -651,7 +700,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'minas-morgul-castle',
@@ -661,7 +711,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'umbar-castle',
@@ -671,7 +722,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Easterlings,
             settlementType: SettlementType.CastleInside,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'forlindon',
@@ -681,7 +733,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'north-ered-luin',
@@ -691,7 +744,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Dwarfs,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'evendim',
@@ -701,7 +755,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'arnor',
@@ -711,7 +766,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'ettenmoors',
@@ -721,7 +777,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'buckland',
@@ -731,7 +788,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Northmen,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'angmar',
@@ -741,7 +799,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.LargeTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'mount-gram',
@@ -751,7 +810,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'weather-hills',
@@ -761,7 +821,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'troll-shaws',
@@ -771,7 +832,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'south-downs',
@@ -781,7 +843,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'old-forest',
@@ -791,7 +854,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'cardolan',
@@ -801,7 +865,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'harlindon',
@@ -811,7 +876,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'tower-hills',
@@ -821,7 +887,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'south-ered-luin',
@@ -831,7 +898,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'minhiriath',
@@ -841,7 +909,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'fords-of-bruinen',
@@ -851,7 +920,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'high-pass',
@@ -861,7 +931,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'hollin',
@@ -871,7 +942,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'tharoad',
@@ -881,7 +953,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'enedwaith',
@@ -891,7 +964,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'cap-of-rohan',
@@ -901,7 +975,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Isengard,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'druwaith-laur',
@@ -911,7 +986,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'andrast',
@@ -921,7 +997,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'goblins-gate',
@@ -931,7 +1008,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'old-ford',
@@ -941,7 +1019,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'eagles-eyrie',
@@ -951,7 +1030,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'gladden-fields',
@@ -961,7 +1041,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'dimrill-dale',
@@ -971,7 +1052,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'north-anduin-vale',
@@ -981,7 +1063,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'south-anduin-vale',
@@ -991,7 +1074,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'parth-celebrant',
@@ -1001,7 +1085,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'fangorn',
@@ -1011,7 +1096,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'eastemnet',
@@ -1021,7 +1107,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Rohan,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'westemnet',
@@ -1031,7 +1118,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Rohan,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'folde',
@@ -1041,7 +1129,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Rohan,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'northern-mirkwood',
@@ -1051,7 +1140,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'western-mirkwood',
@@ -1061,7 +1151,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'withered-heath',
@@ -1071,7 +1162,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'rhosgobel',
@@ -1081,7 +1173,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Northmen,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'old-forest-road',
@@ -1091,7 +1184,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Northmen,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'narrows-of-the-forest',
@@ -1101,7 +1195,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'eastern-mirkwood',
@@ -1111,7 +1206,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'southern-mirkwood',
@@ -1121,7 +1217,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Sauron,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'northern-rhovanion',
@@ -1131,7 +1228,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'vale-of-the-carnen',
@@ -1141,7 +1239,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'vale-of-the-celduin',
@@ -1151,7 +1250,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'east-rhun',
@@ -1161,7 +1261,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Easterlings,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'sothern-rhovanion',
@@ -1171,7 +1272,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'northern-dorwinion',
@@ -1181,7 +1283,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'southern-dorwinion',
@@ -1191,7 +1294,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'ash-mountains',
@@ -1201,7 +1305,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'noman-lands',
@@ -1211,7 +1316,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'eastern-brown-lands',
@@ -1221,7 +1327,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'western-brown-lands',
@@ -1231,7 +1338,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'western-emyn-muil',
@@ -1241,7 +1349,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'eastern-emyn-muil',
@@ -1251,7 +1360,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'dagorlad',
@@ -1261,7 +1371,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'dead-marshes',
@@ -1271,7 +1382,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'north-ithilien',
@@ -1281,7 +1393,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'south-ithilien',
@@ -1291,7 +1404,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'west-harondor',
@@ -1301,7 +1415,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'east-harondor',
@@ -1311,7 +1426,8 @@ export class InitialData {
             side: null,
             faction: null,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'kahnd',
@@ -1321,7 +1437,8 @@ export class InitialData {
             side: Side.SauronForces,
             faction: Faction.Easterlings,
             settlementType: null,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'lossarnach',
@@ -1331,7 +1448,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'lamedon',
@@ -1341,7 +1459,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.SmallTown,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'erech',
@@ -1351,7 +1470,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'anfalas',
@@ -1361,7 +1481,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         },
         {
             key: 'druada-forest',
@@ -1371,7 +1492,8 @@ export class InitialData {
             side: Side.FreePeople,
             faction: Faction.Gondor,
             settlementType: SettlementType.None,
-            isFellowshipHere: false
+            isFellowshipHere: false,
+            captured: false
         }
     ];
 

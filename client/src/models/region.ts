@@ -12,4 +12,5 @@ export class Region {
     side: Side;
     faction: Faction;
     isFellowshipHere: boolean;
+    captured: boolean;
 }
