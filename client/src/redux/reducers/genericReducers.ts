@@ -1,8 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { io } from "socket.io-client";
 import { ApplicationState } from "../../models/applicationState";
-import { Faction } from "../../models/enums/faction";
-import { UnitType } from "../../models/enums/unitType";
 import { Unit } from "../../models/unit";
 
 export const openSocketReducer = (state) => {
@@ -17,7 +15,7 @@ export const setUserReducer = (state, action: PayloadAction<string>) => {
 
 export function saveGame(state, message) {
     state.socket.emit('update-game', {
-        key: state.key,
+        _id: state._id,
         gameState: state.gameState,
         message: message
     });

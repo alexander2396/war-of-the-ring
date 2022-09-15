@@ -1,7 +1,7 @@
 import { GameState } from "./gameState";
 
 export class ApplicationState {
-    key: string;
+    _id: string;
     socket: any;
     username: string;
     freePeoplePlayer: string;

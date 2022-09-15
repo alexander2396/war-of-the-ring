@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../tools/hooks/hooks';
 import { GameModal } from '../../components/game-modal/GameModal';
 import styles from './AppMenu.module.css';
-import { getSocket, selectFellowship, selectGameKey, selectTurn, selectUserData, setMordorTrack } from '../../redux/game/gameSlice';
+import { getSocket, selectFellowship, selectGameId, selectTurn, selectUserData, setMordorTrack } from '../../redux/game/gameSlice';
 
 export function AppMenu() {
 
@@ -11,7 +11,7 @@ export function AppMenu() {
     const [modalShow, setModalShow] = useState(false);
 
     const socket = useAppSelector(getSocket);
-    const gameKey = useAppSelector(selectGameKey);
+    const _id = useAppSelector(selectGameId);
     const userData = useAppSelector(selectUserData);
     const fellowship = useAppSelector(selectFellowship);
     const turn = useAppSelector(selectTurn);
@@ -44,7 +44,7 @@ export function AppMenu() {
         }
 
         socket.emit('room-message', {
-            key: gameKey,
+            _id: _id,
             message: userData.username + ' rolled ' + diceRollArray.join(' ')
         });
     }

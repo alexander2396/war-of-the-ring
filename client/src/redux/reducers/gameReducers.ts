@@ -12,7 +12,7 @@ export const setGameReducer = (state: ApplicationState, action: PayloadAction<Ga
         x.units = units;
     });
 
-    state.key = action.payload.key;
+    state._id = action.payload._id;
     state.gameState = action.payload.gameState;
 
     state.freePeoplePlayer = action.payload.freePeoplePlayer;

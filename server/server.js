@@ -3,9 +3,9 @@ const express = require('express');
 const path = require('path');
 const socketio = require('socket.io');
 const mongoClient = require('./mongo-client');
-const { v4: uuidv4 } = require('uuid');
 
 const ringActions = require('./actions/ringActions');
+const regionActions = require('./actions/regionActions');
 
 const app = express();
 
@@ -42,16 +42,16 @@ io.use(async (socket, next) => {
     socket.on("new-game", async (game) => {
         const collection = await mongoClient.gamesCollection();
 
-        game.key = uuidv4();
+        //game._id = uuidv4();
 
         await collection.insertOne(game);
 
         io.emit("games", await collection.find().toArray());
     });
 
-    socket.on("join-game", async (key) => {
+    socket.on("join-game", async (_id) => {
         const collection = await mongoClient.gamesCollection();
-        const game = await collection.find({ 'key': key }).next();
+        const game = await collection.find({ '_id': mongoClient.ObjectId(_id) }).next();
         
         if (game.sauronForcesPlayer !== null && game.freePeoplePlayer !== null)
             return;
@@ -61,20 +61,21 @@ io.use(async (socket, next) => {
             : game.freePeoplePlayer = socket.username;
 
         await collection.replaceOne({
-            'key': key
+            '_id': _id
         }, game);
 
         io.emit("games", await collection.find().toArray());
     });
 
-    socket.on("room-message", ({key, message}) => {
-        io.to(key).emit("room-message", message);
+    socket.on("room-message", ({_id, message}) => {
+        io.to(_id).emit("room-message", message);
     });
 
-    socket.on("update-game", async ({key, gameState, message}) => {
+    socket.on("update-game", async ({_id, gameState, message}) => {
         const collection = await mongoClient.gamesCollection();
-        const game = await collection.find({ 'key': key }).next();
-        
+
+        const game = await collection.find({ '_id': mongoClient.ObjectId(_id) }).next();
+
         let isNewGame = false;
         if (game.gameState.gameStarted !== gameState.gameStarted) {
             isNewGame = true;
@@ -92,23 +93,24 @@ io.use(async (socket, next) => {
 
         game.gameState = gameState;
 
-        await collection.replaceOne({ 'key': key }, game);
+        await collection.replaceOne({ '_id': mongoClient.ObjectId(_id) }, game);
 
-        io.to(key).emit("room-message", message);
-        io.to(key).emit("game-updated", game);
+        io.to(_id).emit("room-message", message);
+        io.to(_id).emit("game-updated", game);
 
         if (isNewGame) {
             io.emit("games", await collection.find().toArray());
         }
     });
 
-    socket.on("enter-game", (key) => {
-        socket.join(key);
+    socket.on("enter-game", (_id) => {
+        socket.join(_id);
 
-        io.to(key).emit("room-message", `${socket.username} has joined`);
+        io.to(_id).emit("room-message", `${socket.username} has joined`);
     });
 
     await ringActions.subscribe(socket, io);
+    await regionActions.subscribe(socket, io);
 });
 
 

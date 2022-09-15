@@ -13,7 +13,7 @@ import { addHuntTileToPoolReducer, removeHuntTileFromPoolReducer, getRandomHuntT
 import { addUnitReducer, downgradeUnitReducer, moveDeadUnitToPoolReducer, moveUnitsReducer, removeUnitsReducer } from "../reducers/regionReducers";
 
 const initialState: ApplicationState = {
-    key: null,
+    _id: null,
     socket: null,
     username: '',
     freePeoplePlayer: '',
@@ -168,7 +168,7 @@ export const {
     getRandomHuntTileFromPool,
  } = gameSlice.actions;
 
-export const selectGameKey = (state: RootState) => state.game.key;
+export const selectGameId = (state: RootState) => state.game._id;
 
 export const getSocket = (state: RootState) => state.game.socket;
 

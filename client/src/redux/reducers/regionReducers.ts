@@ -28,35 +28,28 @@ export class DowngradeUnitAction {
 }
 
 export const moveUnitsReducer = (state: ApplicationState, action: PayloadAction<MoveUnitsAction>) => {
-    let regionFrom = state.gameState.regions.find(x => x.key === action.payload.regionFromKey);
-    let regionTo = state.gameState.regions.find(x => x.key === action.payload.regionToKey);
-
-    regionFrom.units = regionFrom.units.filter(x => !action.payload.units.map(u => u.key).includes(x.key));
-    action.payload.units.forEach(x => regionTo.units.push(x));
-    
-    saveGame(state, `${state.username} moved army from ${action.payload.regionFromKey} to ${action.payload.regionToKey}.`);
+    state.socket.emit('move-units', {
+        _id: state._id,
+        regionFromKey: action.payload.regionFromKey,
+        regionToKey: action.payload.regionToKey,
+        units: action.payload.units
+    });
 }
 
 export const removeUnitsReducer = (state: ApplicationState, action: PayloadAction<RemoveUnitsAction>) => {
-    let region = state.gameState.regions.find(x => x.key === action.payload.regionKey);
-
-    region.units = region.units.filter(x => !action.payload.units.map(u => u.key).includes(x.key));
-
-    let fpUnits = action.payload.units.filter(x => x.side === Side.FreePeople);
-    fpUnits.forEach(x => state.gameState.deadUnits.push(x));
-
-    let sfUnits = action.payload.units.filter(x => x.side === Side.SauronForces);
-    sfUnits.forEach(x => state.gameState.unitsPool.push(x));
-
-    saveGame(state, `${state.username} removed units in ${action.payload.regionKey}.`);
+    state.socket.emit('remove-units', {
+        _id: state._id,
+        regionKey: action.payload.regionKey,
+        units: action.payload.units
+    });
 }
 
 export const addUnitReducer = (state: ApplicationState, action: PayloadAction<AddUnitAction>) => {
-    let region = state.gameState.regions.find(x => x.key === action.payload.regionKey);
-
-    region.units.push(action.payload.unit);
-
-    saveGame(state, `${state.username} added unit ${Faction[action.payload.unit.faction]} ${UnitType[action.payload.unit.type]} in ${action.payload.regionKey}.`);
+    state.socket.emit('add-unit', {
+        _id: state._id,
+        regionKey: action.payload.regionKey,
+        unit: action.payload.unit
+    });
 }
 
 export const moveDeadUnitToPoolReducer = (state: ApplicationState, action: PayloadAction<Unit>) => {
