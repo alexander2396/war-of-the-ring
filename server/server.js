@@ -61,9 +61,9 @@ io.use(async (socket, next) => {
             : game.freePeoplePlayer = socket.username;
 
         await collection.replaceOne({
-            '_id': _id
+            '_id': mongoClient.ObjectId(_id)
         }, game);
-
+        
         io.emit("games", await collection.find().toArray());
     });
 
