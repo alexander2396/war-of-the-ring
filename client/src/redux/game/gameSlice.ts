@@ -13,12 +13,12 @@ import { addHuntTileToPoolReducer, removeHuntTileFromPoolReducer, getRandomHuntT
 import { addUnitReducer, downgradeUnitReducer, moveDeadUnitToPoolReducer, moveUnitsReducer, removeUnitsReducer } from "../reducers/regionReducers";
 
 const initialState: ApplicationState = {
+    key: null,
     socket: null,
     username: '',
     freePeoplePlayer: '',
     sauronForcesPlayer: '',
     gameState: {
-        key: null,
         turn: 0,
         gameStarted: false,
         regions: [],
@@ -167,6 +167,8 @@ export const {
     removeHuntTileFromPool,
     getRandomHuntTileFromPool,
  } = gameSlice.actions;
+
+export const selectGameKey = (state: RootState) => state.game.key;
 
 export const getSocket = (state: RootState) => state.game.socket;
 

@@ -4,4 +4,5 @@ export class Game {
     freePeoplePlayer: string;
     sauronForcesPlayer: string;
     gameState: GameState;
+    key: string;
 }

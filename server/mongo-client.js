@@ -1,5 +1,5 @@
 const { MongoClient } = require("mongodb");
-const mongoDbUri = process.env.MONGODB_URI;
+const mongoDbUri = process.env.MONGODB_URI || 'mongodb+srv://kalaha1996:morisson11@alex-cluster.n99rymc.mongodb.net/test';
 
 const client = new MongoClient(mongoDbUri, { useUnifiedTopology: true });
 

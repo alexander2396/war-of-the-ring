@@ -17,7 +17,7 @@ export const setUserReducer = (state, action: PayloadAction<string>) => {
 
 export function saveGame(state, message) {
     state.socket.emit('update-game', {
-        key: state.gameState.key,
+        key: state.key,
         gameState: state.gameState,
         message: message
     });

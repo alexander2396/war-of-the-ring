@@ -5,6 +5,8 @@ const socketio = require('socket.io');
 const mongoClient = require('./mongo-client');
 const { v4: uuidv4 } = require('uuid');
 
+const ringActions = require('./actions/ringActions');
+
 const app = express();
 
 app.use(express.static(path.join(__dirname + "/public")));
@@ -19,7 +21,7 @@ const io = socketio(server, {
     }
 });
 
-io.use((socket, next) => {
+io.use(async (socket, next) => {
     const username = socket.handshake.auth.username;
     if (!username) {
       return next(new Error("invalid username"));
@@ -40,7 +42,7 @@ io.use((socket, next) => {
     socket.on("new-game", async (game) => {
         const collection = await mongoClient.gamesCollection();
 
-        game.gameState.key = uuidv4();
+        game.key = uuidv4();
 
         await collection.insertOne(game);
 
@@ -49,7 +51,7 @@ io.use((socket, next) => {
 
     socket.on("join-game", async (key) => {
         const collection = await mongoClient.gamesCollection();
-        const game = await collection.find({ 'gameState.key': key }).next();
+        const game = await collection.find({ 'key': key }).next();
         
         if (game.sauronForcesPlayer !== null && game.freePeoplePlayer !== null)
             return;
@@ -59,7 +61,7 @@ io.use((socket, next) => {
             : game.freePeoplePlayer = socket.username;
 
         await collection.replaceOne({
-            'gameState.key': key
+            'key': key
         }, game);
 
         io.emit("games", await collection.find().toArray());
@@ -71,8 +73,8 @@ io.use((socket, next) => {
 
     socket.on("update-game", async ({key, gameState, message}) => {
         const collection = await mongoClient.gamesCollection();
-        const game = await collection.find({ 'gameState.key': key }).next();
-
+        const game = await collection.find({ 'key': key }).next();
+        
         let isNewGame = false;
         if (game.gameState.gameStarted !== gameState.gameStarted) {
             isNewGame = true;
@@ -90,7 +92,7 @@ io.use((socket, next) => {
 
         game.gameState = gameState;
 
-        await collection.replaceOne({ 'gameState.key': key }, game);
+        await collection.replaceOne({ 'key': key }, game);
 
         io.to(key).emit("room-message", message);
         io.to(key).emit("game-updated", game);
@@ -105,7 +107,11 @@ io.use((socket, next) => {
 
         io.to(key).emit("room-message", `${socket.username} has joined`);
     });
+
+    await ringActions.subscribe(socket, io);
 });
+
+
 
 io.on("connection", async () => {
     const collection = await mongoClient.gamesCollection()

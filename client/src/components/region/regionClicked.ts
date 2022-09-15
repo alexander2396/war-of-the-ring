@@ -16,6 +16,7 @@ export type RegionClickedTypes = {
 export const regionClicked = ({region, showUnitsMenu, setSelectedRegion, dispatch, SelectedRegion}: RegionClickedTypes): void => {
     if (!SelectedRegion) {
         region.units.map(x => x.selected = true);
+        
         showUnitsMenu(true);
         setSelectedRegion(region);
     } else {

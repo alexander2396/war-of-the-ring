@@ -7,7 +7,6 @@ import { Ring } from "./ring";
 import { Unit } from "./unit";
 
 export interface GameState {
-    key: string;
     turn: number;
     gameStarted: boolean;
     regions: Region[];
