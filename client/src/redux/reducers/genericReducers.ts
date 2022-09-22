@@ -34,7 +34,8 @@ export const setSauronForcesVictoryPointsReducer = (state: ApplicationState, act
 }
 
 export const updateUnitsPoolReducer = (state: ApplicationState, action: PayloadAction<Unit[]>) => {
-    state.gameState.unitsPool = action.payload;
-
-    saveGame(state, `${state.username} updated units pool.`);
+    // state.socket.emit('update-units-pool', {
+    //     _id: state._id,
+    //     units: action.payload
+    // });
 }

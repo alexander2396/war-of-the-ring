@@ -50,11 +50,11 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
 
             if (!unit) return;
 
-            dispatch(updateUnitsPool(unitsPool.filter(x => x.key !== unit.key)));
+            //dispatch(updateUnitsPool(unitsPool.filter(x => x.key !== unit.key)));
         } else {
             unit = new Unit(selectedSideOfUnit, selectedFactionOfUnit, UnitType.Leader, selectedHero);
         }
-        
+
         dispatch(addUnit({
             regionKey: selectedRegion.key,
             unit: unit
