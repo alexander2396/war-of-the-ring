@@ -109,19 +109,19 @@ io.use(async (socket, next) => {
         io.to(_id).emit("room-message", `${socket.username} has joined`);
     });
 
+    socket.on("ping", (callback) => {
+        callback();
+    });
+
     await ringActions.subscribe(socket, io);
     await regionActions.subscribe(socket, io);
 });
-
-
 
 io.on("connection", async () => {
     const collection = await mongoClient.gamesCollection()
     io.emit("users", _getAllUsers());
     io.emit("games", await collection.find().toArray());
 });
-
-
 
 function _getAllUsers() {
     const users = [];

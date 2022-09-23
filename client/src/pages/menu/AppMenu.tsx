@@ -9,6 +9,7 @@ export function AppMenu() {
 
     const [ShowMenu,setShowMenu]=useState(false);
     const [modalShow, setModalShow] = useState(false);
+    const [ping, setPing] = useState(0);
 
     const socket = useAppSelector(getSocket);
     const _id = useAppSelector(selectGameId);
@@ -53,6 +54,14 @@ export function AppMenu() {
         dispatch(setMordorTrack(fellowship.mordorPosition + 1));
     }
 
+    setInterval(() => {
+        const start = Date.now();
+      
+        socket.emit("ping", () => {
+          setPing(Date.now() - start);
+        });
+    }, 2000);
+
     return (
         <div className={styles.menu}>
             <Button className={styles.menuBtn} variant="light" size="lg"
@@ -80,9 +89,9 @@ export function AppMenu() {
 
                 <div className='mt-5'>
                     <Button variant="danger" onClick={() => fellowshipToMordor()}>To Mordor!!!</Button>
-
                 </div>
 
+                <span className="mt-4">Ping: {ping}</span>
             </div>
         }
 

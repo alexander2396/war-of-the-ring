@@ -2,7 +2,6 @@ import './App.css';
 import { AppMenu } from './pages/menu/AppMenu';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Board } from './pages/board/Board';
-import { io } from 'socket.io-client';
 import { Lobby } from './pages/lobby/Lobby';
 import { useAppDispatch } from './tools/hooks/hooks';
 import { openSocket } from './redux/game/gameSlice';
@@ -11,9 +10,6 @@ function App() {
     const dispatch = useAppDispatch();
 
     dispatch(openSocket());
-    // socket.onAny((event, ...args) => {
-    //     console.log(event, args);
-    // });
 
     return (
         <div className="App">

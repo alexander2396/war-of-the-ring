@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { selectGame, getSocket } from '../../redux/game/gameSlice';
-import { useAppSelector, useAppDispatch } from '../../tools/hooks/hooks';
+import { getSocket } from '../../redux/game/gameSlice';
+import { useAppSelector } from '../../tools/hooks/hooks';
 import styles from './Room.module.css';
 
 export function Room() {
-    const gameSlice = useAppSelector(selectGame);
-    const dispatch = useAppDispatch();
     const [Messages, setMessages]=useState([]);
 
     const socket = useAppSelector(getSocket);
