@@ -10,7 +10,7 @@ import { activatePoliticsReducer, movePoliticsReducer } from "../reducers/politi
 import { useFreePeopleRingReducer, useSauronForcesRingReducer } from "../reducers/ringReducers";
 import { hideFellowshipReducer, killRandomCompanionReducer, moveFellowshipToRegionReduces, revealFellowshipReducer, setCorruptionReducer, setFellowshipTrackPositionReducer, setMordorTrackReducer } from "../reducers/fellowshipReducers";
 import { addHuntTileToPoolReducer, removeHuntTileFromPoolReducer, getRandomHuntTileFromPoolReducer } from "../reducers/huntReducers";
-import { addUnitReducer, downgradeUnitReducer, moveDeadUnitToPoolReducer, moveUnitsReducer, removeUnitsReducer } from "../reducers/regionReducers";
+import { addUnitReducer, downgradeUnitReducer, moveDeadUnitToPoolReducer, moveUnitsReducer, removeUnitsReducer, setRegionCapturedReducer } from "../reducers/regionReducers";
 
 const initialState: ApplicationState = {
     _id: null,
@@ -95,6 +95,7 @@ export const gameSlice = createSlice({
         downgradeUnit: downgradeUnitReducer,
         moveDeadUnitToPool: moveDeadUnitToPoolReducer,
         updateUnitsPool: updateUnitsPoolReducer,
+        setRegionCaptured: setRegionCapturedReducer,
 
         drawCard: drawCardReducer,
         draftCard: draftCardReducer,
@@ -135,6 +136,7 @@ export const {
     downgradeUnit,
     moveDeadUnitToPool,
     updateUnitsPool,
+    setRegionCaptured,
 
     useFreePeopleDice,
     useSauronForcesDice,

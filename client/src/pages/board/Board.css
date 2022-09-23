@@ -16,6 +16,11 @@
     cursor: pointer;
 }
 
+.regionArmy .unit {
+    
+    z-index: 2;
+}
+
 .unitCount {
     margin-top: -5px;
 }
@@ -128,5 +133,15 @@
 
 .fellowship-mordor img {
     width: 100%;
+}
+
+.region-control-image {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 25px;
+    height: 25px;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
 }
 

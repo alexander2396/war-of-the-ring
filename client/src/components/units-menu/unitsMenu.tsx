@@ -6,8 +6,9 @@ import { Region } from "../../models/region"
 import { Side } from "../../models/enums/side"
 import { Unit } from "../../models/unit"
 import { UnitType } from "../../models/enums/unitType"
-import { addUnit, downgradeUnit, killRandomCompanion, moveFellowshipToRegion, removeUnits, selectRegions, selectUnitsPool, selectUserData, updateUnitsPool } from "../../redux/game/gameSlice"
+import { addUnit, downgradeUnit, killRandomCompanion, moveFellowshipToRegion, removeUnits, selectRegions, selectUnitsPool, selectUserData, setRegionCaptured, updateUnitsPool } from "../../redux/game/gameSlice"
 import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks"
+import { SettlementType } from "../../models/enums/settlementType"
 
 type UnitsMenuProps = {
     selectedRegion: Region,
@@ -139,6 +140,26 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
         setSelectedRegion(region);
     }
 
+    function _captureRegion() {
+        dispatch(setRegionCaptured({
+            regionKey: selectedRegion.key,
+            captured: true
+        }));
+    }
+
+    function _reCaptureRegion() {
+        dispatch(setRegionCaptured({
+            regionKey: selectedRegion.key,
+            captured: false
+        }));
+    }
+
+    function isTown() {
+        return selectedRegion.settlementType === SettlementType.SmallTown ||
+            selectedRegion.settlementType === SettlementType.LargeTown ||
+            selectedRegion.settlementType === SettlementType.Castle;
+    }
+
     return (
         <>
             <Card className="unitsMenu">
@@ -182,7 +203,19 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
                         selectedRegion.units.filter(x => x.selected === true).length == 1 &&
                         selectedRegion.units.filter(x => x.selected === true && x.type === UnitType.Elite).length == 1 &&
                         <div className="buttonGroup">
-                        <Button variant="info" onClick={() => {_downgradeUnit()}}>Downgrade</Button>
+                            <Button variant="info" onClick={() => {_downgradeUnit()}}>Downgrade</Button>
+                        </div>
+                    }
+                    {
+                        isTown() && selectedRegion.captured === false &&
+                        <div className="buttonGroup">
+                            <Button variant="outline-danger" onClick={() => {_captureRegion()}}>Capture</Button>
+                        </div>
+                    }
+                    {
+                        isTown() && selectedRegion.captured === true &&
+                        <div className="buttonGroup">
+                            <Button variant="outline-success" onClick={() => {_reCaptureRegion()}}>Re-Capture</Button>
                         </div>
                     }
                 </Card.Body>

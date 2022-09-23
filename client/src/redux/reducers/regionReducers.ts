@@ -102,3 +102,11 @@ export const downgradeUnitReducer = (state: ApplicationState, action: PayloadAct
 
     saveGame(state, `${state.username} downgraded unit in ${action.payload.regionKey}.`);
 }
+
+export const setRegionCapturedReducer = (state: ApplicationState, action: PayloadAction<{regionKey: string, captured: boolean}>) => {
+    state.socket.emit('capture-region', {
+        _id: state._id,
+        regionKey: action.payload.regionKey,
+        captured: action.payload.captured
+    });
+}

@@ -73,14 +73,18 @@ exports.subscribe = async function (socket, io) {
         io.to(_id).emit("game-updated", game);
     });
 
-    // socket.on("update-units-pool", async ({_id, units}) => {
-    //     const collection = await mongoClient.gamesCollection();
-    //     const game = await collection.find({ '_id': mongoClient.ObjectId(_id) }).next();
+    socket.on("capture-region", async ({_id, regionKey, captured}) => {
+        const collection = await mongoClient.gamesCollection();
+        const game = await collection.find({ '_id': mongoClient.ObjectId(_id) }).next();
 
-    //     await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
-    //         { $set: {"gameState.unitsPool": units } });
+        let region = game.gameState.regions.find(x => x.key === regionKey);
 
-    //     io.to(_id).emit("room-message", `${socket.username} updated units pool.`);
-    //     io.to(_id).emit("game-updated", game);
-    // });
+        region.captured = captured;
+
+        await collection.updateOne({ '_id': mongoClient.ObjectId(_id), "gameState.regions.key": region.key }, 
+            { $set: {"gameState.regions.$.captured": region.captured } });
+
+        io.to(_id).emit("room-message", `${socket.username} updated ${regionKey} is captured.`);
+        io.to(_id).emit("game-updated", game);
+    });
 }
