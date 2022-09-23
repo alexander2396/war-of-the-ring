@@ -9,6 +9,8 @@ export function AppMenu() {
 
     const [ShowMenu,setShowMenu]=useState(false);
     const [modalShow, setModalShow] = useState(false);
+
+    const [pingStarted, setPingStarted] = useState(false);
     const [ping, setPing] = useState(0);
 
     const socket = useAppSelector(getSocket);
@@ -54,13 +56,17 @@ export function AppMenu() {
         dispatch(setMordorTrack(fellowship.mordorPosition + 1));
     }
 
-    setInterval(() => {
-        const start = Date.now();
-      
-        socket.emit("ping", () => {
-          setPing(Date.now() - start);
-        });
-    }, 2000);
+    if (!pingStarted) {
+        setInterval(() => {
+            const start = Date.now();
+          
+            socket.emit("ping", () => {
+              setPing(Date.now() - start);
+            });
+        }, 1000);
+        setPingStarted(true);
+    }
+
 
     return (
         <div className={styles.menu}>
