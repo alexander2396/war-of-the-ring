@@ -1,9 +1,9 @@
 .fpRings {
     position: absolute;
     left: 416px;
-    top: 27px;
+    top: 25px;
     display: flex;
-    background-color: white;
+    background-color: #90acbc;
     padding: 5px;
     width: 110px;
     height: 34px;
@@ -11,10 +11,10 @@
 
 .sfRings {
     position: absolute;
-    left: 1486px;
-    top: 1254px;
+    left: 1489px;
+    top: 1252px;
     display: flex;
-    background-color: white;
+    background-color: #b9563d;
     padding: 5px;
     width: 110px;
     height: 34px;
