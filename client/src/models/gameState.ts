@@ -4,6 +4,7 @@ import { HuntTile } from "./huntTile";
 import { Politics } from "./politics";
 import { Region } from "./region";
 import { Ring } from "./ring";
+import { TurnStatistics } from "./turnStatistics";
 import { Unit } from "./unit";
 
 export interface GameState {
@@ -58,5 +59,9 @@ export interface GameState {
         pool: HuntTile[]
     },
     unitsPool: Unit[],
-    deadUnits: Unit[]
+    deadUnits: Unit[],
+    turnStatistics: {
+        freePeople: TurnStatistics[],
+        sauronForces: TurnStatistics[]
+    }
 }

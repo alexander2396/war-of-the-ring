@@ -59,13 +59,22 @@ exports.subscribe = async function (socket, io) {
   
         game.gameState.dices.freePeople.available = dices;
         game.gameState.dices.freePeople.used = [];
+        game.gameState.turn++;
 
         await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
             { $set: {"gameState.dices.freePeople": game.gameState.dices.freePeople } });
 
         await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
-            { $set: {"gameState.turn": game.gameState.turn++ } });
+            { $set: { "gameState.turn": game.gameState.turn } });
         
+        game.gameState.turnStatistics.freePeople.push({
+            turn: game.gameState.turn,
+            dices: dices
+        });
+
+        await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
+            { $set: { "gameState.turnStatistics.freePeople": game.gameState.turnStatistics.freePeople } });
+
         io.to(_id).emit("room-message", `${socket.username} rolled dices.`);
         io.to(_id).emit("game-updated", game);
     });
@@ -81,6 +90,14 @@ exports.subscribe = async function (socket, io) {
 
         await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
             { $set: {"gameState.dices.sauronForces": game.gameState.dices.sauronForces } });
+        
+        game.gameState.turnStatistics.sauronForces.push({
+            turn: game.gameState.turn,
+            dices: available.concat(used)
+        });
+
+        await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
+            { $set: { "gameState.turnStatistics.sauronForces": game.gameState.turnStatistics.sauronForces } });
         
         io.to(_id).emit("room-message", `${socket.username} rolled dices.`);
         io.to(_id).emit("game-updated", game);

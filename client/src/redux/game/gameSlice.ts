@@ -71,7 +71,11 @@ const initialState: ApplicationState = {
             pool: []
         },
         unitsPool: [],
-        deadUnits: []
+        deadUnits: [],
+        turnStatistics: {
+            freePeople: [],
+            sauronForces: []
+        }
     }
 };
 
@@ -169,7 +173,7 @@ export const {
 
     addHuntTileToPool,
     removeHuntTileFromPool,
-    getRandomHuntTileFromPool,
+    getRandomHuntTileFromPool
  } = gameSlice.actions;
 
 export const selectGameId = (state: RootState) => state.game._id;
@@ -212,5 +216,7 @@ export const selectUserData = (state: RootState) => {
 export const selectTurn = (state: RootState) => state.game.gameState.turn;
 
 export const selectPing = (state: RootState) => state.game.ping;
+
+export const selectStatistics = (state: RootState) => state.game.gameState.turnStatistics;
 
 export default gameSlice.reducer;

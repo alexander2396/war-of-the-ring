@@ -14,6 +14,7 @@ import { Dices } from "../dices/dices";
 import { Hunt } from "../hunt/hunt";
 import { UnitsPool } from "../units-pool/unitsPool";
 import { DeadUnits } from "../dead-units/deadUnits";
+import { TurnStatisticsPage } from "../turn-statistics/turnStatistics";
 
 export function GameModal(props: any) {
     const [SelectedCard, setSelectedCard]=useState(null as Card);
@@ -204,6 +205,9 @@ export function GameModal(props: any) {
                 </Tab>
                 <Tab eventKey="dead-units" title="Dead units">
                     <DeadUnits />
+                </Tab>
+                <Tab eventKey="turn-statistics" title="Statistics">
+                    <TurnStatisticsPage />
                 </Tab>
             </Tabs>          
             </Modal.Body>
