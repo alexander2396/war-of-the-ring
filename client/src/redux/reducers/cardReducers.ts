@@ -1,85 +1,32 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { DrawCardAction } from "../../actions/drawCardAction";
 import { Card } from "../../models/card";
 import { CardType } from "../../models/enums/cardType";
 import { Side } from "../../models/enums/side";
-import { saveGame } from "./genericReducers";
+
+class DrawCardAction {
+    side: Side;
+    cardType: CardType;
+}
 
 export const drawCardReducer = (state, action: PayloadAction<DrawCardAction>) => {
-    let deck: Card[];
-
-    if (action.payload.side === Side.FreePeople) {
-        if (action.payload.cardType === CardType.Strategy)
-            deck = state.gameState.cards.freePeople.strategyDeck;
-        else
-            deck = state.gameState.cards.freePeople.characterDeck;
-    } else {
-        if (action.payload.cardType === CardType.Strategy)
-            deck = state.gameState.cards.sauronForces.strategyDeck;
-        else
-            deck = state.gameState.cards.sauronForces.characterDeck;
-    }
-
-    if (deck.length === 0) return; 
-
-    const card = deck.shift();
-
-    if (action.payload.side === Side.FreePeople) {
-        state.gameState.cards.freePeople.hand.push(card);
-    } else {
-        state.gameState.cards.sauronForces.hand.push(card);
-    }
-
-    saveGame(state, `${state.username} drawn card.`);
+    state.socket.emit('draw-card', {
+        _id: state._id,
+        side: action.payload.side,
+        cardType: action.payload.cardType
+    });
 }
 
 export const draftCardReducer = (state, action: PayloadAction<{card: Card, isPlayed: boolean}>) => {
-    let hand: Card[];
-    let draftCards: Card[];
-
-    if (action.payload.card.side === Side.FreePeople) {
-        hand = state.gameState.cards.freePeople.hand;
-        draftCards = state.gameState.cards.freePeople.draft;
-    } else {
-        hand = state.gameState.cards.sauronForces.hand;
-        draftCards = state.gameState.cards.sauronForces.draft;
-    }
-
-    let card = hand.find(x => x.key === action.payload.card.key);
-
-    if (card) {
-        hand.splice(hand.indexOf(card), 1);           
-    } else {
-        let activeCards = action.payload.card.side === Side.FreePeople
-            ? state.gameState.cards.freePeople.active
-            : state.gameState.cards.sauronForces.active;
-
-        card = activeCards.find(x => x.key === action.payload.card.key);
-
-        activeCards.splice(activeCards.indexOf(card), 1); 
-    }
-
-    draftCards.push(card);
-
-    saveGame(state, `${state.username} ${action.payload.isPlayed ? 'played' : 'discarded'} card ${action.payload.card.imageUrl}.`);
+    state.socket.emit('draft-card', {
+        _id: state._id,
+        card: action.payload.card,
+        isPlayed: action.payload.isPlayed
+    });
 }
 
 export const activateCardReducer = (state, action: PayloadAction<Card>) => {
-    let hand: Card[];
-    let activeCards: Card[];
-
-    if (action.payload.side === Side.FreePeople) {
-        hand = state.gameState.cards.freePeople.hand;
-        activeCards = state.gameState.cards.freePeople.active;
-    } else {
-        hand = state.gameState.cards.sauronForces.hand;
-        activeCards = state.gameState.cards.sauronForces.active;
-    }
-
-    const card = hand.find(x => x.key === action.payload.key);
-
-    hand.splice(hand.indexOf(card), 1);
-    activeCards.push(card);
-
-    saveGame(state, `${state.username} activated card.`);
+    state.socket.emit('activate-card', {
+        _id: state._id,
+        card: action.payload
+    });
 }

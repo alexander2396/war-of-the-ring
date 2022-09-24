@@ -6,6 +6,10 @@ const mongoClient = require('./mongo-client');
 
 const ringActions = require('./actions/ringActions');
 const regionActions = require('./actions/regionActions');
+const cardActions = require('./actions/cardActions');
+const diceActions = require('./actions/diceActions');
+const fellowshipActions = require('./actions/fellowshipActions');
+const genericActions = require('./actions/genericActions');
 
 const app = express();
 
@@ -41,8 +45,6 @@ io.use(async (socket, next) => {
 
     socket.on("new-game", async (game) => {
         const collection = await mongoClient.gamesCollection();
-
-        //game._id = uuidv4();
 
         await collection.insertOne(game);
 
@@ -115,6 +117,10 @@ io.use(async (socket, next) => {
 
     await ringActions.subscribe(socket, io);
     await regionActions.subscribe(socket, io);
+    await cardActions.subscribe(socket, io);
+    await diceActions.subscribe(socket, io);
+    await fellowshipActions.subscribe(socket, io);
+    await genericActions.subscribe(socket, io);
 });
 
 io.on("connection", async () => {

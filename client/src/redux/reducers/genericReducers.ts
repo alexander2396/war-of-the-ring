@@ -22,20 +22,15 @@ export function saveGame(state, message) {
 }
 
 export const setFreePeopleVictoryPointsReducer = (state: ApplicationState, action: PayloadAction<number>) => {
-    state.gameState.victoryPoints.freePeople = action.payload;
-
-    saveGame(state, `${state.username} set FP victory points to ${action.payload}.`);
+    state.socket.emit('set-fp-victory-points', {
+        _id: state._id,
+        value: action.payload
+    });
 }
 
 export const setSauronForcesVictoryPointsReducer = (state: ApplicationState, action: PayloadAction<number>) => {
-    state.gameState.victoryPoints.sauronForces = action.payload;
-
-    saveGame(state, `${state.username} set SF victory points to ${action.payload}.`);
-}
-
-export const updateUnitsPoolReducer = (state: ApplicationState, action: PayloadAction<Unit[]>) => {
-    // state.socket.emit('update-units-pool', {
-    //     _id: state._id,
-    //     units: action.payload
-    // });
+    state.socket.emit('set-sf-victory-points', {
+        _id: state._id,
+        value: action.payload
+    });
 }

@@ -1,10 +1,6 @@
-import { current, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 import { ApplicationState } from "../../models/applicationState";
-import { Faction } from "../../models/enums/faction";
-import { Side } from "../../models/enums/side";
-import { UnitType } from "../../models/enums/unitType";
 import { Unit } from "../../models/unit";
-import { saveGame } from "./genericReducers";
 
 export class MoveUnitsAction {
     regionFromKey: string;
@@ -53,54 +49,18 @@ export const addUnitReducer = (state: ApplicationState, action: PayloadAction<Ad
 }
 
 export const moveDeadUnitToPoolReducer = (state: ApplicationState, action: PayloadAction<Unit>) => {
-    let unit = state.gameState.deadUnits.find(x => x.key === action.payload.key);
-
-    state.gameState.unitsPool.push(unit);
-
-    state.gameState.deadUnits = state.gameState.deadUnits.filter(x => x.key !== unit.key);
-    
-    saveGame(state, `${state.username} moved unit ${Faction[action.payload.faction]} from dead to pool.`);
+    state.socket.emit('move-dead-unit-to-pool', {
+        _id: state._id,
+        unitKey: action.payload.key
+    });
 }
 
 export const downgradeUnitReducer = (state: ApplicationState, action: PayloadAction<DowngradeUnitAction>) => {
-    let region = state.gameState.regions.find(x => x.key === action.payload.regionKey);
-
-    let unit = region.units.find(x => x.key === action.payload.unit.key);
-
-    if (unit.type !== UnitType.Elite) return;
-
-    if (unit.side === Side.SauronForces) {
-        let regular = current(state.gameState.unitsPool).find(x => x.faction === unit.faction && x.type === UnitType.Regular);
-        if (!regular) return;
-
-        region.units = region.units.filter(x => x.key !== unit.key);
-        region.units.push(regular);
-
-        state.gameState.unitsPool = state.gameState.unitsPool.filter(x => x.key !== regular.key);
-        state.gameState.unitsPool.push(unit);
-    }
-
-    if (unit.side === Side.FreePeople) {
-        let regular = current(state.gameState.deadUnits).find(x => x.faction === unit.faction && x.type === UnitType.Regular);
-
-        if (regular) {
-            state.gameState.deadUnits = state.gameState.deadUnits.filter(x => x.key !== regular.key);
-        } else {
-            regular = current(state.gameState.unitsPool).find(x => x.faction === unit.faction && x.type === UnitType.Regular);
-
-            if (!regular) return;
-
-            state.gameState.unitsPool = state.gameState.unitsPool.filter(x => x.key !== regular.key);
-        }
-
-
-        region.units = region.units.filter(x => x.key !== unit.key);
-        region.units.push(regular);
-
-        state.gameState.deadUnits.push(unit);
-    }
-
-    saveGame(state, `${state.username} downgraded unit in ${action.payload.regionKey}.`);
+    state.socket.emit('downgrade-unit', {
+        _id: state._id,
+        regionKey: action.payload.regionKey,
+        unitKey: action.payload.unit.key
+    });
 }
 
 export const setRegionCapturedReducer = (state: ApplicationState, action: PayloadAction<{regionKey: string, captured: boolean}>) => {

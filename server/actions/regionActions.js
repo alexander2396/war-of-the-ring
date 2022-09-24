@@ -5,6 +5,12 @@ const Side = {
     SauronForces: 1
 }
 
+const UnitType = {
+    Regular: 0,
+    Elite: 1,
+    Leader: 2
+}
+
 exports.subscribe = async function (socket, io) {
     socket.on("move-units", async ({_id, regionFromKey, regionToKey, units}) => {
         const collection = await mongoClient.gamesCollection();
@@ -85,6 +91,80 @@ exports.subscribe = async function (socket, io) {
             { $set: {"gameState.regions.$.captured": region.captured } });
 
         io.to(_id).emit("room-message", `${socket.username} updated ${regionKey} is captured.`);
+        io.to(_id).emit("game-updated", game);
+    });
+
+    socket.on("downgrade-unit", async ({_id, regionKey, unitKey}) => {
+        const collection = await mongoClient.gamesCollection();
+        const game = await collection.find({ '_id': mongoClient.ObjectId(_id) }).next();
+
+        let region = game.gameState.regions.find(x => x.key === regionKey);
+        let unit = region.units.find(x => x.key === unitKey);
+
+        if (unit.type !== UnitType.Elite) return;
+
+        if (unit.side === Side.SauronForces) {
+            let regular =  game.gameState.unitsPool.find(x => x.faction === unit.faction && x.type === UnitType.Regular);
+            if (!regular) return;
+    
+            region.units = region.units.filter(x => x.key !== unit.key);
+            region.units.push(regular);
+    
+            game.gameState.unitsPool = game.gameState.unitsPool.filter(x => x.key !== regular.key);
+            game.gameState.unitsPool.push(unit);
+        }
+
+        if (unit.side === Side.FreePeople) {
+            let regular = game.gameState.deadUnits.find(x => x.faction === unit.faction && x.type === UnitType.Regular);
+    
+            if (regular) {
+                game.gameState.deadUnits = game.gameState.deadUnits.filter(x => x.key !== regular.key);
+            } else {
+                regular = game.gameState.unitsPool.find(x => x.faction === unit.faction && x.type === UnitType.Regular);
+    
+                if (!regular) return;
+    
+                game.gameState.unitsPool = game.gameState.unitsPool.filter(x => x.key !== regular.key);
+            }
+    
+            region.units = region.units.filter(x => x.key !== unit.key);
+            region.units.push(regular);
+    
+            game.gameState.deadUnits.push(unit);
+        }
+
+        await collection.updateOne({ '_id': mongoClient.ObjectId(_id), "gameState.regions.key": region.key }, 
+            { $set: {"gameState.regions.$.units": region.units } });
+    
+        await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
+            { $set: {"gameState.unitsPool": game.gameState.unitsPool } });
+
+        await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
+            { $set: {"gameState.deadUnits": game.gameState.deadUnits } });
+
+        
+        io.to(_id).emit("room-message", `${socket.username} downgraded unit in ${regionKey}.`);
+        io.to(_id).emit("game-updated", game);
+    });
+
+    socket.on("move-dead-unit-to-pool", async ({_id, unitKey}) => {
+        const collection = await mongoClient.gamesCollection();
+        const game = await collection.find({ '_id': mongoClient.ObjectId(_id) }).next();
+
+        let unit = game.gameState.deadUnits.find(x => x.key === unitKey);
+
+        game.gameState.unitsPool.push(unit);
+
+        game.gameState.deadUnits = game.gameState.deadUnits.filter(x => x.key !== unit.key);
+
+        await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
+            { $set: {"gameState.unitsPool": game.gameState.unitsPool } });
+
+        await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
+            { $set: {"gameState.deadUnits": game.gameState.deadUnits } });
+
+            
+        io.to(_id).emit("room-message", `${socket.username} moved unit from dead to pool.`);
         io.to(_id).emit("game-updated", game);
     });
 }

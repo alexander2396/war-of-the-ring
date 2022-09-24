@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ApplicationState } from "../../models/applicationState";
 import { RootState } from "../store";
-import { openSocketReducer, setFreePeopleVictoryPointsReducer, setSauronForcesVictoryPointsReducer, setUserReducer, updateUnitsPoolReducer } from "../reducers/genericReducers";
+import { openSocketReducer, setFreePeopleVictoryPointsReducer, setSauronForcesVictoryPointsReducer, setUserReducer } from "../reducers/genericReducers";
 import { setGameReducer, startNewGameReducer } from "../reducers/gameReducers";
 import { rollDicesReducer, setFreePeopleHuntDicesReducer, setSauronForcesHuntDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
 import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reducers/cardReducers";
@@ -94,7 +94,6 @@ export const gameSlice = createSlice({
         addUnit: addUnitReducer,
         downgradeUnit: downgradeUnitReducer,
         moveDeadUnitToPool: moveDeadUnitToPoolReducer,
-        updateUnitsPool: updateUnitsPoolReducer,
         setRegionCaptured: setRegionCapturedReducer,
 
         drawCard: drawCardReducer,
@@ -135,7 +134,6 @@ export const {
     addUnit,
     downgradeUnit,
     moveDeadUnitToPool,
-    updateUnitsPool,
     setRegionCaptured,
 
     useFreePeopleDice,

@@ -6,7 +6,7 @@ import { Region } from "../../models/region"
 import { Side } from "../../models/enums/side"
 import { Unit } from "../../models/unit"
 import { UnitType } from "../../models/enums/unitType"
-import { addUnit, downgradeUnit, killRandomCompanion, moveFellowshipToRegion, removeUnits, selectRegions, selectUnitsPool, selectUserData, setRegionCaptured, updateUnitsPool } from "../../redux/game/gameSlice"
+import { addUnit, downgradeUnit, killRandomCompanion, moveFellowshipToRegion, removeUnits, selectRegions, selectUnitsPool, selectUserData, setRegionCaptured } from "../../redux/game/gameSlice"
 import { useAppDispatch, useAppSelector } from "../../tools/hooks/hooks"
 import { SettlementType } from "../../models/enums/settlementType"
 
@@ -80,10 +80,6 @@ export const UnitsMenu = ({selectedRegion, setSelectedRegion, showUnitsMenu}: Un
         tempRegion.units = [].concat(selectedRegion.units.filter(unit => !unit.selected));
 
         setSelectedRegion(tempRegion);
-
-        if (selectedSFUnits.some(x => x)) {
-            dispatch(updateUnitsPool(selectedSFUnits.concat(unitsPool)));
-        }
     }
 
     const _downgradeUnit = () => {
