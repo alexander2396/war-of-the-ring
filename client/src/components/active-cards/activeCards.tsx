@@ -20,7 +20,6 @@ export const ActiveCards = () => {
     return (
         <div className={styles.cards}>
             {freePeopleCards.active.map((card) => {
-
                 return (
                     <>
                         <OverlayTrigger trigger="click" key={card.key} placement="right" rootClose
@@ -40,9 +39,23 @@ export const ActiveCards = () => {
                 )
             })}
             {sauronForcesCards.active.map((card) => {
-                return (<div className={styles.card}>
-                    <img src={card.smallImageUrl} />
-                </div>) 
+                return (
+                    <>
+                        <OverlayTrigger trigger="click" key={card.key} placement="right" rootClose
+                            overlay={
+                                <Popover>
+                                    <Popover.Body>
+                                        <img src={card.imageUrl} />
+                                        <Button className="mt-2" variant="danger" onClick={() => _draftCard(card)}>Remove</Button>
+                                    </Popover.Body>
+                                </Popover>
+                            }>
+                            <div className={styles.card}>
+                                <img src={card.smallImageUrl} />
+                            </div>
+                        </OverlayTrigger>
+                    </>
+                )
             })}
         </div>
     )
