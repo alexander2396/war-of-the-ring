@@ -35,106 +35,109 @@ export const TurnStatisticsPage = () => {
         return Math.round((count / total) * 100);
     }
     return (<>
-        <Container>
-            <Row>
-                <Col>
-                    {statistics && statistics.freePeople.map((stat, i) => {
-                        return (<>
-                            <Container className="p-2 ">
-                                <Row>
+        {
+            statistics && 
+            <Container>
+                <Row>
+                    <Col>
+                        {statistics.freePeople.map((stat, i) => {
+                            return (<>
+                                <Container className="p-2 ">
+                                    <Row>
+                                        <Col lg={2} className="d-flex align-items-center">Turn {stat.turn}</Col>
+                                        <Col lg={10}>
+                                            <div className="d-flex flex-row">
+                                                {stat.dices.map((dice, i) => {
+                                                    return (<>
+                                                        <div key={i} className="m-1 c-pointer">
+                                                            <img width={"40px"} src={dice.imageUrl} />
+                                                        </div>
+                                                    </>) 
+                                                })}
+                                            </div>
+                                        </Col>
+                                        <Col></Col>
+                                    </Row>
+                                </Container>
+                            </>) 
+                        })}
+                        <div>
+                            <div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADFPcharacter.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.Character, Side.FreePeople) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADFParmymuster.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.ArmyMuster, Side.FreePeople) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADFPevent.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.Palantir, Side.FreePeople) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADFPmuster.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.Muster, Side.FreePeople) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADFPwill.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.WillOfTheWest, Side.FreePeople) }%</span>
+                                </div>
+                            </div>
+                        </div>    
+                    </Col>
+                    <Col>
+                        {statistics.sauronForces.map((stat, i) => {
+                            return (<>
+                                <Container className="p-2 ">
+                                    <Row>
                                     <Col lg={2} className="d-flex align-items-center">Turn {stat.turn}</Col>
-                                    <Col lg={10}>
-                                        <div className="d-flex flex-row">
-                                            {stat.dices.map((dice, i) => {
-                                                return (<>
-                                                    <div key={i} className="m-1 c-pointer">
-                                                        <img width={"40px"} src={dice.imageUrl} />
-                                                    </div>
-                                                </>) 
-                                            })}
-                                        </div>
-                                    </Col>
-                                    <Col></Col>
-                                </Row>
-                            </Container>
-                        </>) 
-                    })}
-                    <div>
+                                        <Col lg={10}>
+                                            <div className="d-flex flex-row">
+                                                {stat.dices.map((dice, i) => {
+                                                    return (<>
+                                                        <div key={i} className="m-1 c-pointer">
+                                                            <img width={"40px"} src={dice.imageUrl} />
+                                                        </div>
+                                                    </>) 
+                                                })}
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            </>) 
+                        })}
                         <div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADFPcharacter.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.Character, Side.FreePeople) }%</span>
+                            <div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADSAcharacter.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.Character, Side.SauronForces) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADSAarmymuster.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.ArmyMuster, Side.SauronForces) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADSAevent.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.Palantir, Side.SauronForces) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADSAmuster.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.Muster, Side.SauronForces) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADSAarmy.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.Army, Side.SauronForces) }%</span>
+                                </div>
+                                <div className="m-1">
+                                    <img width={"40px"} src="images/dices/ADSAeye.png" />
+                                    <span className={styles.counter}>{ getCountPercentage(DiceType.Eye, Side.SauronForces) }%</span>
+                                </div>
                             </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADFParmymuster.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.ArmyMuster, Side.FreePeople) }%</span>
-                            </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADFPevent.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.Palantir, Side.FreePeople) }%</span>
-                            </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADFPmuster.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.Muster, Side.FreePeople) }%</span>
-                            </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADFPwill.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.WillOfTheWest, Side.FreePeople) }%</span>
-                            </div>
-                        </div>
-                    </div>    
-                </Col>
-                <Col>
-                    {statistics && statistics.sauronForces.map((stat, i) => {
-                        return (<>
-                            <Container className="p-2 ">
-                                <Row>
-                                <Col lg={2} className="d-flex align-items-center">Turn {stat.turn}</Col>
-                                    <Col lg={10}>
-                                        <div className="d-flex flex-row">
-                                            {stat.dices.map((dice, i) => {
-                                                return (<>
-                                                    <div key={i} className="m-1 c-pointer">
-                                                        <img width={"40px"} src={dice.imageUrl} />
-                                                    </div>
-                                                </>) 
-                                            })}
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </>) 
-                    })}
-                    <div>
-                        <div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADSAcharacter.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.Character, Side.SauronForces) }%</span>
-                            </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADSAarmymuster.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.ArmyMuster, Side.SauronForces) }%</span>
-                            </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADSAevent.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.Palantir, Side.SauronForces) }%</span>
-                            </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADSAmuster.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.Muster, Side.SauronForces) }%</span>
-                            </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADSAarmy.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.Army, Side.SauronForces) }%</span>
-                            </div>
-                            <div className="m-1">
-                                <img width={"40px"} src="images/dices/ADSAeye.png" />
-                                <span className={styles.counter}>{ getCountPercentage(DiceType.Eye, Side.SauronForces) }%</span>
-                            </div>
-                        </div>
-                    </div> 
-                </Col>
-            </Row>
-        </Container>
+                        </div> 
+                    </Col>
+                </Row>
+            </Container>
+        }
     </>)
 }
