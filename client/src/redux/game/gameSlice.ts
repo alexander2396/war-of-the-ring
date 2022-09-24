@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ApplicationState } from "../../models/applicationState";
 import { RootState } from "../store";
-import { openSocketReducer, setFreePeopleVictoryPointsReducer, setSauronForcesVictoryPointsReducer, setUserReducer } from "../reducers/genericReducers";
+import { openSocketReducer, setFreePeopleVictoryPointsReducer, setPingReducer, setSauronForcesVictoryPointsReducer, setUserReducer } from "../reducers/genericReducers";
 import { setGameReducer, startNewGameReducer } from "../reducers/gameReducers";
 import { rollDicesReducer, setFreePeopleHuntDicesReducer, setSauronForcesHuntDicesReducer, useFreePeopleDiceReducer, useSauronForcesDiceReducer } from "../reducers/diceReducers";
 import { activateCardReducer, draftCardReducer, drawCardReducer } from "../reducers/cardReducers";
@@ -15,6 +15,7 @@ import { addUnitReducer, downgradeUnitReducer, moveDeadUnitToPoolReducer, moveUn
 const initialState: ApplicationState = {
     _id: null,
     socket: null,
+    ping: 0,
     username: '',
     freePeoplePlayer: '',
     sauronForcesPlayer: '',
@@ -120,6 +121,8 @@ export const gameSlice = createSlice({
         addHuntTileToPool: addHuntTileToPoolReducer,
         removeHuntTileFromPool: removeHuntTileFromPoolReducer,
         getRandomHuntTileFromPool: getRandomHuntTileFromPoolReducer,
+
+        setPing: setPingReducer
     }
 });
 
@@ -128,6 +131,7 @@ export const {
     setUser,
     setGame,
     startNewGame,
+    setPing,
 
     moveUnits,
     removeUnits,
@@ -206,5 +210,7 @@ export const selectUserData = (state: RootState) => {
 }
 
 export const selectTurn = (state: RootState) => state.game.gameState.turn;
+
+export const selectPing = (state: RootState) => state.game.ping;
 
 export default gameSlice.reducer;

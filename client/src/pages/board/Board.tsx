@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "../../tools/hooks/hooks";
 import { RenderRegionAreas } from "../../components/region/renderRegionAreas";
 import { RenderRegion } from "../../components/region/renderRegion";
 import { Region } from "../../models/region";
-import { selectFellowship, selectRegions } from "../../redux/game/gameSlice";
+import { selectFellowship, selectPing, selectRegions } from "../../redux/game/gameSlice";
 import './Board.css';
 import { UnitsMenu } from "../../components/units-menu/unitsMenu";
 import { ActiveCards } from "../../components/active-cards/activeCards";
@@ -20,6 +20,7 @@ export function Board(props: any) {
 
     const regions = useAppSelector(selectRegions);
     const fellowship = useAppSelector(selectFellowship);
+    const ping = useAppSelector(selectPing);
     
     const dispatch = useAppDispatch();
 
@@ -57,6 +58,13 @@ export function Board(props: any) {
                 fellowship.mordorPosition > 0 &&
                 <div className={"fellowship-mordor track-" + fellowship.mordorPosition}>
                     <img src='images/units/Fellowship.png' alt = ""/>
+                </div>
+            }
+            
+            {
+                ping > 300 &&
+                <div className="ping-alert">
+                    Ping is {ping}
                 </div>
             }
         </div>

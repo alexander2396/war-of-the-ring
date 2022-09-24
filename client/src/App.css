@@ -15,3 +15,15 @@
 .ml-5 {
   margin-left: 5px;
 }
+
+.text-ok {
+  color: green;
+}
+
+.text-warning {
+  color: orange;
+}
+
+.text-danger {
+  color: red;
+}

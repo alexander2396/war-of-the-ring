@@ -34,3 +34,7 @@ export const setSauronForcesVictoryPointsReducer = (state: ApplicationState, act
         value: action.payload
     });
 }
+
+export const setPingReducer = (state: ApplicationState, action: PayloadAction<number>) => {
+    state.ping = action.payload;
+}

@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../tools/hooks/hooks';
 import { GameModal } from '../../components/game-modal/GameModal';
 import styles from './AppMenu.module.css';
-import { getSocket, selectFellowship, selectGameId, selectTurn, selectUserData, setMordorTrack } from '../../redux/game/gameSlice';
+import { getSocket, selectFellowship, selectGameId, selectPing, selectTurn, selectUserData, setMordorTrack, setPing } from '../../redux/game/gameSlice';
 
 export function AppMenu() {
 
@@ -11,13 +11,13 @@ export function AppMenu() {
     const [modalShow, setModalShow] = useState(false);
 
     const [pingStarted, setPingStarted] = useState(false);
-    const [ping, setPing] = useState(0);
 
     const socket = useAppSelector(getSocket);
     const _id = useAppSelector(selectGameId);
     const userData = useAppSelector(selectUserData);
     const fellowship = useAppSelector(selectFellowship);
     const turn = useAppSelector(selectTurn);
+    const ping = useAppSelector(selectPing);
 
     const dispatch = useAppDispatch();
 
@@ -61,9 +61,9 @@ export function AppMenu() {
             const start = Date.now();
           
             socket.emit("ping", () => {
-              setPing(Date.now() - start);
+                dispatch(setPing(Date.now() - start));
             });
-        }, 1000);
+        }, 2000);
         setPingStarted(true);
     }
 
@@ -97,7 +97,7 @@ export function AppMenu() {
                     <Button variant="danger" onClick={() => fellowshipToMordor()}>To Mordor!!!</Button>
                 </div>
 
-                <span className="mt-4">Ping: {ping}</span>
+                <div className="mt-4"><span className={ping < 100 ? 'text-ok' : (ping < 300 ? 'text-warning' : 'text-danger')}>Ping: {ping}</span></div>
             </div>
         }
 
