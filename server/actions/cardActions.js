@@ -59,7 +59,7 @@ exports.subscribe = async function (socket, io) {
 
         const currentPlayerSide = socket.username === game.freePeoplePlayer ? Side.FreePeople : Side.SauronForces;
        
-        if (currentPlayerSide !== side) return;
+        if (currentPlayerSide !== card.side) return;
 
         let hand;
         let draftCards;
@@ -122,7 +122,7 @@ exports.subscribe = async function (socket, io) {
 
         const currentPlayerSide = socket.username === game.freePeoplePlayer ? Side.FreePeople : Side.SauronForces;
        
-        if (currentPlayerSide !== side) return;
+        if (currentPlayerSide !== card.side) return;
 
         let hand;
         let activeCards;
