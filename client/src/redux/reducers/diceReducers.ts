@@ -5,11 +5,12 @@ import { Dice } from "../../models/dice";
 import { DiceType } from "../../models/enums/diceType";
 import { Side } from "../../models/enums/side";
 
-export const useFreePeopleDiceReducer = (state: ApplicationState, action: PayloadAction<{dice: Dice, type: DiceType}>) => {
+export const useFreePeopleDiceReducer = (state: ApplicationState, action: PayloadAction<{dice: Dice, type: DiceType, huntDice: Dice}>) => {
     state.socket.emit('use-fp-dice', {
         _id: state._id,
         diceKey: action.payload.dice.key,
-        diceAs: action.payload.type ? new Dice(action.payload.dice.side, action.payload.type) : null
+        diceAs: action.payload.type ? new Dice(action.payload.dice.side, action.payload.type) : null,
+        huntDice: action.payload.huntDice
     });
 }
 

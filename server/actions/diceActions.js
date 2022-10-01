@@ -11,7 +11,7 @@ const DiceType = {
 }
 
 exports.subscribe = async function (socket, io) {
-    socket.on("use-fp-dice", async ({_id, diceKey, diceAs}) => {
+    socket.on("use-fp-dice", async ({_id, diceKey, diceAs, huntDice}) => {
         const collection = await mongoClient.gamesCollection();
         const game = await collection.find({ '_id': mongoClient.ObjectId(_id) }).next();
 
@@ -27,6 +27,19 @@ exports.subscribe = async function (socket, io) {
 
         await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
             { $set: {"gameState.dices.freePeople": game.gameState.dices.freePeople } });
+
+        if (huntDice) {
+            game.gameState.dices.freePeople.hunt.push(huntDice);
+
+            await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
+                { $set: {"gameState.dices.freePeople.hunt": game.gameState.dices.freePeople.hunt } });
+
+            
+            game.gameState.fellowship.trackPosition++;
+
+            await collection.updateOne({ '_id': mongoClient.ObjectId(_id) }, 
+                { $set: {"gameState.fellowship.trackPosition": game.gameState.fellowship.trackPosition } });
+        }
         
         io.to(_id).emit("room-message", dice.type === DiceType.WillOfTheWest
             ? `${socket.username} used ${dice.type} dice as ${usedDice.type}.`
